@@ -1,4 +1,5 @@
 import requests
+import os
 import pandas as pd
 import xml.etree.ElementTree as ET
 from sqlalchemy import create_engine, text
@@ -8,21 +9,25 @@ from logging import FileHandler
 # UTF-8 로그 핸들러 클래스
 class UTF8FileHandler(FileHandler):
     def __init__(self, filename, mode='a', encoding='utf-8', delay=False):
-        super().__init__(filename, mode, encoding, delay)
-        
+        # log 폴더 경로 설정
+        log_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "log")
+        os.makedirs(log_folder, exist_ok=True)  # log 폴더가 없으면 생성
+        full_path = os.path.join(log_folder, filename)  # log/air_pollution.log로 설정
+        super().__init__(full_path, mode, encoding, delay)
+
 # 로그 포맷 설정
 log_format = "%(asctime)s [%(levelname)s] %(message)s"
 date_format = "%Y-%m-%d %H:%M:%S"
 
-# 로그 설정
+# air_pollution_logger 설정
 pollution_logger = logging.getLogger("air_pollution_logger")
 pollution_logger.setLevel(logging.INFO)
 
-# 파일 핸들러 설정
+# 파일 핸들러 설정 (log/air_pollution.log로 저장)
 file_handler = UTF8FileHandler("air_pollution.log", encoding="utf-8")
 file_handler.setFormatter(logging.Formatter(log_format, datefmt=date_format))
 
-# 스트림 핸들러 설정
+# 스트림 핸들러 설정 (콘솔 출력)
 stream_handler = logging.StreamHandler()
 stream_handler.setFormatter(logging.Formatter(log_format, datefmt=date_format))
 
@@ -32,7 +37,6 @@ pollution_logger.addHandler(stream_handler)
 
 # 로그 시작
 pollution_logger.info("대기오염 데이터 처리 스크립트 시작.")
-
 
 # DB 연결 설정
 engine = create_engine("mysql+pymysql://test:1234@127.0.0.1:3306/pythondb")

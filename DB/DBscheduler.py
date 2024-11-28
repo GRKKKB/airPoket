@@ -8,8 +8,11 @@ from logging import FileHandler
 
 class UTF8FileHandler(FileHandler):
     def __init__(self, filename, mode='a', encoding='utf-8', delay=False):
-        super().__init__(filename, mode, encoding, delay)
-
+        # 로그 파일 경로 설정
+        log_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "log")
+        os.makedirs(log_folder, exist_ok=True)  # 폴더가 없으면 생성
+        full_path = os.path.join(log_folder, filename)
+        super().__init__(full_path, mode, encoding, delay)
 
 # 로그 설정
 logging.basicConfig(
