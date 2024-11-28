@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대기 중 중금속 농도 위험도</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+        .chart-container {
+            margin-top: 20px;
+            max-width: 600px;
+        }
+        .chart-description {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .legend {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border: 1px solid #000;
+        }
+        .safe {
+            background-color: lightgreen;
+        }
+        .danger {
+            background-color: lightcoral;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>대기 중 중금속 농도 위험도 조회</h1>
+    <div class="chart-description">
+        각 차트의 왼쪽 축은 위험 지수를 나타내며, 1.0 이상일 경우 건강 위험 수준에 도달했음을 의미합니다.<br>
+        위험 지수 기준:<br>
+        • <strong>0 &lt; 위험 지수 &lt; 1:</strong> 안전 범위<br>
+        • <strong>위험 지수 = 1:</strong> 기준치 도달<br>
+        • <strong>위험 지수 &gt; 1:</strong> 기준치 초과로 건강 위험 가능성
+    </div>
+
+    <div id="charts"></div>
+
+    <script>
+        const stationNames = {
+            1: '수도권',
+            2: '백령도',
+            3: '호남권',
+            4: '중부권',
+            5: '제주도',
+            6: '영남권',
+            7: '경기권',
+            8: '충청권',
+            9: '전북권',
+            10: '강원권',
+            11: '충북권'
+        };
+
+        const itemNames = {
+            90303: '납',
+            90304: '니켈',
+            90305: '망간',
+            90314: '아연',
+            90325: '황'
+        };
+
+        // 기준치 업데이트: WHO 및 국제 기준 참조
+        const guidelineValues = {
+            90303: 500,    // 납 (WHO 기준: 0.5 µg/m³를 ng/m³로 변환)
+            90304: 20,     // 니켈 (WHO 기준: 0.02 µg/m³를 ng/m³로 변환)
+            90305: 150,    // 망간 (WHO 기준: 0.15 µg/m³를 ng/m³로 변환)
+            90314: 120000, // 아연 (캐나다 기준: 120 µg/m³를 ng/m³로 변환)
+            90325: 20000   // 황 (WHO SO₂ 기준: 20 µg/m³를 ng/m³로 변환)
+        };
+
+        async function getData() {
+            const chartsContainer = document.getElementById("charts");
+            chartsContainer.innerHTML = '';
+
+            for (const itemCode of Object.keys(itemNames)) {
+                const chartLabels = [];
+                const chartData = [];
+                const tooltipData = [];
+                const legendContainer = document.createElement("div");
+                legendContainer.className = "legend";
+
+                for (const stationCode of Object.keys(stationNames)) {
+                    try {
+                        const response = await fetch(`http://apis.data.go.kr/1480523/MetalMeasuringResultService/MetalService?serviceKey=DX8uG5d%2BVR7XcHY3s0gfcy6Rp0htpeKiMBhLDguoSyQPTYxY%2BIdB2vZQtw3Z2%2FKRVBD1Lfw5HuWCqk978lbA3w%3D%3D&pageNo=1&numOfRows=1&resultType=XML&date=${new Date().toISOString().slice(0, 10).replace(/-/g, '')}&stationcode=${stationCode}&itemcode=${itemCode}&timecode=RH02`);
+                        const xmlText = await response.text();
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+                        const items = xmlDoc.getElementsByTagName("item");
+                        if (items.length > 0) {
+                            const value = parseFloat(items[0].getElementsByTagName("value")[0].textContent);
+                            const guideline = guidelineValues[itemCode];
+                            const riskIndex = guideline ? value / guideline : null;
+                            const status = riskIndex !== null && riskIndex >= 1 ? 'danger' : 'safe';
+
+                            chartLabels.push(stationNames[stationCode]);
+                            chartData.push(riskIndex);
+                            tooltipData.push(`측정값: ${value} ng/m³${riskIndex !== null ? `, 위험 지수: ${riskIndex.toFixed(2)}` : ''}`);
+
+                            const legendItem = document.createElement("div");
+                            legendItem.className = "legend-item";
+                            legendItem.innerHTML = `<div class="legend-color ${status}"></div>${stationNames[stationCode]}: ${value} ng/m³ (${status === 'safe' ? '안전' : '위험'})`;
+                            legendContainer.appendChild(legendItem);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching data for station ${stationNames[stationCode]} and item ${itemNames[itemCode]}:`, error);
+                    }
+                }
+
+                const chartContainer = document.createElement("div");
+                chartContainer.className = "chart-container";
+                chartContainer.innerHTML = `<h3>${itemNames[itemCode]} 위험 지수 차트</h3><canvas id="chart-${itemCode}"></canvas>`;
+                chartsContainer.appendChild(chartContainer);
+                chartsContainer.appendChild(legendContainer);
+
+                const ctx = document.getElementById(`chart-${itemCode}`).getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: `${itemNames[itemCode]} 위험 지수`,
+                            data: chartData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipData[tooltipItem.dataIndex];
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '위험 지수'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // 데이터 가져오기 호출
+        getData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대기 중 중금속 농도 위험도</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .legend {
+            margin-top: 10px;
+        }
+        .safe {
+            color: green;
+        }
+        .danger {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>대기 중 중금속 농도 위험도 조회</h1>
+    <div class="chart-description">
+        각 표의 위험 지수를 확인하세요. 1.0 이상일 경우 건강 위험 수준에 도달했음을 의미합니다.<br>
+        위험 지수 기준:<br>
+        • <strong>0 &lt; 위험 지수 &lt; 1:</strong> 안전 범위<br>
+        • <strong>위험 지수 = 1:</strong> 기준치 도달<br>
+        • <strong>위험 지수 &gt; 1:</strong> 기준치 초과로 건강 위험 가능성
+    </div>
+
+    <div id="tables"></div>
+
+    <script>
+        const stationNames = {
+            1: '수도권',
+            2: '백령도',
+            3: '호남권',
+            4: '중부권',
+            5: '제주도',
+            6: '영남권',
+            7: '경기권',
+            8: '충청권',
+            9: '전북권',
+            10: '강원권',
+            11: '충북권'
+        };
+
+        const itemNames = {
+            90303: '납',
+            90304: '니켈',
+            90305: '망간',
+            90314: '아연',
+            90325: '황'
+        };
+
+        const guidelineValues = {
+            90303: 500,    // 납 (WHO 기준: 0.5 µg/m³를 ng/m³로 변환)
+            90304: 20,     // 니켈 (WHO 기준: 0.02 µg/m³를 ng/m³로 변환)
+            90305: 150,    // 망간 (WHO 기준: 0.15 µg/m³를 ng/m³로 변환)
+            90314: 120000, // 아연 (캐나다 기준: 120 µg/m³를 ng/m³로 변환)
+            90325: 20000   // 황 (WHO SO₂ 기준: 20 µg/m³를 ng/m³로 변환)
+        };
+
+        async function getData() {
+            const tablesContainer = document.getElementById("tables");
+            tablesContainer.innerHTML = '';
+
+            for (const itemCode of Object.keys(itemNames)) {
+                const table = document.createElement("table");
+                table.innerHTML = `<thead>
+                    <tr>
+                        <th>측정소</th>
+                        <th>측정값 (ng/m³)</th>
+                        <th>위험 지수</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>`;
+
+                const tbody = document.createElement("tbody");
+
+                for (const stationCode of Object.keys(stationNames)) {
+                    try {
+                        const response = await fetch(`http://apis.data.go.kr/1480523/MetalMeasuringResultService/MetalService?serviceKey=DX8uG5d%2BVR7XcHY3s0gfcy6Rp0htpeKiMBhLDguoSyQPTYxY%2BIdB2vZQtw3Z2%2FKRVBD1Lfw5HuWCqk978lbA3w%3D%3D&pageNo=1&numOfRows=1&resultType=XML&date=${new Date().toISOString().slice(0, 10).replace(/-/g, '')}&stationcode=${stationCode}&itemcode=${itemCode}&timecode=RH02`);
+                        const xmlText = await response.text();
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+                        const items = xmlDoc.getElementsByTagName("item");
+                        if (items.length > 0) {
+                            const value = parseFloat(items[0].getElementsByTagName("value")[0].textContent);
+                            const guideline = guidelineValues[itemCode];
+                            const riskIndex = guideline ? value / guideline : null;
+                            const status = riskIndex !== null && riskIndex >= 1 ? '위험' : '안전';
+                            const statusClass = status === '위험' ? 'danger' : 'safe';
+
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${stationNames[stationCode]}</td>
+                                <td>${value.toFixed(2)}</td>
+                                <td>${riskIndex !== null ? riskIndex.toFixed(2) : '-'}</td>
+                                <td class="${statusClass}">${status}</td>
+                            `;
+                            tbody.appendChild(row);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching data for station ${stationNames[stationCode]} and item ${itemNames[itemCode]}:`, error);
+                    }
+                }
+
+                table.appendChild(tbody);
+                tablesContainer.appendChild(document.createElement("h3")).textContent = `${itemNames[itemCode]} 위험도 표`;
+                tablesContainer.appendChild(table);
+            }
+        }
+
+        // 데이터 가져오기 호출
+        getData();
+    </script>
+</body>
+</html>

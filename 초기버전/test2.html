@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 대기질 지수</title>
+    <script>
+        // 실시간 대기질 데이터를 가져오는 함수
+        function fetchAirQuality() {
+            // XMLHttpRequest 객체 생성
+            var xhr = new XMLHttpRequest();
+            // API URL 설정
+            var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty';
+            // 쿼리 파라미터 설정
+            var queryParams = '?serviceKey=DX8uG5d%2BVR7XcHY3s0gfcy6Rp0htpeKiMBhLDguoSyQPTYxY%2BIdB2vZQtw3Z2%2FKRVBD1Lfw5HuWCqk978lbA3w%3D%3D';
+            queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json');
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100');
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); 
+            queryParams += '&' + encodeURIComponent('sidoName') + '=' + encodeURIComponent('충남'); //서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종
+            queryParams += '&' + encodeURIComponent('ver') + '=' + encodeURIComponent('1.0');
+
+            // GET 요청 설정
+            xhr.open('GET', url + queryParams);
+            // 요청에 대한 상태 변화 처리
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // JSON 데이터 파싱
+                    var response = JSON.parse(this.responseText);
+                    // 데이터 표시 함수 호출
+                    displayData(response.response.body.items);
+                }
+            };
+            // 요청 전송
+            xhr.send('');
+        }
+
+        // 데이터 표를 출력하는 함수
+        function displayData(items) {
+            // 실시간 대기질 데이터 테이블 생성
+            var output = '<h2>실시간 대기질 데이터</h2><table border="1">';
+            output += '<tr><th>측정소명</th><th>PM2.5 (㎍/m³)</th><th>PM10 (㎍/m³)</th><th>SO2 (ppm)</th><th>CO (ppm)</th><th>O3 (ppm)</th><th>NO2 (ppm)</th><th>KHAI</th></tr>';
+            items.forEach(function (item) {
+                output += '<tr>';
+                output += '<td>' + item.stationName + '</td>'; // 측정소명
+                output += '<td>' + item.pm25Value + '</td>'; // PM2.5 농도
+                output += '<td>' + item.pm10Value + '</td>'; // PM10 농도
+                output += '<td>' + item.so2Value + '</td>'; // SO2 농도
+                output += '<td>' + item.coValue + '</td>'; // CO 농도
+                output += '<td>' + item.o3Value + '</td>'; // O3 농도
+                output += '<td>' + item.no2Value + '</td>'; // NO2 농도
+                output += '<td>' + item.khaiValue + '</td>'; // 통합대기지수 (KHAI)
+                output += '</tr>';
+            });
+            output += '</table>';
+
+            // 작업 환경 점수 테이블 추가 생성
+            var scoresTable = '<h2>작업 환경 점수</h2><table border="1">';
+            scoresTable += '<tr><th>측정소명</th><th>마스크 착용 내부 (8시간)</th><th>마스크 미착용 내부 (8시간)</th><th>마스크 착용 외부 (12시간)</th><th>마스크 미착용 외부 (12시간)</th></tr>';
+            items.forEach(function (item) {
+                // 각 조건에 따른 건강 지수 계산
+                var maskOnScore8 = calculateComprehensiveHealthIndex(item.pm25Value, item.pm10Value, item.so2Value, item.coValue, item.o3Value, item.no2Value, 8, false, true);
+                var maskOffScore8 = calculateComprehensiveHealthIndex(item.pm25Value, item.pm10Value, item.so2Value, item.coValue, item.o3Value, item.no2Value, 8, false, false);
+                var maskOnScore12 = calculateComprehensiveHealthIndex(item.pm25Value, item.pm10Value, item.so2Value, item.coValue, item.o3Value, item.no2Value, 12, true, true);
+                var maskOffScore12 = calculateComprehensiveHealthIndex(item.pm25Value, item.pm10Value, item.so2Value, item.coValue, item.o3Value, item.no2Value, 12, true, false);
+
+                scoresTable += '<tr>';
+                scoresTable += '<td>' + item.stationName + '</td>'; // 측정소명
+                scoresTable += '<td>' + interpretHealthIndex(maskOnScore8) + ' (' + maskOnScore8.toFixed(2) + ')</td>'; // 마스크 착용 내부 (8시간)
+                scoresTable += '<td>' + interpretHealthIndex(maskOffScore8) + ' (' + maskOffScore8.toFixed(2) + ')</td>'; // 마스크 미착용 내부 (8시간)
+                scoresTable += '<td>' + interpretHealthIndex(maskOnScore12) + ' (' + maskOnScore12.toFixed(2) + ')</td>'; // 마스크 착용 외부 (12시간)
+                scoresTable += '<td>' + interpretHealthIndex(maskOffScore12) + ' (' + maskOffScore12.toFixed(2) + ')</td>'; // 마스크 미착용 외부 (12시간)
+                scoresTable += '</tr>';
+            });
+            scoresTable += '</table>';
+
+            // HTML 요소에 데이터 추가
+            document.getElementById('dataDisplay').innerHTML = output + scoresTable;
+        }
+
+        // 종합 건강 지수를 해석하여 상태를 반환하는 함수
+        function interpretHealthIndex(index) {
+            if (index === null || index === undefined || isNaN(index)) {
+                return '정보 없음'; // 데이터가 없을 때: 정보 없음
+            } else if (index > 80) {
+                return '좋음'; // 지수 80 초과: 좋음
+            } else if (index > 60) {
+                return '주의(작업시 마스크필요)'; // 지수 60~80: 보통
+            } else if (index > 40) {
+                return '심각(작업자제)'; // 지수 40~60: 나쁨
+            } else {
+                return '매우위험(질병가능성매우높음)'; // 지수 40 이하: 위험
+            }
+        }
+
+        // 종합 건강 지수를 계산하는 함수
+        function calculateComprehensiveHealthIndex(pm25, pm10, so2, co, o3, no2, workHours, isExternal, maskOn) {
+            // 작업 시간에 따른 지수 설정
+            var workHourIndex;
+            if (workHours < 8) {
+                workHourIndex = 1;
+            } else if (workHours <= 12) {
+                workHourIndex = 1.5;
+            } else {
+                workHourIndex = 2;
+            }
+            
+
+            // 기본 점수 계산 (모든 오염물질과 작업 시간 지수 반영)
+            var baseScore = (pm25 * 0.4) + (pm10 * 0.2) + (so2 * 0.1) + (co * 0.1) + (o3 * 0.3) + (no2 * 0.2) + (workHourIndex * 0.2);
+            if (maskOn) {
+                baseScore *= 0.8; // 마스크 착용 시 20% 점수 감소
+            }
+            // 환경 요인 적용 (외부 작업 여부)
+            var environmentFactor = isExternal ? 1.5 : 1.0;
+            return 100 - (baseScore * environmentFactor); // 최종 종합 건강 점수 반환
+        }
+
+    </script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #dfe6e9;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; }
+        tr{ 
+            background-color: #f1f1f1; 
+        }
+        </style>
+
+</head> 
+<body onload="fetchAirQuality()"> 
+    <h1>Air Quality Monitoring</h1>
+     <div id="dataDisplay">Loading data...</div>
+     </body>
+ </html>
