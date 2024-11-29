@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Pollution Data</title>
+</head>
+<body>
+  <h1>Air Pollution Data</h1>
+  <table id="data-table" border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Region</th>
+        <th>Station Name</th>
+        <th>PM2.5</th>
+        <th>PM10</th>
+        <th>SO2</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    // Fetch data from the API
+    fetch('http://localhost:3000/air-pollution')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#data-table tbody');
+        
+        // Populate the table with data
+        data.forEach(row => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${row.id}</td>
+            <td>${row.region}</td>
+            <td>${row.station_name}</td>
+            <td>${row.pm25}</td>
+            <td>${row.pm10}</td>
+            <td>${row.so2}</td>
+            <td>${row.timestamp}</td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  </script>
+</body>
+</html>
