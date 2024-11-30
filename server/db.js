@@ -23,6 +23,9 @@ const query = (sql, params) => {
     });
 };
 
+
+
+
 // 프로시저 호출 함수
 const callProcedure = (procedureName, params) => {
     const placeholders = params.map(() => '?').join(', '); // 파라미터를 위한 placeholder 생성
@@ -32,3 +35,5 @@ const callProcedure = (procedureName, params) => {
 
 
 module.exports = { query ,callProcedure };
+
+
