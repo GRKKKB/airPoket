@@ -1,12 +1,26 @@
 /* reset.css */
+@font-face {
+    font-family: 'MangoByeolbyeol';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoByeolbyeol.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'MangoByeolbyeol';
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'MangoByeolbyeol';
     line-height: 1.6;
     background-color: #E0FFFF; /* Softer background */
     color: #333;
@@ -20,25 +34,28 @@ body {
 }
 
 header {
+    font-family: 'GmarketSansMedium';
+    font-size: 20px;
+    font-weight: lighter;
     border-radius: 3px;
-  
     color: #ADC0DD;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color : #C4E8E6;
+    background-color : #151825;
     border-bottom: 3px solid #96C2CB; /* Add a distinct border */
 }
 
 header .logo  {
+
     font-size: 1.5em;
     color: #ADC0DD;
     text-decoration: none;
     font-weight: bold;
 }
 header img  {
-    max-width: 80%;
+    max-width: 60px;
     height: 10%; /* 이미지 비율 유지 */
     display: block; /* 이미지 아래 여백 제거 */
 }
@@ -53,7 +70,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #173236;
+    color: #E0FFFF;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
@@ -123,11 +140,13 @@ main {
 }
 
 footer {
+    font-family: 'GmarketSansMedium';
     margin-top: 40px;
-    background: #53c653;
+    background-color : #151825;
+
     color: #fff;
     padding: 20px;
-    border-top: 3px solid #47a447;
+    border-top: 3px solid #96C2CB; /* Add a distinct border */
 }
 
 .footer-links ul {
