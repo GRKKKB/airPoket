@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실시간 채팅</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #chat-container {
+      width: 50%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #messages {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .message {
+      max-width: 70%;
+      padding: 10px;
+      border-radius: 10px;
+      word-wrap: break-word;
+    }
+    .sent {
+      align-self: flex-end;
+      background-color: #007bff;
+      color: white;
+    }
+    .received {
+      align-self: flex-start;
+      background-color: #f1f1f1;
+      color: black;
+    }
+    #message-form {
+      display: flex;
+      width: 100%;
+    }
+    #message-input {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #send-button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #send-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <h1>실시간 채팅</h1>
+    <div id="messages"></div>
+    <form id="message-form">
+      <input type="text" id="message-input" placeholder="메시지를 입력하세요..." required />
+      <button type="submit" id="send-button">전송</button>
+    </form>
+  </div>
+
+  <script>
+    // WebSocket 연결
+    const socket = new WebSocket('ws://localhost:3000'); // 서버 URL
+
+    const messagesDiv = document.getElementById('messages');
+    const messageForm = document.getElementById('message-form');
+    const messageInput = document.getElementById('message-input');
+
+    // 고유 ID 생성 (클라이언트 식별용)
+    const clientId = Math.random().toString(36).substr(2, 9);
+
+    // WebSocket 연결 성공
+    socket.addEventListener('open', () => {
+    console.log('WebSocket 연결 성공');
+    });
+
+    // 서버로부터 메시지를 수신
+    socket.addEventListener('message', (event) => {
+    const messageData = JSON.parse(event.data); // JSON으로 파싱
+    const { id, message } = messageData;
+
+    // 자신의 메시지라면 무시
+    if (id === clientId) return;
+
+    // 메시지를 메시지 목록에 추가
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.classList.add('message', 'received');
+    messagesDiv.appendChild(messageElement);
+
+    // 스크롤을 맨 아래로 이동
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    });
+
+    // 메시지 전송
+    messageForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const message = messageInput.value;
+
+    // 서버에 메시지와 클라이언트 ID를 JSON 형식으로 전송
+    socket.send(JSON.stringify({ id: clientId, message }));
+
+    // 보낸 메시지를 목록에 추가
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.classList.add('message', 'sent');
+    messagesDiv.appendChild(messageElement);
+
+    // 스크롤을 맨 아래로 이동
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+    // 입력 필드 초기화
+    messageInput.value = '';
+    });
+
+    // WebSocket 오류 처리
+    socket.addEventListener('error', (error) => {
+    console.error('WebSocket 오류:', error);
+    });
+
+    // WebSocket 연결 종료
+    socket.addEventListener('close', () => {
+    console.log('WebSocket 연결 종료');
+    });
+
+  </script>
+</body>
+</html>
