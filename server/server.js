@@ -48,11 +48,7 @@ wss.on('connection', function connection(ws) {
     });
   });
   
-  // 서버 포트 설정
-  const PORT = 3000;
-  server.listen(PORT, function() {
-    console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
-  });
+
 
 // Middleware 설정
 app.use(cors());
