@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+nav {
+    float: right;
+}
+
+nav > ul > li {
+    float: left;
+    display: inline-block;
+}
+
+nav > ul > li > a{
+    font-size:19px;
+    color:#004385;
+    font-weight: bold;
+    width:180px;
+    display:inline-block;
+    margin:40px 0;
+}
