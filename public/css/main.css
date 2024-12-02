@@ -143,6 +143,58 @@ main {
     transform: scale(1.02);
 }
 
+.comments-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #comments-list {
+    margin-bottom: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  #comments-list .comment {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+  }
+  
+  #comment-form {
+    display: flex;
+    gap: 10px;
+  }
+  
+  #comment-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  #comment-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  
+  #comment-form button:hover {
+    background-color: #0056b3;
+  }
+
 footer {
     font-family: 'GmarketSansMedium';
     margin-top: 40px;
