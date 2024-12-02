@@ -1,26 +1,29 @@
 /* reset.css */
-@font-face {
-    font-family: 'MangoByeolbyeol';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoByeolbyeol.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'MangoByeolbyeol';
+    font-family: 'Pretendard-Regular';
 }
 
-body {
-    font-family: 'MangoByeolbyeol';
+body { 
+    font-family: 'Pretendard-Regular';
     line-height: 1.6;
     background-color: #E0FFFF; /* Softer background */
     color: #333;
@@ -36,7 +39,7 @@ body {
 header {
     font-family: 'GmarketSansMedium';
     font-size: 20px;
-    font-weight: lighter;
+    font-weight: 300;
     border-radius: 3px;
     color: #ADC0DD;
     padding: 10px 20px;
@@ -52,11 +55,11 @@ header .logo  {
     font-size: 1.5em;
     color: #ADC0DD;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 300;
 }
 header img  {
-    max-width: 60px;
-    height: 10%; /* 이미지 비율 유지 */
+    max-width: 100px;
+    height:auto; /* 이미지 비율 유지 */
     display: block; /* 이미지 아래 여백 제거 */
 }
 
@@ -72,7 +75,7 @@ nav ul li {
 nav ul li a {
     color: #E0FFFF;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 300;
     transition: color 0.3s;
 }
 
@@ -119,7 +122,8 @@ main {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .map-section img {
