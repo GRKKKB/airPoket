@@ -51,6 +51,28 @@ router.get('/procedure', async (req, res) => {
 });
 
 
+router.get('/procedure/serchOption', async (req, res) => {
+  // 측정소명과 날짜
+  const region = req.query.region?.trim(); // 입력된 지역 (빈 값일 수 있음)
+
+  // 타입 및 입력값 확인
+  if (region !== undefined && typeof region !== 'string') {
+      return res.status(400).json({ error: true, message: 'Invalid region type. It must be a string.' });
+  }
+
+
+  // 프로시저 호출
+  try {
+      const results = await db.callProcedure('option_search_station_list', [region]);
+
+      // 결과 반환
+      res.json(results);
+  } catch (error) {
+      console.error('Error calling procedure:', error);
+      res.status(500).json({ error: true, message: 'Internal server error' });
+  }
+
+});
 
 // // 특정 프로시저 호출 라우트 예제 
 // router.get('/call-procedure', async (req, res) => {
