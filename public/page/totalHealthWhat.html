@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section>
+            <div>
+                <h2>개요</h2>
+                <hr>
+                <p>종합 건강 지수는 각 오염물질농도 위험수치에 가중치를 부여하고 내부, 외부 작업 환경과 같은 환경요인을 고려하여 개발된 대기오염도 표현 방식</p>
+            </div>
+            <div>
+                <h2>지수 산출 방식</h2>
+                <ul>
+                    <li>6개 대기오염물질별로 가중치를 산정하여 모든 값을 더함</li>
+                    <li>산출된 점수에 작업시간 작업환경별 가중치를 곱함</li>
+                    <li>종합 건강 지수는 0에서 100까지 4단계로 나누어 점수가 커질수록 대기 상태가 좋지 않음을 나타냄</li>
+                    
+                </ul>
+                <img src="../imgtestkmc/totalhealth2.png" alt="totalhealth">
+                <div>
+                    <ul>
+                        <li>PM2.5 = 초미세먼지</li>
+                        <li>O3 = 오존</li>
+                        <li>NO2 = 이산화질소</li>
+                        <li>SO2 = 이산화황</li>
+                        <li>CO = 일산화탄소</li>
+                        <li>PM10 = 미세먼지</li>
+                        <li>WTI = 작업시간지수</li>
+                        <li>EF = 환경요인</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2></h2>
+                <table border="1">
+                    <tr>
+                        <td>지수</td>
+                        <td>공개 대상 항목</td>
+                        <td>공개 목적</td>
+                    </tr>
+                    <tr>
+                        <td>종합 건강 지수</td>
+                        <td>mask_8h_in,<br>no_mask_8h_in,<br>mask_8h_out,<br>no_mask_8h_out,<br>mask_12h_in,<br>no_mask_12h_in,<br>mask_12h_out,<br>no_mask_12h_out</td>
+                        <td>오염물질농도 위험수치에 가중치를 부여하고 내부, 외부 작업 환경을 고려하여 만든 점수</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
