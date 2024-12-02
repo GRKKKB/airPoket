@@ -1,156 +1,156 @@
 /* reset.css */
-
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    }
-    
-    body {
+}
+
+body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
-    }
-    
-    /* main.css */
-    .wrap {
+}
+
+/* main.css */
+.wrap {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
-    }
-    
-    header {
-    background: #007BFF;
+}
+
+header {
+    background: #53e653f8;
     color: white;
     padding: 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    }
-    
-    .logo h1 {
+}
+
+.logo h1 {
     margin-left: 20px;
-    }
-    
-    nav ul {
+}
+
+nav ul {
     list-style: none;
     display: flex;
-    }
-    
-    nav ul li {
+}
+
+nav ul li {
     margin: 0 15px;
-    }
-    
-    nav ul li a {
+}
+
+nav ul li a {
     color: white;
     text-decoration: none;
-    }
-    
-    .search-bar {
+}
+
+.search-bar {
     margin-right: 20px;
-    }
-    
-    .search-bar input[type="text"] {
+}
+
+.search-bar input[type="text"] {
     padding: 5px;
-    }
-    
-    .search-bar button {
+}
+
+.search-bar button {
     padding: 5px 10px;
     background: #fff;
     border: none;
-    color: #007BFF;
+    color: #0099ff;
     cursor: pointer;
-    }
-    
-    .main {
-    display: flex;
+}
+
+main {
     margin-top: 20px;
-    }
-    
-    /* 실시간 대기정보 */
-    .map-section {
-    flex: 1;
+}
+
+.real-time-info {
+    display: flex; /* Flexbox로 수평 정렬 */
+}
+
+.map-section {
+    flex: 1; /* 왼쪽 섹션 */
     padding: 20px;
     background: white;
-    margin: 10px;
+    margin-right: 10px; /* 오른쪽 섹션과의 간격 */
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* 우리 동네 대기정보 */
-    .local-info {
-    flex: 1;
+}
+
+.local-info {
+    flex: 1; /* 오른쪽 섹션 */
     padding: 20px;
     background: white;
-    margin: 10px;
+    margin-left: 10px; /* 왼쪽 섹션과의 간격 */
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .map-section h2, .local-info h2 {
+}
+
+.map-section h2, .local-info h2 {
     margin-bottom: 10px;
-    }
-    
-    .filter {
+}
+
+.filter {
     margin-bottom: 15px;
-    }
-    
-    .filter select {
+}
+
+.filter select {
     padding: 5px;
     margin-right: 10px;
-    }
-    
-    .carousel {
+}
+
+.carousel {
     overflow: hidden;
     margin-top: 20px;
-    }
-    
-    .carousel .slide {
+}
+
+.carousel .slide {
     padding: 10px;
     background: #e9ecef;
     margin: 5px 0;
     border-radius: 5px;
-    }
-    
-    footer {
+}
+
+footer {
     margin-top: 20px;
-    background: #007BFF;
+    background: #53e653f8;
     color: white;
     padding: 20px;
-    }
-    
-    .footer-top {
+}
+
+.footer-top {
     display: flex;
     justify-content: center;
-    }
-    
-    .footer-links ul {
+}
+
+.footer-links ul {
     list-style: none;
     display: flex;
-    }
-    
-    .footer-links ul li {
+}
+
+.footer-links ul li {
     margin: 0 15px;
-    }
-    
-    .footer-links ul li a {
+}
+
+.footer-links ul li a {
     color: white;
     text-decoration: none;
-    }
-    
-    .footer-bottom {
+}
+
+.footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    }
-    
-    .footer-info {
+}
+
+.footer-info {
     text-align: left;
-    }
-    
-    .logos img {
+}
+
+.logos img {
     width: 100px;
     margin-left: 10px;
-    }
+}
