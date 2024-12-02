@@ -16,10 +16,15 @@ ws.addEventListener('message', (event) => {
 
   if (message.type === 'new_comment') {
     const comment = message.data;
+
+    // 새 댓글 DOM 추가
     const commentElement = document.createElement('div');
     commentElement.classList.add('comment');
     commentElement.textContent = comment.content;
     commentsList.appendChild(commentElement);
+
+    // 스크롤 하단 고정 (새 댓글 표시)
+    commentsList.scrollTop = commentsList.scrollHeight;
   }
 });
 
@@ -37,6 +42,9 @@ const fetchComments = async () => {
       commentElement.textContent = comment.content;
       commentsList.appendChild(commentElement);
     });
+
+    // 스크롤 하단 고정 (최근 댓글 표시)
+    commentsList.scrollTop = commentsList.scrollHeight;
   } catch (error) {
     console.error('댓글 가져오기 오류:', error);
   }
@@ -67,7 +75,7 @@ commentForm.addEventListener('submit', async (event) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ comment }),
+      body: JSON.stringify({ comment }), // 댓글 내용 전송
     });
 
     if (response.ok) {
