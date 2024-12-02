@@ -8,28 +8,39 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #E0FFFF; /* Softer background */
     color: #333;
 }
 
 /* main.css */
 .wrap {
-    max-width: 1200px;
+    max-width: 1280px; /* Increased for wider screens */
     margin: auto;
     padding: 20px;
 }
 
 header {
-    background: #53e653f8;
-    color: white;
-    padding: 15px 0;
+    border-radius: 3px;
+  
+    color: #ADC0DD;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color : #C4E8E6;
+    border-bottom: 3px solid #96C2CB; /* Add a distinct border */
 }
 
-.logo h1 {
-    margin-left: 20px;
+header .logo  {
+    font-size: 1.5em;
+    color: #ADC0DD;
+    text-decoration: none;
+    font-weight: bold;
+}
+header img  {
+    max-width: 80%;
+    height: 10%; /* 이미지 비율 유지 */
+    display: block; /* 이미지 아래 여백 제거 */
 }
 
 nav ul {
@@ -38,119 +49,120 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 30px;
 }
 
 nav ul li a {
-    color: white;
+    color: #173236;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-.search-bar {
-    margin-right: 20px;
+nav ul li a:hover {
+    color: #00BFFF;
 }
 
 .search-bar input[type="text"] {
-    padding: 5px;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .search-bar button {
-    padding: 5px 10px;
+    padding: 7px 12px;
     background: #fff;
     border: none;
-    color: #0099ff;
+    color: #53c653;
+    font-weight: bold;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #dfe;
 }
 
 main {
-    margin-top: 20px;
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .real-time-info {
-    display: flex; /* Flexbox로 수평 정렬 */
+    display: flex;
+    flex-wrap: wrap; /* Responsive wrap for smaller screens */
+    gap: 15px;
 }
 
-.map-section {
-    flex: 1; /* 왼쪽 섹션 */
+.map-section, .local-info {
+    flex: 1 1 45%; /* Flex-basis for equal sections */
+    background: #fff;
     padding: 20px;
-    background: white;
-    margin-right: 10px; /* 오른쪽 섹션과의 간격 */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.local-info {
-    flex: 1; /* 오른쪽 섹션 */
-    padding: 20px;
-    background: white;
-    margin-left: 10px; /* 왼쪽 섹션과의 간격 */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.map-section img {
+    max-width: 100%;
+    border-radius: 10px;
 }
 
-.map-section h2, .local-info h2 {
-    margin-bottom: 10px;
-}
-
-.filter {
-    margin-bottom: 15px;
-}
-
-.filter select {
-    padding: 5px;
-    margin-right: 10px;
-}
-
-.carousel {
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.carousel .slide {
+.news-alerts .carousel .slide {
     padding: 10px;
-    background: #e9ecef;
-    margin: 5px 0;
+    background: #f4f4f4;
     border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.news-alerts .carousel .slide:hover {
+    transform: scale(1.02);
 }
 
 footer {
-    margin-top: 20px;
-    background: #53e653f8;
-    color: white;
+    margin-top: 40px;
+    background: #53c653;
+    color: #fff;
     padding: 20px;
-}
-
-.footer-top {
-    display: flex;
-    justify-content: center;
+    border-top: 3px solid #47a447;
 }
 
 .footer-links ul {
     list-style: none;
     display: flex;
-}
-
-.footer-links ul li {
-    margin: 0 15px;
+    justify-content: center;
+    gap: 20px;
 }
 
 .footer-links ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #dfe;
 }
 
 .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
 }
 
-.footer-info {
-    text-align: left;
+.footer-info p {
+    margin: 0;
+    font-size: 0.9em;
 }
 
 .logos img {
-    width: 100px;
-    margin-left: 10px;
+    width: 80px;
+    margin: 0 10px;
 }
