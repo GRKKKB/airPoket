@@ -51,7 +51,6 @@ wss.on('connection', (ws) => {
   });
   
 
-});
 
 // Middleware 설정
 app.use(cors());
