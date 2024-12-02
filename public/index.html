@@ -1,118 +1,119 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Air Quality Info</title>
-  <!-- css 리셋 -->
-  <link rel="stylesheet" href="/public/css/reset.css" />
-  <link rel="stylesheet" href="/public/css/main.css" />
-</head>
-<body>
-    <header>
-        <div class="logo">
-          <h1>Air Korea</h1>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="#">에어포켓이란</a></li>
-            <li><a href="#">종합건강점수란</a></li>
-            <li><a href="#">실시간자료조회</a></li>
-            <li><a href="#">통계정보</a></li>
-            <li><a href="#">고객지원</a></li>
-          </ul>
-        </nav>
-        <div class="search-bar">
-          <form action="/search" method="get">
-            <input type="text" name="query" placeholder="검색어를 입력하세요" />
-            <button type="submit">검색</button>
-          </form>
-        </div>
-      </header>
-
-  <main>
-    <section class="real-time-info">
-     <!-- 제일 왼쪽 세션 아마 지도 들어갈거 같음 -->
-      <div class="map-section">
-        <h2>실시간 대기정보</h2>
-        <div class="filter">
-          <select name="pollutant" id="pollutant">
-            <option value="pm25">초미세먼지 (PM-2.5)</option>
-            <option value="pm10">미세먼지 (PM-10)</option>
-          </select>
-          <select name="region" id="region">
-            <option value="all">전국</option>
-            <option value="seoul">서울</option>
-            <option value=""></option>
-          </select>
-          <button>종합건강점수</button>
-        </div>
-        <div class="map">
-          <!-- Placeholder for map image -->
-          <img src="map-placeholder.png" alt="Korea Air Map">
-        </div>
-      </div>
-      <!-- 오른쪽 부분   -->
-      <div class="local-info">
-        <h2>우리동네 대기정보</h2>
-        <div class="info-box">
-          <div class="today-info">
-            <h3>오늘의 대기질</h3>
-            <p>초미세먼지 (PM-2.5): 26㎍/m³ (보통)</p>
-            <p>미세먼지 (PM-10): 31㎍/m³ (보통)</p>
-            <p>오존 (O₃): 0.0026ppm (좋음)</p>
+  <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Info</title>
+    <!-- css 리셋 -->
+    <link rel="stylesheet" href="/public/css/reset.css" />
+    <link rel="stylesheet" href="/public/css/main.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+          <div class="logo">
+            <h1>Air Poket</h1>
           </div>
-          <div class="forecast">
-            <h3>오늘의 종합건강점수</h3>
+          <nav>
             <ul>
-              <li>오늘: 보통</li>
-              <li>내일: 좋음</li>
+              <li><a href="#">에어포켓이란</a></li>
+              <li><a href="#">종합건강점수란</a></li>
+              <li><a href="#">실시간자료조회</a></li>
+              <li><a href="#">통계정보</a></li>
+              <li><a href="#">고객지원</a></li>
+            </ul>
+          </nav>
+          <div class="search-bar">
+            <form action="/search" method="get">
+              <input type="text" name="query" placeholder="검색어를 입력하세요" />
+              <button type="submit">검색</button>
+            </form>
+          </div>
+        </header>
+
+      <main>
+        <section class="real-time-info">
+        <!-- 제일 왼쪽 세션 아마 지도 들어갈거 같음 -->
+          <div class="map-section" style="float: left;">
+            <h2>실시간 대기정보</h2>
+            <div class="filter">
+              <select name="pollutant" id="pollutant">
+                <option value="pm25">초미세먼지 (PM-2.5)</option>
+                <option value="pm10">미세먼지 (PM-10)</option>
+              </select>
+              <select name="region" id="region">
+                <option value="all">전국</option>
+                <option value="seoul">서울</option>
+                <option value=""></option>
+              </select>
+              <button>종합건강점수</button>
+            </div>
+            <div class="map">
+              <!-- Placeholder for map image -->
+              <img src="map-placeholder.png" alt="Korea Air Map">
+            </div>
+          </div>
+          <!-- 오른쪽 부분   -->
+          <div class="local-info" style="float: right">
+            <h2>우리동네 대기정보</h2>
+            <div class="info-box">
+              <div class="today-info">
+                <h3>오늘의 대기질</h3>
+                <p>초미세먼지 (PM-2.5): 26㎍/m³ (보통)</p>
+                <p>미세먼지 (PM-10): 31㎍/m³ (보통)</p>
+                <p>오존 (O₃): 0.0026ppm (좋음)</p>
+              </div>
+              <div class="forecast">
+                <h3>오늘의 종합건강점수</h3>
+                <ul>
+                  <li>오늘: 보통</li>
+                  <li>내일: 좋음</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="news-alerts">
+          <h2>소식알림창</h2>
+          <div class="carousel">
+            <div class="slide">
+              <p>한국형 대기질 박스모델</p>
+            </div>
+            <div class="slide">
+              <p>6차 미세먼지 계절관리제 시작</p>
+            </div>
+            <!-- Add more slides as needed -->
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-top">
+          <div class="footer-links">
+            <ul>
+              <li><a href="#">개인정보처리방침</a></li>
+              <li><a href="#">저작권 정책</a></li>
+              <li><a href="#">이메일무단수집거부</a></li>
+              <li><a href="#">황사관련 사이트</a></li>
+              <li><a href="#">국내/국외 관련사이트</a></li>
             </ul>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="news-alerts">
-      <h2>소식알림창</h2>
-      <div class="carousel">
-        <div class="slide">
-          <p>한국형 대기질 박스모델</p>
+        <div class="footer-bottom">
+          <div class="footer-info">
+            <p>실시간 미세먼지 농도 및 예보 관련 문의 : 131 ()</p>
+            <p>대기측정망 및 통계자료 관련 문의 : 01001112243 ()</p>
+            <p>[우편번호] 울산 광역시 ㅁㅁㅁㅁ()</p>
+            <p>Copyright © 2024 *****, All rights reserved.</p>
+          </div>
+          <div class="logos">
+            <img src="ministry-logo.png" alt="환경부 로고">
+            <img src="keco-logo.png" alt="한국환경공단 로고">
+            <img src="open-logo.png" alt="오픈 데이터 로고">
+          </div>
         </div>
-        <div class="slide">
-          <p>6차 미세먼지 계절관리제 시작</p>
-        </div>
-        <!-- Add more slides as needed -->
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-top">
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">개인정보처리방침</a></li>
-          <li><a href="#">저작권 정책</a></li>
-          <li><a href="#">이메일무단수집거부</a></li>
-          <li><a href="#">황사관련 사이트</a></li>
-          <li><a href="#">국내/국외 관련사이트</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-info">
-        <p>실시간 미세먼지 농도 및 예보 관련 문의 : 131 ()</p>
-        <p>대기측정망 및 통계자료 관련 문의 : 01001112243 ()</p>
-        <p>[우편번호] 울산 광역시 ㅁㅁㅁㅁ()</p>
-        <p>Copyright © 2024 *****, All rights reserved.</p>
-      </div>
-      <div class="logos">
-        <img src="ministry-logo.png" alt="환경부 로고">
-        <img src="keco-logo.png" alt="한국환경공단 로고">
-        <img src="open-logo.png" alt="오픈 데이터 로고">
-      </div>
-    </div>
-  </footer>
-  
-</body>
-</html>
+      </footer>
+    </div> <!-- wrap -->   
+  </body>
+  </html>
