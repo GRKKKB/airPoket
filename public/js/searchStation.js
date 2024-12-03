@@ -4,8 +4,7 @@
         
         // 기존 옵션 초기화
         stationSelect.innerHTML = '<option value="all">전체</option>';
-        
-        if (region === 'all') return; // 전체 선택 시 추가 작업 없음
+
         
         try {
             // API 호출
@@ -32,3 +31,10 @@
         const selectedRegion = event.target.value; // 선택된 지역
         updateStations(selectedRegion); // API 호출 및 옵션 업데이트
     });
+
+
+    // 페이지 로드 시 초기 설정
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectedRegion = 'Seoul'; // 선택된 지역
+        updateStations(selectedRegion); // API 호출 및 옵션 업데이트
+  });

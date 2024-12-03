@@ -88,6 +88,7 @@ tabButtons.forEach(button => {
 
 // 페이지 로드 시 초기 설정
 document.addEventListener('DOMContentLoaded', () => {
+  
   displayCurrentDate();
   fetchData(); // 초기 데이터 로드
 });
