@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // 모든 탭 버튼에서 active 클래스 제거
         tabButtons.forEach((btn) => btn.classList.remove('active'));
   
+           // 모든 탭 콘텐츠 숨기기
+           tabs.forEach((tab) => tab.classList.add('hidden'));
+
         // 클릭된 탭 버튼에 active 클래스 추가
         button.classList.add('active');
   
-        // 모든 탭 콘텐츠 숨기기
-        tabs.forEach((tab) => tab.classList.add('hidden'));
+     
   
         // 클릭된 탭 버튼과 연결된 콘텐츠 표시
         const target = button.dataset.target;
