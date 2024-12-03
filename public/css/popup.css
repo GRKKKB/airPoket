@@ -20,14 +20,14 @@ p {
     display: none; /* 기본적으로 숨김 */
     position: fixed; /* 화면에 고정 */
     
-    overflow: auto; /* 필요시 스크롤 가능 */
+    /* overflow: auto; */ /* 필요시 스크롤 가능 */
     
 }
 
 /* 모달 콘텐츠 스타일 */
 .modal-content {
     background-color: #ffffff;
-    margin: 160px 0px 0px 1600px; /* 위에서 15%, 중앙 정렬 */
+    margin: 160px 0px 0px 750%; 
     padding: 0px 10px 0px 10px;
     border: 1px solid #1d8fcc;
     width: 221px ; /* 화면 크기에 따라 너비 설정 */
