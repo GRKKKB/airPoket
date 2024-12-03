@@ -24,3 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 });
+
+
+// script.js
+
+// 메인 페이지용 스크립트
+const popupButton = document.getElementById('popup-button'); // 팝업 버튼 선택
+
+popupButton.addEventListener('click', () => {
+    window.open('popup.html', 'Popup', 'width=400,height=300'); // 팝업 창 열기
+});
+
+// 팝업 페이지용 스크립트
+const closeButton = document.getElementById('close-button'); // 닫기 버튼 선택
+
+if (closeButton) { // 닫기 버튼이 존재할 경우
+    closeButton.addEventListener('click', () => {
+        window.close(); // 팝업 창 닫기
+    });
+}

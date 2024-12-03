@@ -1,59 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>PM-2.5 지도</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <title>대기정보 지도</title>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script> <!-- YOUR_APP_KEY를 발급받은 API 키로 변경 -->
     <style>
-        #map { height: 600px; }
+        #map { width: 100%; height: 600px; }
+        .info-window { padding: 5px; }
     </style>
 </head>
 <body>
     <div id="map"></div>
     <script>
-        var map = L.map('map').setView([36.5, 127.7], 7); // 한국 중심 좌표
+        // 지도 생성
+        var map = new kakao.maps.Map(document.getElementById('map'), {
+            center: new kakao.maps.LatLng(36.5, 127.7), // 한국 중부 좌표
+            level: 7 // 지도 확대 레벨
+        });
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
-
-        // GeoJSON 데이터 예시 (각 지역의 PM-2.5 수치 포함)
-        var geojsonData = {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "properties": { "name": "서울", "pm25": 6 },
-                    "geometry": { "type": "Point", "coordinates": [126.978, 37.566] }
-                },
-                // 다른 지역 데이터 추가
-            ]
-        };
+        // 지역 대기오염 수치 데이터
+        var locations = [
+            { name: "서울", lat: 37.5665, lng: 126.978, pm25: 6 },
+            { name: "부산", lat: 35.1796, lng: 129.0756, pm25: 55 },
+            { name: "대구", lat: 35.8714, lng: 128.6018, pm25: 12 },
+            { name: "인천", lat: 37.4563, lng: 126.7052, pm25: 5 },
+            { name: "광주", lat: 35.1595, lng: 126.8526, pm25: 9 },
+            { name: "대전", lat: 36.3504, lng: 127.3845, pm25: 7 },
+            // 추가 지역 데이터
+        ];
 
         // 색상 결정 함수
         function getColor(pm25) {
-            return pm25 > 50 ? '#FF0000' :
-                   pm25 > 30 ? '#FFA500' :
-                   pm25 > 20 ? '#FFFF00' :
-                   pm25 > 10 ? '#00FF00' :
-                                '#00FFFF';
+            return pm25 > 50 ? '#FF0000' : // 매우 나쁨
+                   pm25 > 30 ? '#FFA500' : // 나쁨
+                   pm25 > 20 ? '#FFFF00' : // 보통
+                   pm25 > 10 ? '#00FF00' : // 좋음
+                                '#00FFFF'; // 매우 좋음
         }
 
-        // GeoJSON 추가 및 마커 생성
-        L.geoJSON(geojsonData, {
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, {
-                    radius: 8,
-                    fillColor: getColor(feature.properties.pm25),
-                    color: "#000",
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                }).bindPopup(feature.properties.name + ": " + feature.properties.pm25);
-            }
-        }).addTo(map);
+        // 마커 추가
+        locations.forEach(function(location) {
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(location.lat, location.lng)
+            });
+
+            // 마커를 지도에 추가
+            marker.setMap(map);
+
+            // 원형 마커 추가
+            var circle = new kakao.maps.Circle({
+                center: new kakao.maps.LatLng(location.lat, location.lng),
+                radius: 30, // 반경
+                fillColor: getColor(location.pm25),
+                fillOpacity: 0.6,
+                strokeWeight: 0
+            });
+            circle.setMap(map);
+
+            // 클릭 시 정보 표시
+            kakao.maps.event.addListener(marker, 'click', function() {
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: `<div class="info-window"><strong>${location.name}</strong><br>PM-2.5: ${location.pm25}</div>`
+                });
+                infowindow.open(map, marker);
+            });
+        });
     </script>
 </body>
 </html>
