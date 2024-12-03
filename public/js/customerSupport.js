@@ -1,45 +1,37 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import './ContactUs.css'; // CSS 파일을 임포트합니다.
+// EmailJS 초기화
+(function () {
+    emailjs.init("Qx7d4HQk3iGbBWLUl");
+})();
 
-export const ContactUs = () => {
-  const form = useRef();
+function sendEmail(event) {
+    event.preventDefault(); // 기본 제출 동작 방지
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+    // Input 값 가져오기
+    var from_name = document.getElementById("name").value; // 사용자의 이름
+    var email = document.getElementById("email").value; // 사용자의 이메일
+    var phone = document.getElementById("phone").value; // 사용자의 전화번호
+    var message = document.getElementById("message").value; // 문의 내용
 
+    // EmailJS에 보낼 데이터
+    var templateParams = {
+        from_name: from_name, // 보낸 사람 이름
+        name: from_name,      // 이름
+        email: email,         // 이메일
+        phone: phone,         // 전화번호
+        message: message      // 문의 내용
+    };
+
+    // EmailJS 전송
     emailjs
-      .sendForm('service_roqavba', 'template_p5yia8q', form.current, {
-        publicKey: '69Dsb7wcmIBomBPgN',
-      })
-      .then(
-        () => {
-          console.log('SUCCESS!');
-        },
-        (error) => {
-          console.log('FAILED...', error);
-        },
-      );
-  };
-
-  return (
-    <div className="contact-container">
-      <h1>고객지원</h1>
-      <form ref={form} onSubmit={sendEmail} className="contact-form">
-        <label>이름</label>
-        <input type="text" name="user_name" placeholder="Your name" required />
-        
-        <label>이메일 주소</label>
-        <input type="email" name="user_email" placeholder="Your email address" required />
-        
-        <label>전화번호</label>
-        <input type="tel" name="user_phone" placeholder="Your phone number" required />
-        
-        <label>문의 내용</label>
-        <textarea name="message" placeholder="Comments" required />
-        
-        <input type="submit" value="전송" className="submit-button" />
-      </form>
-    </div>
-  );
-};
+        .send("service_roqavba", "template_p5yia8q", templateParams)
+        .then(
+            function (response) {
+                alert("문의가 성공적으로 전송되었습니다!");
+                document.getElementById("support-form").reset(); // 폼 초기화
+            },
+            function (error) {
+                alert("문의 전송에 실패했습니다. 다시 시도해주세요.");
+                console.error("EmailJS Error:", error);
+            }
+        );
+}
