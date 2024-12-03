@@ -262,6 +262,14 @@ main {
     background-color: #0056b3;
   }
 
+main h1 {
+    font-size: x-large;
+}
+
+main h2 {
+    font-size: large;
+}
+
 footer {
     font-family: 'GmarketSansMedium';
     margin-top: 40px;
