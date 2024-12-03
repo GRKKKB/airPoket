@@ -134,13 +134,10 @@ nav ul li a:hover {
     border-bottom: 2px solid #007bff;
     font-weight: bold;
   }
-<<<<<<< HEAD
-  #tab-content {
 
-=======
-  
+
+
   .tab-content {
->>>>>>> 6b6fd7a5b9e2135bdf84587a286dc905659149cd
     display: hidden; /* 기본적으로 콘텐츠 숨기기 */
     padding: 15px;
     border: 1px solid #ddd;
@@ -148,11 +145,8 @@ nav ul li a:hover {
     border-radius: 0 0 5px 5px;
   }
   
-<<<<<<< HEAD
  
-=======
   
->>>>>>> 6b6fd7a5b9e2135bdf84587a286dc905659149cd
   
   
 
