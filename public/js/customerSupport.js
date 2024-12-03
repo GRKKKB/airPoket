@@ -16,7 +16,7 @@ export const ContactUs = () => {
           console.log('SUCCESS!');
         },
         (error) => {
-          console.log('FAILED...', error.text);
+          console.log('FAILED...', error);
         },
       );
   };
@@ -26,9 +26,9 @@ export const ContactUs = () => {
       <label>Name</label>
       <input type="text" name="user_name" />
       <label>Email</label>
-      <input type="email" name="from_name" />
+      <input type="email" name="user_email" />
       <label>Phone</label>
-      <input type='phoneNum' name="user_phone" />
+      <input type='tel' name="user_phone" />
       <label>Message</label>
       <textarea name="message" />
       <input type="submit" value="Send" />
