@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
 });
 
 
-<<<<<<< Updated upstream
 // `/air-pollution/procedure` 서울,부산등 지역명과 날짜를 입력받아 각 측정소명의 점수등을 가져오기
 // GetCombinedPollutionData 프로시저 호출 
 router.get('/procedure', async (req, res) => {
@@ -91,6 +90,4 @@ router.get('/procedure/serchOption', async (req, res) => {
 
 
 
-=======
->>>>>>> Stashed changes
 module.exports = router;
