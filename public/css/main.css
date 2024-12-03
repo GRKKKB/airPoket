@@ -113,8 +113,8 @@ nav ul li a:hover {
     pointer-events: none;
   }
 
- /* 탭 스타일 */
-.tabs {
+    /* 탭 스타일 */
+    .tabs {
     display: flex;
     margin-bottom: 20px;
     cursor: pointer;
@@ -134,8 +134,8 @@ nav ul li a:hover {
     border-bottom: 2px solid #007bff;
     font-weight: bold;
   }
-  
   #tab-content {
+
     display: hidden; /* 기본적으로 콘텐츠 숨기기 */
     padding: 15px;
     border: 1px solid #ddd;
@@ -143,9 +143,7 @@ nav ul li a:hover {
     border-radius: 0 0 5px 5px;
   }
   
-  #tab-content.active {
-    display: block; /* 활성화된 콘텐츠만 표시 */
-  }
+ 
   
   
 
