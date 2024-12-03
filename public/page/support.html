@@ -45,28 +45,28 @@
             <h1 class="page-title text-center mb-4">고객지원</h1> <!-- 제목 중앙 정렬 -->
             <h3 class="page-title text-center mb-4">건의 사항이나 내용</h3>
             <section class="form-wrap bg-light p-4 rounded shadow">
-              <form id="support-form">
+              <form id="support-form" onsubmit="sendEmail(event)">
                 <div class="mb-3">
-                  <label for="inputName" class="form-label">이름</label>
-                  <input type="text" class="form-control" id="inputName" name="name" placeholder="Your name" />
+                    <label for="name" class="form-label">이름</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" />
                 </div>
                 <div class="mb-3">
-                  <label for="inputEmail" class="form-label">이메일 주소</label>
-                  <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Your email address" />
+                    <label for="email" class="form-label">이메일 주소</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" />
                 </div>
                 <div class="mb-3">
-                  <label for="inputPhone" class="form-label">전화번호</label>
-                  <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Your phone number" />
+                    <label for="phone" class="form-label">전화번호</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" />
                 </div>
                 <div class="mb-4">
-                  <label for="floatingTextarea" class="form-label">문의 내용</label>
-                  <textarea class="form-control" style="height: 13rem; resize: none" name="message" id="floatingTextarea" placeholder="Comments"></textarea>
+                    <label for="message" class="form-label">문의 내용</label>
+                    <textarea class="form-control" id="message" name="message" style="height: 13rem; resize: none" placeholder="Comments"></textarea>
                 </div>
                 <div class="text-end">
-                  <button name="submit" class="custom-button" onsubmit="sendEmail(event)">전송</button>
-
+                    <button type="submit" class="custom-button">전송</button>
                 </div>
-              </form>
+            </form>
+            
             </section>
           </main>
 
