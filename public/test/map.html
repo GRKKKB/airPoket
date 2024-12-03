@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PM-2.5 지도</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([36.5, 127.7], 7); // 한국 중심 좌표
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // GeoJSON 데이터 예시 (각 지역의 PM-2.5 수치 포함)
+        var geojsonData = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": { "name": "서울", "pm25": 6 },
+                    "geometry": { "type": "Point", "coordinates": [126.978, 37.566] }
+                },
+                // 다른 지역 데이터 추가
+            ]
+        };
+
+        // 색상 결정 함수
+        function getColor(pm25) {
+            return pm25 > 50 ? '#FF0000' :
+                   pm25 > 30 ? '#FFA500' :
+                   pm25 > 20 ? '#FFFF00' :
+                   pm25 > 10 ? '#00FF00' :
+                                '#00FFFF';
+        }
+
+        // GeoJSON 추가 및 마커 생성
+        L.geoJSON(geojsonData, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: getColor(feature.properties.pm25),
+                    color: "#000",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).bindPopup(feature.properties.name + ": " + feature.properties.pm25);
+            }
+        }).addTo(map);
+    </script>
+</body>
+</html>
