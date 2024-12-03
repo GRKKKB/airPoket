@@ -1,19 +1,18 @@
     fetch('http://localhost:3000/chartTestKmc') // Express.js API 호출
         .then(response => response.json())
         .then(data => {
-        const labels = data.map(row => row.timestamp);
-        const AVG = data.map(row => row.AVG);
-        
+        const labels = data.map(row => row.station_name);
+        const pm25 = data.map(row => row.pm25);
 
-    const ctx = document.getElementById('chartTestKmc').getContext('2d');
+    const ctx = document.getElementById('airChart').getContext('2d');
     new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: labels,
             datasets: [
                 {
-                    label: 'mask_8h_in',
-                    data: AVG,
+                    label: 'pm25',
+                    data: pm25,
                     backgroundColor: 'rgba(75, 192, 192, 0.5)',
                 },
              

@@ -82,6 +82,7 @@ function updateTableData(data, tableId) {
   });
 }
 
+
 // 탭 전환 이벤트
 tabButtons.forEach(button => {
   button.addEventListener('click', () => {

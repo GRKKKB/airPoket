@@ -7,8 +7,9 @@
         <!-- css 리셋 -->
         <link rel="stylesheet" href="/public/css/reset.css" />
         <link rel="stylesheet" href="/public/css/main.css" />
-        
+
         <link rel="stylesheet" href="/public/css/tab.css" />
+        
 </head>
 <body>
     <div class="wrap">
@@ -52,6 +53,15 @@
     <div id="air-tab" class="tab-content active">
         <h2>대기오염정보</h2>
         
+
+        <table>
+          <tr>
+            <td><canvas id="airChart" width="400" height="200"></canvas></td>
+          </tr>
+        </table>
+
+
+
         <div class="filter">
             <select name="region" id="region">
                 <option value="Seoul">서울</option>
@@ -99,6 +109,11 @@
 
     <div id="metal-tab" class="tab-content">
         <h2>중금속 오염정보</h2>
+        <table>
+          <tr>
+            <td>여기에는 중금속 차트 띄우기</td>
+          </tr>
+        </table>
         <div class="filter">
             <select name="city_name" id="city_name">
                 <option value="all">전국</option>
@@ -164,5 +179,8 @@
     <script src="/public/js/RealTimeInformation.js"></script>
     <!-- api호출 js 측정소 명찾기  옵션 -->
     <script src="/public/js/searchStation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/public/js/chartTestKmc.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
