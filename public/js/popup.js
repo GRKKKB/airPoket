@@ -1,7 +1,7 @@
 // 문서가 모두 로드된 후 스크립트 실행
 document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("popup"); // 팝업 요소 가져오기
-    const openPopupBtn = document.getElementById("openPopup"); // 팝업 열기 버튼
+
     const closePopupBtn = document.getElementById("closePopup"); // 팝업 닫기 버튼
 
     // 이전에 팝업이 닫혔는지 확인
@@ -9,10 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.style.display = "block"; // 팝업 표시
     }
 
-    // 팝업 열기 버튼에 클릭 이벤트 추가
-    openPopupBtn.onclick = () => {
-        popup.style.display = "block"; // 팝업 표시
-    };
 
     // 팝업 닫기 버튼에 클릭 이벤트 추가
     closePopupBtn.onclick = () => {
