@@ -7,9 +7,13 @@
     <!-- css 리셋 -->
     <link rel="stylesheet" href="/public/css/reset.css" />
     <link rel="stylesheet" href="/public/css/main.css" />
+
   </head>
   <body>
+
     <div class="wrap">
+      <!-- 경고창 평소에 히든 -->
+      <div id="alert" class="hidden"></div>
       <header>
           <div class="logo">
             <a href="/public/index.html">
@@ -34,25 +38,25 @@
         </header>
 
       <main>
+    
         <section class="real-time-info">
         <!-- 제일 왼쪽 세션 아마 지도 들어갈거 같음 -->
-          <div class="map-section">
-            <h2>실시간 대기정보</h2>
-            <div class="filter">
-              <select name="pollutant" id="pollutant">
-                <option value="pm25">초미세먼지 (PM-2.5)</option>
-                <option value="pm10">미세먼지 (PM-10)</option>
-              </select>
-              <select name="region" id="region">
-                <option value="all">전국</option>
-                <option value="seoul">서울</option>
-                <option value=""></option>
-              </select>
-              <button>종합건강점수</button>
+        <div class="map-section">
+            <div class="tabs">
+              <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
+              <div class="tab-btn" data-target="metal-tab">대기중 중금속 오염정보</div>
             </div>
-            <div class="map">
-              <!-- Placeholder for map image -->
-              <img src="map-placeholder.png" alt="Korea Air Map">
+            
+            <div class="tab-contents">
+              <div id="air-tab" class="tab-content">
+                <h3>대기오염 정보</h3>
+                <p>초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
+              </div>
+            
+              <div id="metal-tab" class="tab-content hidden">
+                <h3>대기중 중금속 오염정보</h3>
+                <p>대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
+              </div>
             </div>
           </div>
           <!-- 오른쪽 부분   -->
@@ -126,7 +130,18 @@
           </div>
         </div>
       </footer>
-    </div> <!-- wrap -->   
+    </div> 
+<<<<<<< Updated upstream
+
+    <!-- 채팅 js -->
     <script src="/public/js/main.js"></script>
+    <script src="/public/js/Chat.js"></script>
+=======
+    <!-- 채팅 js -->
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/Chat.js"></script>
+    </div> <!-- wrap -->   
+
+>>>>>>> Stashed changes
   </body>
   </html>

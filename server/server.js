@@ -48,7 +48,9 @@ wss.on('connection', (ws) => {
     ws.on('error', (error) => {
         console.error('WebSocket 에러:', error);
     });
-});
+  });
+  
+
 
 // Middleware 설정
 app.use(cors());
