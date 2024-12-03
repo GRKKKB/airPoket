@@ -17,21 +17,25 @@ async function fetchData() {
   const region = regionSelect.value;
   const station = stationSelect.value;
 
-  // 대기오염 데이터 (API 대신 mock 데이터 사용)
-  const airData = [
-    { region: '서울', station: '중구', time: '12:00', score: 85, pm10: 30, pm25: 20, o3: 0.03, no2: 0.02, co: 0.01, so2: 0.001 },
-    { region: '서울', station: '강남구', time: '12:00', score: 80, pm10: 25, pm25: 15, o3: 0.025, no2: 0.018, co: 0.008, so2: 0.0009 }
-  ];
+  try {
+    // API 호출
+    const airResponse = await fetch('http://localhost:3000/realTime/air');
+    const metalResponse = await fetch('http://localhost:3000/realTime/metal');
 
-  // 중금속 데이터 (API 대신 mock 데이터 사용)
-  const metalData = [
-    { region: '서울', time: '12:00', lead: 0.05, cadmium: 0.03, arsenic: 0.02, mercury: 0.01, chromium: 0.04 },
-    { region: '서울', time: '12:00', lead: 0.06, cadmium: 0.035, arsenic: 0.025, mercury: 0.015, chromium: 0.045 }
-  ];
+    const airData = await airResponse.json();
+    const metalData = await metalResponse.json();
 
-  // 테이블 업데이트
-  updateTableData(airData, 'air-data');
-  updateTableData(metalData, 'metal-data');
+    // 선택된 옵션에 따른 데이터 필터링
+    const filteredAirData = airData.filter(item => {
+      return (region === 'all' || item.region === region || item.city_name == region) &&
+             (station === 'all' || item.station_name === station);
+    });
+
+    updateTableData(filteredAirData, 'air-data');
+    updateTableData(metalData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
+  } catch (error) {
+    console.error('데이터를 가져오는 중 에러 발생:', error);
+  }
 }
 
 // 테이블 업데이트 함수
@@ -44,25 +48,25 @@ function updateTableData(data, tableId) {
     if (tableId === 'air-data') {
       tr.innerHTML = `
         <td>${row.region}</td>
-        <td>${row.station}</td>
-        <td>${row.time}</td>
-        <td>${row.score}</td>
-        <td>${row.pm10}</td>
-        <td>${row.pm25}</td>
-        <td>${row.o3}</td>
-        <td>${row.no2}</td>
-        <td>${row.co}</td>
-        <td>${row.so2}</td>
+        <td>${row.station_name}</td>
+        <td>${row.hour}</td>
+        <td>${row.weighted_score}</td>
+        <td>${row.PM25}</td>
+        <td>${row.PM19}</td>
+        <td>${row.SO2}</td>
+        <td>${row.CO}</td>
+        <td>${row.O3}</td>
+        <td>${row.NO2}</td>
       `;
     } else if (tableId === 'metal-data') {
       tr.innerHTML = `
-        <td>${row.region}</td>
-        <td>${row.time}</td>
-        <td>${row.lead}</td>
-        <td>${row.cadmium}</td>
-        <td>${row.arsenic}</td>
-        <td>${row.mercury}</td>
-        <td>${row.chromium}</td>
+        <td>${row.city_name}</td>
+        <td>${row.HOUR}</td>
+        <td>${row.Pb}</td>
+        <td>${row.Ni}</td>
+        <td>${row.Mn}</td>
+        <td>${row.Zn}</td>
+        <td>${row.S}</td>
       `;
     }
     tableBody.appendChild(tr);

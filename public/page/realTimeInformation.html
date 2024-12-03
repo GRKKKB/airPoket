@@ -7,6 +7,8 @@
         <!-- css 리셋 -->
         <link rel="stylesheet" href="/public/css/reset.css" />
         <link rel="stylesheet" href="/public/css/main.css" />
+        
+        <link rel="stylesheet" href="/public/css/tab.css" />
 </head>
 <body>
     <div class="wrap">
@@ -75,31 +77,29 @@
                 <option value="all">전체</option>
             </select>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>지역명</th>
-                    <th>측정소위치</th>
-                    <th>시간</th>
-                    <th>종합 건강 점수</th>
-                    <th>PM-10</th>
-                    <th>PM-2.5</th>
-                    <th>오존</th>
-                    <th>이산화질소</th>
-                    <th>일산화탄소</th>
-                    <th>아황산가스</th>
-                </tr>
-            </thead>
-            <tbody id="air-data">
-                <!-- 데이터 로드 -->
-            </tbody>
+        <table >
+          <thead>
+            <tr>
+              <th>지역</th>
+              <th>측정소</th>
+              <th>시간</th>
+              <th>종합 건강 점수</th>
+              <th>PM25</th>
+              <th>PM19</th>
+              <th>SO2</th>
+              <th>CO</th>
+              <th>O3</th>
+              <th>NO2</th>
+            </tr>
+          </thead>
+          <tbody id="air-data"></tbody>
         </table>
     </div>
 
     <div id="metal-tab" class="tab-content">
         <h2>중금속 오염정보</h2>
         <div class="filter">
-            <select name="city" id="city">
+            <select  name="region" id="region">
                 <option value="">전국</option>
                 <option value="강원권">강원권</option>
                 <option value="경기권">경기도</option>
@@ -114,21 +114,19 @@
                 <option value="호남권">호남권</option>
               </select>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>지역명</th>
-                    <th>측정시간</th>
-                    <th>납</th>
-                    <th>카드뮴</th>
-                    <th>비소</th>
-                    <th>수은</th>
-                    <th>크롬</th>
-                </tr>
-            </thead>
-            <tbody id="metal-data">
-                <!-- 데이터 로드 -->
-            </tbody>
+        <table >
+          <thead>
+            <tr>
+              <th>도시 이름</th>
+              <th>시간</th>
+              <th>Pb</th>
+              <th>Ni</th>
+              <th>Mn</th>
+              <th>Zn</th>
+              <th>S</th>
+            </tr>
+          </thead>
+          <tbody id="metal-data"></tbody>
         </table>
     </div>
       </main>

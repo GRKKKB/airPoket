@@ -1,0 +1,40 @@
+/* tabs.css */
+/* 탭 컨테이너 스타일 */
+.tabs {
+    display: flex;
+    justify-content: space-between; /* 버튼을 양옆으로 배치 */
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  /* 탭 버튼 기본 스타일 */
+  .tab-btn {
+    flex: 1; /* 동일한 너비 */
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+  
+  /* 활성화된 탭 버튼 스타일 */
+  .tab-btn.active {
+    background-color: #fff;
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+  }
+  
+  /* 탭 콘텐츠 영역 기본 스타일 */
+  .tab-content {
+    display: none; /* 기본적으로 숨김 */
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+  }
+  
+  /* 활성화된 탭 콘텐츠 */
+  .tab-content.active {
+    display: block; /* 활성화된 콘텐츠만 표시 */
+  }
+  
