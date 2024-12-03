@@ -19,9 +19,10 @@ closeModalBtn.onclick = function() {
     modal.style.display = "none";
 }
 
-// 모달 외부 클릭 시 모달 숨기기
+/* // 모달 외부 클릭 시 모달 숨기기
 window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
 }
+ */
