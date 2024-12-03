@@ -27,8 +27,8 @@
 body { 
     font-family: 'Pretendard-Regular';
     line-height: 1.6;
-    /* background-color: #E0FFFF */; /* Softer background */
-    background: url(/public/img/a7c383ac-5f4c-429d-90f9-14d44b626421.png);
+    background-color: rgba(28, 118, 208, 0.194); /* 검은색 반투명 배경 */ /* Softer background */
+    
     color: #333;
 }
 
@@ -173,7 +173,7 @@ th {
 
 main {
     margin-top: 30px;
-
+    
     flex-wrap: wrap;
     gap: 20px;
 }
