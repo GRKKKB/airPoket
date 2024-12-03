@@ -1,6 +1,7 @@
 // DOM 요소 가져오기
 const regionSelect = document.getElementById('region');
 const stationSelect = document.getElementById('station');
+const citySelect= document.getElementById('city_name');
 const today = document.getElementById('today');
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -16,23 +17,31 @@ function displayCurrentDate() {
 async function fetchData() {
   const region = regionSelect.value;
   const station = stationSelect.value;
+  const cityName = citySelect.value;
 
   try {
     // API 호출
     const airResponse = await fetch('http://localhost:3000/realTime/air');
     const metalResponse = await fetch('http://localhost:3000/realTime/metal');
 
+
     const airData = await airResponse.json();
     const metalData = await metalResponse.json();
+    
 
     // 선택된 옵션에 따른 데이터 필터링
     const filteredAirData = airData.filter(item => {
-      return (region === 'all' || item.region === region || item.city_name == region) &&
+      return (region === 'all' || item.region === region) &&
              (station === 'all' || item.station_name === station);
     });
 
+    const filteredMetallData = metalData.filter(item =>{
+      
+      return(cityName === 'all' || item.city_name === cityName);
+    });
+
     updateTableData(filteredAirData, 'air-data');
-    updateTableData(metalData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
+    updateTableData(filteredMetallData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
   } catch (error) {
     console.error('데이터를 가져오는 중 에러 발생:', error);
   }
@@ -93,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchData(); // 초기 데이터 로드
 });
 
+
+
 // 옵션 변경 시 데이터 검색
+citySelect.addEventListener('change' , fetchData);
 regionSelect.addEventListener('change', fetchData);
 stationSelect.addEventListener('change', fetchData);
