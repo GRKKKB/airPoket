@@ -20,12 +20,15 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Pretendard-Regular';
+    
 }
+
 
 body { 
     font-family: 'Pretendard-Regular';
     line-height: 1.6;
-    background-color: #E0FFFF; /* Softer background */
+    /* background-color: #E0FFFF */; /* Softer background */
+    background: url(/public/img/a7c383ac-5f4c-429d-90f9-14d44b626421.png);
     color: #333;
 }
 
