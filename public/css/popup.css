@@ -1,0 +1,36 @@
+/* 팝업의 기본 스타일 */
+.popup {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    z-index: 1; /* 다른 요소 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 전체 너비 */
+    height: 100%; /* 전체 높이 */
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+/* 팝업 내용의 스타일 */
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 화면 상단에서 15% 떨어지고 중앙에 위치 */
+    border: 1px solid #888;
+    width: 80%; /* 화면 너비의 80% */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 닫기 버튼의 스타일 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
