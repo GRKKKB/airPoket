@@ -1,27 +1,37 @@
-//고객지원 이메일 기능 구현
-function sendEmail(event) {
-    event.preventDefault();
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
-    // 가져올 input 요소들
-    var from_name = document.getElementById("name").value; // 사용자의 이름
-    var email = document.getElementById("email").value; // 사용자의 이메일
-    var phoneNum = document.getElementById("phoneNum").value; //사용자의 전화번호
-    var message = document.getElementById("message").value; // 문의 내용
+export const ContactUs = () => {
+  const form = useRef();
 
-    var templateParams = {
-        from_name: from_name,  // 보낸 사람 이름
-        name: from_name,       // 이름 (보낸사람)
-        email: email,          // 이메일
-        phoneNum: phoneNum,    // 전화번호
-        message: message       // 문의 내용
-    };
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-    emailjs.send('service_roqavba', 'template_p5yia8q', templateParams, {
-        PublicKey: '69Dsb7wcmIBomBPgN',
-        })
-        .then(function(response) {
-            alert('문의가 성공적으로 전송되었습니다!');
-        }, function(error) {
-            alert('문의 전송에 실패했습니다. 다시 시도해주세요.');
-        });
-}
+    emailjs
+      .sendForm('service_roqavba', 'template_p5yia8q', form.current, {
+        publicKey: '69Dsb7wcmIBomBPgN',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
+  return (
+    <form ref={form} onSubmit={sendEmail}>
+      <label>Name</label>
+      <input type="text" name="user_name" />
+      <label>Email</label>
+      <input type="email" name="from_name" />
+      <label>Phone</label>
+      <input type='phoneNum' name="user_phone" />
+      <label>Message</label>
+      <textarea name="message" />
+      <input type="submit" value="Send" />
+    </form>
+  );
+};
