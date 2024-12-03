@@ -1,18 +1,25 @@
-<!-- popup.html -->
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>팝업 내용</title>
-    <link rel="stylesheet" href="styles.css"> <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="/public/css/popup.css">
+    <title>Modal Popup</title>
 </head>
 <body>
-    <div class="popup-content">
-        <h2>팝업 제목</h2>
-        <p>이것은 팝업의 내용입니다.</p>
-        <button id="close-button">닫기</button> <!-- 팝업을 닫는 버튼 -->
+    
+    
+
+    <!-- 모달 구조 생성 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>헤더</h2>
+            <p>메롱</p>
+        </div>
     </div>
+
     <script src="/public/js/popup.js"></script> <!-- JavaScript 파일 연결 -->
 </body>
 </html>
