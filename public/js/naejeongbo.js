@@ -31,7 +31,8 @@ naver.maps.onJSContentLoaded = function () {
                         const city = region?.area1?.alias || "지역 정보 없음"; // 시/도
                         const county = region?.area3?.name || "구/군 정보 없음"; // 구/군
 
-                        infoDiv.innerHTML = `${city} ${county}`;
+                       let dong =  infoDiv.innerHTML = `<div style= padding-bottom:30px; >현재위치 👀: ${city} ${county}</div>`;
+                 
                         fetchRealTimeData(city, county);
                     } else {
                         infoDiv.innerHTML = "주소 정보를 가져올 수 없습니다.";
@@ -217,7 +218,7 @@ function displayFilteredData(data) {
         const noMask12hOut = getStatusAndColor(item.no_mask_12h_out);
 
         content += `
-            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 16px; width: 300px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 16px; width: 90%;    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="text-align: center; color: #555;">${item.region} (${item.station_name})</h3>
                 <p style="font-size: 14px; color: #666; text-align: center;">측정 시간: ${item.hour}</p>
                 
@@ -250,7 +251,7 @@ function displayFilteredData(data) {
                 </div>
 
                 <!-- 상세 데이터 -->
-                <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;">
+                <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;" >
                   <h4>상세 데이터</h4>
                     <p><strong>초미세먼지(PM2.5):</strong> ${item.PM25} μg/m³</p>
                     <p><strong>미세먼지(PM10):</strong> ${item.PM19} μg/m³</p>
