@@ -105,6 +105,18 @@
               <button id="update-location">위치 변경</button>
             </div>
             <div id="info">데이터를 불러오는 중...</div>
+
+            <section class="comments-section">
+              <h2>댓글</h2>
+              <div id="comments-list">
+                <!-- 댓글 목록이 여기에 추가됩니다 -->
+              </div>
+              <form id="comment-form">
+                <input type="text" id="comment-input" placeholder="댓글을 입력하세요" required />
+                <button type="submit">댓글 추가</button>
+              </form>
+              <p id="filter-warning" style="color: red; display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
+            </section>
           </div>
     
   
@@ -121,17 +133,7 @@
               <!-- Add more slides as needed -->
             </div>
           </section>
-          <section class="comments-section">
-            <h2>댓글</h2>
-            <div id="comments-list">
-              <!-- 댓글 목록이 여기에 추가됩니다 -->
-            </div>
-            <form id="comment-form">
-              <input type="text" id="comment-input" placeholder="댓글을 입력하세요" required />
-              <button type="submit">댓글 추가</button>
-            </form>
-            <p id="filter-warning" style="color: red; display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
-          </section>
+     
         
       </main>
 

@@ -217,7 +217,7 @@ function displayFilteredData(data) {
         const noMask12hOut = getStatusAndColor(item.no_mask_12h_out);
 
         content += `
-            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 16px; width: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 16px; width: 300px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="text-align: center; color: #555;">${item.region} (${item.station_name})</h3>
                 <p style="font-size: 14px; color: #666; text-align: center;">측정 시간: ${item.hour}</p>
                 
