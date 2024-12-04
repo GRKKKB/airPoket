@@ -135,45 +135,86 @@ function levenshteinDistance(a, b) {
     return matrix[a.length][b.length];
 }
 
-// 필터링된 데이터 출력 (카드 스타일 + 건강 점수 영역)
+
+
+// 필터링된 데이터 출력 (카드 스타일 + 외부 점수 상태 표시)
 function displayFilteredData(data) {
     if (data.length === 0) {
         infoDiv.innerHTML += `<br>조건에 맞는 데이터가 없습니다.`;
         return;
     }
-    
+
     let content = `<h2 style="text-align: center;">대기오염 정보</h2>`;
     content += `<div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">`;
 
     data.forEach((item) => {
         // 건강 점수 기준에 따른 상태 계산
         let healthStatus = "";
+        let healthColor = "";
+
         if (item.weighted_score >= 75) {
             healthStatus = "좋음";
+            healthColor = "#4caf50"; // 녹색
         } else if (item.weighted_score >= 50) {
             healthStatus = "보통";
+            healthColor = "#ffc107"; // 노란색
         } else if (item.weighted_score >= 25) {
             healthStatus = "나쁨";
+            healthColor = "#f44336"; // 빨간색
         } else {
             healthStatus = "매우 나쁨";
+            healthColor = "#9c27b0"; // 보라색
         }
 
-        // 건강 상태에 따라 스타일 동적으로 변경
-        let healthColor = "";
-        switch (healthStatus) {
-            case "좋음":
-                healthColor = "#4caf50"; // 녹색
-                break;
-            case "보통":
-                healthColor = "#ffc107"; // 노란색
-                break;
-            case "나쁨":
-                healthColor = "#f44336"; // 빨간색
-                break;
-            case "매우 나쁨":
-                healthColor = "#9c27b0"; // 보라색
-                break;
+      
+
+
+        if (item.weighted_score >= 75) {
+            healthStatus = "좋음";
+            healthColor = "#4caf50"; // 녹색
+        } else if (item.weighted_score >= 50) {
+            healthStatus = "보통";
+            healthColor = "#ffc107"; // 노란색
+        } else if (item.weighted_score >= 25) {
+            healthStatus = "나쁨";
+            healthColor = "#f44336"; // 빨간색
+        } else {
+            healthStatus = "매우 나쁨";
+            healthColor = "#9c27b0"; // 보라색
         }
+
+        // 외부 점수 계산
+        const externalScore = item.mask_8h_out + item.no_mask_8h_out + item.mask_12h_out + item.no_mask_12h_out;
+        let externalStatus = "";
+        let externalColor = "";
+
+        if (externalScore > 800) {
+            externalStatus = "위험";
+            externalColor = "#f44336"; // 빨간색
+        } else if (externalScore > 400) {
+            externalStatus = "보통";
+            externalColor = "#ffc107"; // 노란색
+        } else {
+            externalStatus = "괜찮음";
+            externalColor = "#4caf50"; // 녹색
+        }
+
+        // 개별 항목 상태 계산 함수
+        const getStatusAndColor = (score) => {
+            if (score > 200) {
+                return { status: "위험", color: "#f44336" };
+            } else if (score > 100) {
+                return { status: "보통", color: "#ffc107" };
+            } else {
+                return { status: "괜찮음", color: "#4caf50" };
+            }
+        };
+
+        // 개별 점수 상태
+        const mask8hOut = getStatusAndColor(item.mask_8h_out);
+        const noMask8hOut = getStatusAndColor(item.no_mask_8h_out);
+        const mask12hOut = getStatusAndColor(item.mask_12h_out);
+        const noMask12hOut = getStatusAndColor(item.no_mask_12h_out);
 
         content += `
             <div style="border: 1px solid #ccc; border-radius: 10px; padding: 16px; width: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
@@ -183,21 +224,36 @@ function displayFilteredData(data) {
                 <!-- 건강 점수 영역 -->
                 <div style="margin-top: 16px; text-align: center;">
                     <div style="margin: 0 auto; width: 80%; padding: 10px; border-radius: 8px; background-color: ${healthColor}; color: white; font-weight: bold;">
-                        건강 점수: ${item.weighted_score}
-                    </div>
-                    <div style="margin-top: 8px;">
-                        <img src="placeholder-image.png" alt="${healthStatus}" style="width: 100%; height: auto; border-radius: 10px;">
+                        건강 상태: ${healthStatus}
                     </div>
                 </div>
 
+                <!-- 메인 외부 점수 -->
+                <div style="margin-top: 16px; text-align: center;">
+                    <h4>외부 작업 상태</h4>
+                    <div style="margin: 0 auto; width: 80%; padding: 10px; border-radius: 8px; background-color: ${externalColor}; color: white; font-weight: bold; text-align: center;">
+                        ${externalStatus} (${externalScore} 점)
+                    </div>
+                </div>
+
+                               
                 <!-- 상세 데이터 -->
                 <div style="margin-top: 16px;">
-                    <p><strong>초 미세먼지:</strong> ${item.PM25} μg/m³</p>
-                    <p><strong>미세먼지:</strong> ${item.PM19} μg/m³</p>
-                    <p><strong>오존:</strong> ${item.SO2} ppm</p>
-                    <p><strong>이산화질소:</strong> ${item.CO} ppm</p>
-                    <p><strong>이산화황:</strong> ${item.O3} ppm</p>
-                    <p><strong>일산화탄소:</strong> ${item.NO2} ppm</p>
+                    <p><strong>PM2.5:</strong> ${item.pm25} μg/m³</p>
+                    <p><strong>PM10:</strong> ${item.PM19} μg/m³</p>
+                    <p><strong>SO₂:</strong> ${item.SO2} ppm</p>
+                    <p><strong>CO:</strong> ${item.CO} ppm</p>
+                    <p><strong>O₃:</strong> ${item.O3} ppm</p>
+                    <p><strong>NO₂:</strong> ${item.NO2} ppm</p>
+                </div>
+
+                <!-- 개별 점수 상태 -->
+                <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;">
+                    <h4>개별 외부 점수</h4>
+                    <p style="color: ${mask8hOut.color};"><strong>8시간 마스크 착용:</strong> ${mask8hOut.status} (${item.mask_8h_out} 점)</p>
+                    <p style="color: ${noMask8hOut.color};"><strong>8시간 마스크 미착용:</strong> ${noMask8hOut.status} (${item.no_mask_8h_out} 점)</p>
+                    <p style="color: ${mask12hOut.color};"><strong>12시간 마스크 착용:</strong> ${mask12hOut.status} (${item.mask_12h_out} 점)</p>
+                    <p style="color: ${noMask12hOut.color};"><strong>12시간 마스크 미착용:</strong> ${noMask12hOut.status} (${item.no_mask_12h_out} 점)</p>
                 </div>
             </div>
         `;
