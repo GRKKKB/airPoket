@@ -1,19 +1,23 @@
-var mapOptions = {
-    center: new naver.maps.LatLng(36.3695704, 128.105399),
-    zoom: 7
-};
-
-var map = new naver.maps.Map('air-tab', mapOptions);
 
 
-var markers = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.3595704, 127.105399),
-    map: map
-});
 
-var infoWindow = new naver.maps.InfoWindow({
-    anchorSkew: true
-});
+
+// var mapOptions = {
+//     center: new naver.maps.LatLng(36.3695704, 128.105399),
+//     zoom: 7
+// };
+
+// var map = new naver.maps.Map('air-tab', mapOptions);
+
+
+// var markers = new naver.maps.Marker({
+//     position: new naver.maps.LatLng(37.3595704, 127.105399),
+//     map: map
+// });
+
+// var infoWindow = new naver.maps.InfoWindow({
+//     anchorSkew: true
+// });
 
 
 
