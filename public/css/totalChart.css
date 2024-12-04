@@ -1,13 +1,12 @@
-/* 전체 레이아웃 */
-main {
+/* main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
-}
+} */
 
 /* 섹션 스타일 */
-section {
+/* .real-info {
     margin: 30px 0;
     padding: 20px;
     border: 1px solid #ddd;
@@ -15,26 +14,72 @@ section {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
     transition: all 0.3s ease;
-}
+} */
 
-section:hover {
+/* .real-info:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
-}
+} */
 
 /* 섹션 제목 스타일 */
-section h2 {
+/* .real-info h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 1.5rem;
     color: #333;
     font-weight: bold;
-}
+} */
 
 /* 차트 캔버스 */
-canvas {
+/* canvas {
     display: block;
     max-width: 90%;
     height: auto;
     margin: 0 auto;
+} */
+
+/* 전체 레이아웃 */
+#chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열로 설정 */
+    gap: 20px; /* 섹션 간 간격 */
+    padding: 20px; /* 패딩 추가 */
+}
+
+/* 섹션 스타일 */
+.real-info {
+    display: contents; /* 부모 요소의 display 속성을 무시하고 자식 요소들이 직접 그리드에 배치되도록 설정 */
+}
+
+.map-section, .local-info, .city-ranking {
+    padding: 5px; /* 내부 여백 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    background-color: #f9f9f9; /* 배경색 */
+}
+
+/* 섹션 제목 스타일 */
+h2 {
+    text-align: center; /* 제목 중앙 정렬 */
+    margin-bottom: 20px; /* 아래쪽 여백 */
+    font-size: 1.5rem; /* 폰트 크기 */
+    color: #333; /* 텍스트 색상 */
+    font-weight: bold; /* 폰트 두께 */
+}
+
+/* 차트 캔버스 */
+canvas {
+    display: block; /* 블록 요소로 설정 */
+    max-width: 100%; /* 최대 너비 100% */
+    height: auto; /* 높이는 비율에 맞춰 자동 조절 */
+    margin: 0 auto; /* 중앙 정렬 */
+    border-radius: 8px; /* 캔버스 모서리 둥글게 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    #chart-grid {
+        grid-template-columns: 1fr; /* 화면이 작을 때 1열로 변경 */
+    }
 }
