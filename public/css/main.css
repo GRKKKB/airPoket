@@ -183,8 +183,9 @@ main {
 .map-section, .local-info {
     flex: 1 1 45%; /* Flex-basis for equal sections */
     background: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
+    height: 100%;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
