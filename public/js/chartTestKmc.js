@@ -4,7 +4,7 @@
         const labels = data.map(row => row.station_name);
         const pm25 = data.map(row => row.pm25);
 
-    const ctx = document.getElementById('chartTestKmc').getContext('2d');
+    const ctx = document.getElementById('airChart').getContext('2d');
     new Chart(ctx, {
         type: 'line',
         data: {

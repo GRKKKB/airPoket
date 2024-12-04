@@ -23,11 +23,14 @@ async function fetchData() {
     // API 호출
     const airResponse = await fetch('http://localhost:3000/realTime/air');
     const metalResponse = await fetch('http://localhost:3000/realTime/metal');
+    const airChartResponse = await fetch("http://localhost:3000/realTime//air-chart");
 
+    
 
     const airData = await airResponse.json();
     const metalData = await metalResponse.json();
-    
+    const airChartData = await airChartResponse.json();
+    console.log(airChartData);
 
     // 선택된 옵션에 따른 데이터 필터링
     const filteredAirData = airData.filter(item => {
@@ -40,11 +43,41 @@ async function fetchData() {
       return(cityName === 'all' || item.city_name === cityName);
     });
 
+    updateChartData(airChartData)
+
+    
     updateTableData(filteredAirData, 'air-data');
     updateTableData(filteredMetallData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
+    
   } catch (error) {
     console.error('데이터를 가져오는 중 에러 발생:', error);
   }
+}
+
+//차트 업데이트 함수
+function updateChartData(data,chartId){
+  console.log(data);
+  console.log(chartId);
+  const labels = data.map(row => row.region);
+  const weighted_score = data.map(row => row.weighted_score);
+  const ctx = document.getElementById('chart-air').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'weighted_score',
+                data: weighted_score,
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            },
+         
+        ],
+    },
+});
+  
+
+
 }
 
 // 테이블 업데이트 함수

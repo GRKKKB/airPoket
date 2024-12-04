@@ -4,7 +4,7 @@ fetch('http://localhost:3000/chartAir') // Express.js API 호출
 const labels = data.map(row => row.station_name);
 const weight = data.map(row => row.weighted_score);
 
-const ctx = document.getElementById('chartAir').getContext('2d');
+const ctx = document.getElementById('chart-Air').getContext('2d');
 new Chart(ctx, {
 type: 'bar',
 data: {
