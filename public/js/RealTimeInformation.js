@@ -56,11 +56,16 @@ async function fetchData() {
 
     const filterMetalChartData = metalChartData.filter(item =>{
       return(cityName === 'all' || item.cityName === cityName);
-    }) 
+    });
+
     updateChartData(filterCahrt,filteredAirData);
+
+
+    updateMetalChartData(filterMetalChartData,metalData);
+
     updateTableData(filteredAirData, 'air-data');
     updateTableData(filteredMetallData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
-    updateMetalChartData(filterMetalChartData,filteredMetallData);
+
 
     
   } catch (error) {
@@ -79,14 +84,13 @@ function updateChartData(data1, data2) {
   }
 
   if (ctx) {
+
+
     // 데이터 처리
     const labels = data2.map(row => row.station_name || 'Unknown'); // X축 라벨
     const baselineValue = data1[0]?.weighted_score || 0; // 기준선 값 (데이터 1에서 첫 번째 값 사용)
     const baseline = Array(labels.length).fill(baselineValue); // 기준선 데이터를 X축 길이에 맞게 확장
     const barData = data2.map(row => row.weighted_score || 0); // 막대 데이터
-    console.log("data1"+data1);
-    console.log("data2"+data2);
-
     // 새로운 차트를 생성하고 변수에 저장
     airChart = new Chart(ctx, {
       data: {
@@ -127,15 +131,11 @@ function updateMetalChartData(metal1,metal2){
     metalChart.destroy();
   }
   if(ctx){
+
     const labels = metal2.map(row => row.city_name || 'Unknown');
     const baselineValue = metal1[0]?.metal_score || 0;
     const baseline = Array(labels.length).fill(baselineValue);
-    const barData = metal2.map(row => row.metal_score || 0);
-    console.log("barData"+ barData);
-    console.log("metal1"+metal1);
-    console.log("metal2"+metal2);
-    console.log("baseline"+baseline)
-    console.log("baselineValue"+baselineValue)
+    const barData = metal1.map(row => row.metal_score || 0);
     metalChart=new Chart(ctx, {
       data: {
         labels: labels, // X축 라벨
@@ -149,12 +149,12 @@ function updateMetalChartData(metal1,metal2){
             fill: false, // 선 아래 채우기 비활성화
           },
           {
+
             type: 'bar', // 막대차트
             label: '위험도',
             data: barData,
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-
-            
+            backgroundColor: 'rgba(75, 192, 192, 0.5)'
+        
           },
         ],
       },
@@ -235,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // 옵션 변경 시 데이터 검색
-
 citySelect.addEventListener('change' , fetchData);
 regionSelect.addEventListener('change', fetchData);
 stationSelect.addEventListener('change', fetchData);
