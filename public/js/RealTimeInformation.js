@@ -23,7 +23,7 @@ async function fetchData() {
     // API 호출
     const airResponse = await fetch('http://localhost:3000/realTime/air');
     const metalResponse = await fetch('http://localhost:3000/realTime/metal');
-    const airChartResponse = await fetch("http://localhost:3000/realTime//air-chart");
+    const airChartResponse = await fetch("http://localhost:3000/realTime/air-chart");
 
     
 
@@ -43,9 +43,12 @@ async function fetchData() {
       return(cityName === 'all' || item.city_name === cityName);
     });
 
-    updateChartData(airChartData)
-
     
+    const filterCahrt = airChartData.filter(item =>{
+      return(region == 'all' || item.region === region);
+    });
+
+    updateChartData(filterCahrt,filteredAirData);
     updateTableData(filteredAirData, 'air-data');
     updateTableData(filteredMetallData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
     
@@ -54,31 +57,62 @@ async function fetchData() {
   }
 }
 
-//차트 업데이트 함수
-function updateChartData(data,chartId){
-  console.log(data);
-  console.log(chartId);
-  const labels = data.map(row => row.region);
-  const weighted_score = data.map(row => row.weighted_score);
-  const ctx = document.getElementById('chart-air').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: labels,
+let airChart = null; // 차트를 저장할 변수
+
+function updateChartData(data1, data2) {
+  const ctx = document.getElementById('chart-air');
+
+  if (airChart) {
+    // 기존 차트가 있으면 삭제
+    airChart.destroy();
+  }
+
+  if (ctx) {
+    // 데이터 처리
+    const labels = data2.map(row => row.station_name || 'Unknown'); // X축 라벨
+    const baselineValue = data1[0]?.weighted_score || 0; // 기준선 값 (데이터 1에서 첫 번째 값 사용)
+    const baseline = Array(labels.length).fill(baselineValue); // 기준선 데이터를 X축 길이에 맞게 확장
+    const barData = data2.map(row => row.weighted_score || 0); // 막대 데이터
+  
+
+  
+    // 새로운 차트를 생성하고 변수에 저장
+    airChart = new Chart(ctx, {
+      data: {
+        labels: labels, // X축 라벨
         datasets: [
-            {
-                label: 'weighted_score',
-                data: weighted_score,
-                backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            },
-         
+          {
+            type: 'line', // 기준선
+            label: '지역일일평균',
+            data: baseline,
+            borderColor: 'rgba(255, 99, 132, 1)',
+    
+            fill: false, // 선 아래 채우기 비활성화
+          },
+          {
+            type: 'bar', // 막대차트
+            label: '종합건강점수',
+            data: barData,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+          },
         ],
-    },
-});
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true, // Y축 0부터 시작
+          },
+        },
+      },
+    });
+  }
+  
+}
+
   
 
 
-}
+
 
 // 테이블 업데이트 함수
 function updateTableData(data, tableId) {
@@ -139,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // 옵션 변경 시 데이터 검색
+
 citySelect.addEventListener('change' , fetchData);
 regionSelect.addEventListener('change', fetchData);
 stationSelect.addEventListener('change', fetchData);
