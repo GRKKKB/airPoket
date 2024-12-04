@@ -37,3 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// 로딩화면 표시
+
+window.addEventListener("load", () => {
+  hideLoading();
+});
+
+showLoading(); // 초기 로딩 화면 표시
