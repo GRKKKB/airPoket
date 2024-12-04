@@ -53,13 +53,9 @@
         </header>
 
       <main>
-        <!-- 로딩 화면  -->
-        <div id="loading-screen" class="hidden">
-          <div class="loader"></div>
-        </div>
         <section class="real-time-info">
-        <!-- 제일 왼쪽 세션 아마 지도 들어갈거 같음 -->
-        <div class="map-section">
+          <!-- 제일 왼쪽 세션 아마 지도 들어갈거 같음 -->
+          <div class="map-section">
             <div class="tabs">
               <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
               <div class="tab-btn" data-target="metal-tab">대기중 중금속 오염정보</div>
@@ -67,61 +63,75 @@
 
             <!-- 왼쪽 정보 지도 -->
             
-            <p id="air-top" >초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
+          
             <div id="air-tab" class="tab-content active"  style="width:100%; height:600px; padding:0; margin:0;">
+              <p style="margin-top: 1000px;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
             </div>
 
             
             <div id="metal-tab" class="tab-content hidden" style="width:100%; height:600px; padding:0; margin:0;">
               <p>대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
             </div>
-          
           </div>
 
           
-          <!-- 오른쪽 부분   -->
-          <div class="local-info">
-            <h2>우리동네 대기정보</h2>
-            <div class="info-box">
-              <div class="today-info">
-                <h3>오늘의 대기질</h3>
-                <p>초미세먼지 (PM-2.5): 26㎍/m³ (보통)</p>
-                <p>미세먼지 (PM-10): 31㎍/m³ (보통)</p>
-                <p>오존 (O₃): 0.0026ppm (좋음)</p>
+          <!-- 사용자 입력 필드와 지역 정보 -->
+          <div class="local-info" style="flex: 1; margin-left: 16px;">
+            <h2>우리 동네 대기 정보</h2>
+            <div id="user-location" style="margin-bottom: 16px;">
+              <label for="city">시/도:</label>
+              <select id="city">
+                <option value="서울">서울</option>
+                <option value="부산">부산</option>
+                <option value="대구">대구</option>
+                <option value="인천">인천</option>
+                <option value="광주">광주</option>
+                <option value="대전">대전</option>
+                <option value="울산">울산</option>
+                <option value="경기">경기</option>
+                <option value="강원">강원</option>
+                <option value="충북">충북</option>
+                <option value="충남">충남</option>
+                <option value="전북">전북</option>
+                <option value="전남">전남</option>
+                <option value="경북">경북</option>
+                <option value="경남">경남</option>
+                <option value="제주">제주</option>
+                <option value="세종">세종</option>
+              </select>
+              <label for="county" >구/군:</label>
+              <input type="text" id="county" placeholder="구/군 입력" >
+              <button id="update-location">위치 변경</button>
+            </div>
+            <div id="info">데이터를 불러오는 중...</div>
+          </div>
+    
+  
+        </section>
+          <section class="news-alerts">
+            <h2 class="">소식알림창</h2>
+            <div class="carousel">  
+              <div class="slide">
+                <p>한국형 대기질 박스모델</p>
               </div>
-              <div class="forecast">
-                <h3>오늘의 종합건강점수</h3>
-                <ul>
-                  <li>오늘: 보통</li>
-                  <li>내일: 좋음</li>
-                </ul>
+              <div class="slide">
+                <p>6차 미세먼지 계절관리제 시작</p>
               </div>
+              <!-- Add more slides as needed -->
             </div>
-          </div>
-        </section>
-        <section class="news-alerts">
-          <h2 class="">소식알림창</h2>
-          <div class="carousel">  
-            <div class="slide">
-              <p>한국형 대기질 박스모델</p>
+          </section>
+          <section class="comments-section">
+            <h2>댓글</h2>
+            <div id="comments-list">
+              <!-- 댓글 목록이 여기에 추가됩니다 -->
             </div>
-            <div class="slide">
-              <p>6차 미세먼지 계절관리제 시작</p>
-            </div>
-            <!-- Add more slides as needed -->
-          </div>
-        </section>
-        <section class="comments-section">
-          <h2>댓글</h2>
-          <div id="comments-list">
-            <!-- 댓글 목록이 여기에 추가됩니다 -->
-          </div>
-          <form id="comment-form">
-            <input type="text" id="comment-input" placeholder="댓글을 입력하세요" required />
-            <button type="submit">댓글 추가</button>
-          </form>
-          <p id="filter-warning" style="color: red; display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
-        </section>
+            <form id="comment-form">
+              <input type="text" id="comment-input" placeholder="댓글을 입력하세요" required />
+              <button type="submit">댓글 추가</button>
+            </form>
+            <p id="filter-warning" style="color: red; display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
+          </section>
+        
       </main>
 
       <footer>
@@ -156,14 +166,13 @@
     <script src="/public/js/airmap.js"></script>
 
 
-    
+      <!-- map js -->
+      <script src="/public/js/naejeongbo.js"></script>
 
     <!-- 메인 js -->
     <script src="/public/js/main.js"></script>
      <!-- 채팅 js -->
     <script src="/public/js/Chat.js"></script>
-     <!-- 로딩 js -->
-     <script src="/public/js/lodding.js"></script>
     <!-- 모달 popup js -->
     <script src="/public/js/popup.js"></script>
   </body>

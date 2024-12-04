@@ -268,17 +268,20 @@ main h2 {
 
 #elementSymbol {
     margin-top: 15px;
+    background-color: #eef2f7; /* 밝은 회색 배경 */
 }
 
 #etc {
     margin-top: 10px;
     margin-bottom: 15px;
+    background-color: #eef2f7; /* 밝은 회색 배경 */
 }
 
 th, td {
     border: 2px solid black; /* 굵은 선 설정 */
     padding: 10px; /* 셀 패딩 */
     text-align: center; /* 텍스트 정렬 */
+    background-color: #eef2f7; /* 밝은 회색 배경 */
 }
 
 footer {

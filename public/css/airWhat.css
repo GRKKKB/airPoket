@@ -23,14 +23,51 @@
 }
 
 /* Table styling */
-table {
+.table-responsive {
+    overflow-x: auto; /* 수평 스크롤 가능 */
+    margin-bottom: 20px; /* 아래쪽 여백 */
+}
+
+table{
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* 테두리 겹침 제거 */
+    margin: 20px 0; /* 위 아래 여백 */
+    border-radius: 20px; /* 타원형 모서리 */
+    overflow: hidden; /* 둥글게 처리 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
+
 th, td {
-    border: 2px solid black;
-    padding: 10px; 
-    text-align: center; 
-    
+    border: 1px solid #dddddd; /* 테두리 색상 */
+    text-align: left; /* 텍스트 정렬 */
+    padding: 12px; /* 여백 */
 }
+
+th {
+    background-color: #2d3688; /* 헤더 배경색 */
+    color: white; /* 헤더 텍스트 색상 */
+    font-weight: bold; /* 헤더 텍스트 두껍게 */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 행 배경색 */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* 마우스 오버 시 배경색 */
+}
+
+tbody tr {
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+}
+
+td {
+    font-size: 14px; /* 폰트 크기 설정 */
+    line-height: 1.5; /* 줄 높이 설정 */
+}
+
+.table-custom {
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+}
+
 
