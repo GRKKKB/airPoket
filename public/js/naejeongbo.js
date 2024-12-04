@@ -195,7 +195,7 @@ function displayFilteredData(data) {
             externalStatus = "보통";
             externalColor = "#ffc107"; // 노란색
         } else {
-            externalStatus = "괜찮음";
+            externalStatus = "좋음";
             externalColor = "#4caf50"; // 녹색
         }
 
@@ -206,7 +206,7 @@ function displayFilteredData(data) {
             } else if (score > 100) {
                 return { status: "보통", color: "#ffc107" };
             } else {
-                return { status: "괜찮음", color: "#4caf50" };
+                return { status: "좋음", color: "#4caf50" };
             }
         };
 
@@ -223,29 +223,22 @@ function displayFilteredData(data) {
                 
                 <!-- 건강 점수 영역 -->
                 <div style="margin-top: 16px; text-align: center;">
+                    <h4> 종합 건강 점수 </h4>
                     <div style="margin: 0 auto; width: 80%; padding: 10px; border-radius: 8px; background-color: ${healthColor}; color: white; font-weight: bold;">
-                        건강 상태: ${healthStatus}
+                     ${healthStatus}
                     </div>
                 </div>
 
                 <!-- 메인 외부 점수 -->
                 <div style="margin-top: 16px; text-align: center;">
-                    <h4>외부 작업 상태</h4>
+                    <h4>외부 작업 건강 점수</h4>
                     <div style="margin: 0 auto; width: 80%; padding: 10px; border-radius: 8px; background-color: ${externalColor}; color: white; font-weight: bold; text-align: center;">
-                        ${externalStatus} (${externalScore} 점)
+                        ${externalStatus}
                     </div>
                 </div>
 
                                
-                <!-- 상세 데이터 -->
-                <div style="margin-top: 16px;">
-                    <p><strong>PM2.5:</strong> ${item.pm25} μg/m³</p>
-                    <p><strong>PM10:</strong> ${item.PM19} μg/m³</p>
-                    <p><strong>SO₂:</strong> ${item.SO2} ppm</p>
-                    <p><strong>CO:</strong> ${item.CO} ppm</p>
-                    <p><strong>O₃:</strong> ${item.O3} ppm</p>
-                    <p><strong>NO₂:</strong> ${item.NO2} ppm</p>
-                </div>
+         
 
                 <!-- 개별 점수 상태 -->
                 <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;">
@@ -254,6 +247,17 @@ function displayFilteredData(data) {
                     <p style="color: ${noMask8hOut.color};"><strong>8시간 마스크 미착용:</strong> ${noMask8hOut.status} (${item.no_mask_8h_out} 점)</p>
                     <p style="color: ${mask12hOut.color};"><strong>12시간 마스크 착용:</strong> ${mask12hOut.status} (${item.mask_12h_out} 점)</p>
                     <p style="color: ${noMask12hOut.color};"><strong>12시간 마스크 미착용:</strong> ${noMask12hOut.status} (${item.no_mask_12h_out} 점)</p>
+                </div>
+
+                <!-- 상세 데이터 -->
+                <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;">
+                  <h4>상세 데이터</h4>
+                    <p><strong>초미세먼지(PM2.5):</strong> ${item.PM25} μg/m³</p>
+                    <p><strong>미세먼지(PM10):</strong> ${item.PM19} μg/m³</p>
+                    <p><strong>오존(SO₂):</strong> ${item.SO2} ppm</p>
+                    <p><strong>이산화질소(CO):</strong> ${item.CO} ppm</p>
+                    <p><strong>이산화황(O₃):</strong> ${item.O3} ppm</p>
+                    <p><strong>일산화탄소(NO₂):</strong> ${item.NO2} ppm</p>
                 </div>
             </div>
         `;
