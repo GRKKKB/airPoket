@@ -1,5 +1,6 @@
   <!DOCTYPE html>
   <html lang="ko">
+    
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,9 +58,12 @@
               <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
               <div class="tab-btn" data-target="metal-tab">대기중 중금속 오염정보</div>
             </div>
-            <div id="air-tab" class="tab-content active">
+            <div id="air-tab" class="tab-content active" style="width:100%; height:600px; padding:0; margin:0;">
               <h3>대기오염 정보</h3>
+              
+
               <p>초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
+
             </div>
               <div id="metal-tab" class="tab-content hidden">
                 <h3>대기중 중금속 오염정보</h3>
@@ -90,7 +94,7 @@
           </div>
         </section>
         <section class="news-alerts">
-          <h2>소식알림창</h2>
+          <h2 class="">소식알림창</h2>
           <div class="carousel">  
             <div class="slide">
               <p>한국형 대기질 박스모델</p>
@@ -142,6 +146,10 @@
       </footer>
     </div> 
 
+    <!-- map js -->
+    <script src="/public/js/airmap.js"></script>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b4jsr3tieq"></script>
+    <script type="text/javascript" src="../src/MarkerClustering.js"></script>
 
     <!-- 채팅 js -->
     <script src="/public/js/main.js"></script>
