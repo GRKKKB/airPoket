@@ -153,11 +153,7 @@ nav ul li a:hover {
     display: none; /* 숨김 처리 */
   }
   
-  
-
-
-
-
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -268,6 +264,21 @@ main h1 {
 
 main h2 {
     font-size: large;
+}
+
+#elementSymbol {
+    margin-top: 15px;
+}
+
+#etc {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+th, td {
+    border: 2px solid black; /* 굵은 선 설정 */
+    padding: 10px; /* 셀 패딩 */
+    text-align: center; /* 텍스트 정렬 */
 }
 
 footer {
