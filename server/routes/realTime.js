@@ -72,15 +72,15 @@ router.get('/air', async (req, res) => {
       res.status(500).send('Error retrieving data');
     }
   });
-  
+
   router.get('/metal-chart', async (req, res) => {
     try {
       // 프로시저 호출 또는 SELECT 쿼리 실행
       const sql = `
-        SELECT p.region 
-		    ,AVG(p.weighted_score) AS weighted_score
-        FROM day_air_pollution p
-        GROUP BY p.region;
+      SELECT m.city_name,
+		         AVG(m.metal_score) AS metal_score
+      FROM day_avg_metal_pollution m
+      GROUP BY m.city_name
       `;
       const results = await db.query(sql);
   

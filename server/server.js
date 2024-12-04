@@ -7,8 +7,6 @@ const helmet = require('helmet');
 const airPollutionRoutes = require('./routes/airPollution'); // API 라우트 가져오기
 const realTimeRoutes = require('./routes/realTime');
 const metalRoutes = require('./routes/metal');
-const chartTestKmc = require('./routes/chartTestKmc');
-const chartAirRoutes = require('./routes/chartAir');
 const app = express();
 
 // 서버 포트번호 설정
@@ -83,15 +81,12 @@ app.use('/realTime', realTimeRoutes);
 // 대기중 오염 정보 라우트 설정
 app.use('/air-pollution', airPollutionRoutes);
 
-//chartAir
-app.use('/chartAir', chartAirRoutes);
+
 
 // WebSocket 서버를 `commentsRoutes`에 전달
 const commentsRoutes = require('./routes/comments')(wss); // WebSocket 서버 전달
 app.use('/comments', commentsRoutes); // `/comments` 경로로 댓글 라우트 연결
 
-//chartTestKmc 연결 해보기
-app.use('/chartTestKmc',chartTestKmc);
 
 // HTTP 서버 실행
 httpServer.listen(HTTP_PORT, () => {

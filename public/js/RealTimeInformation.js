@@ -2,9 +2,11 @@
 const regionSelect = document.getElementById('region');
 const stationSelect = document.getElementById('station');
 const citySelect= document.getElementById('city_name');
+const metalSelct = document.getElementById('metal-score');
 const today = document.getElementById('today');
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
+
 
 // 현재 날짜 표시
 function displayCurrentDate() {
@@ -19,18 +21,22 @@ async function fetchData() {
   const station = stationSelect.value;
   const cityName = citySelect.value;
 
+
   try {
     // API 호출
     const airResponse = await fetch('http://localhost:3000/realTime/air');
     const metalResponse = await fetch('http://localhost:3000/realTime/metal');
     const airChartResponse = await fetch("http://localhost:3000/realTime/air-chart");
+    const metalChartResponse = await fetch("http://localhost:3000/realTime/metal-chart")
 
     
 
     const airData = await airResponse.json();
     const metalData = await metalResponse.json();
     const airChartData = await airChartResponse.json();
-    console.log(airChartData);
+    const metalChartData = await metalChartResponse.json();
+
+
 
     // 선택된 옵션에 따른 데이터 필터링
     const filteredAirData = airData.filter(item => {
@@ -48,9 +54,19 @@ async function fetchData() {
       return(region == 'all' || item.region === region);
     });
 
+    const filterMetalChartData = metalChartData.filter(item =>{
+      return(cityName === 'all' || item.cityName === cityName);
+    });
+
     updateChartData(filterCahrt,filteredAirData);
+
+
+    updateMetalChartData(filterMetalChartData,metalData);
+
     updateTableData(filteredAirData, 'air-data');
     updateTableData(filteredMetallData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
+
+
     
   } catch (error) {
     console.error('데이터를 가져오는 중 에러 발생:', error);
@@ -68,14 +84,13 @@ function updateChartData(data1, data2) {
   }
 
   if (ctx) {
+
+
     // 데이터 처리
     const labels = data2.map(row => row.station_name || 'Unknown'); // X축 라벨
     const baselineValue = data1[0]?.weighted_score || 0; // 기준선 값 (데이터 1에서 첫 번째 값 사용)
     const baseline = Array(labels.length).fill(baselineValue); // 기준선 데이터를 X축 길이에 맞게 확장
     const barData = data2.map(row => row.weighted_score || 0); // 막대 데이터
-  
-
-  
     // 새로운 차트를 생성하고 변수에 저장
     airChart = new Chart(ctx, {
       data: {
@@ -97,6 +112,53 @@ function updateChartData(data1, data2) {
           },
         ],
       },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true, // Y축 0부터 시작
+          },
+        },
+      },
+    });
+  }
+  
+}
+
+let metalChart = null;
+function updateMetalChartData(metal1,metal2){
+  const ctx = document.getElementById('metal-chart')
+  if(metalChart){
+    metalChart.destroy();
+  }
+  if(ctx){
+
+    const labels = metal2.map(row => row.city_name || 'Unknown');
+    const baselineValue = metal1[0]?.metal_score || 0;
+    const baseline = Array(labels.length).fill(baselineValue);
+    const barData = metal1.map(row => row.metal_score || 0);
+    metalChart=new Chart(ctx, {
+      data: {
+        labels: labels, // X축 라벨
+        datasets: [
+          {
+            type: 'line', // 기준선
+            label: '지역일일평균',
+            data: baseline,
+            borderColor: 'rgba(255, 99, 132, 1)',
+    
+            fill: false, // 선 아래 채우기 비활성화
+          },
+          {
+
+            type: 'bar', // 막대차트
+            label: '위험도',
+            data: barData,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)'
+        
+          },
+        ],
+      },
+      
       options: {
         scales: {
           y: {
@@ -173,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // 옵션 변경 시 데이터 검색
-
 citySelect.addEventListener('change' , fetchData);
 regionSelect.addEventListener('change', fetchData);
 stationSelect.addEventListener('change', fetchData);
