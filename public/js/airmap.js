@@ -11,6 +11,11 @@ var markers = new naver.maps.Marker({
     map: map
 });
 
+var infoWindow = new naver.maps.InfoWindow({
+    anchorSkew: true
+});
+
+
 
 
 

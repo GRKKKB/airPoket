@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabs = document.querySelectorAll('.tab-content');
 
+
   if (tabButtons.length === 0 || tabs.length === 0) {
     console.error('탭 버튼 또는 탭 콘텐츠가 존재하지 않습니다.');
     return;
