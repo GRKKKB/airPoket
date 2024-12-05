@@ -7,6 +7,8 @@ const helmet = require('helmet');
 const airPollutionRoutes = require('./routes/airPollution'); // API 라우트 가져오기
 const realTimeRoutes = require('./routes/realTime');
 const metalRoutes = require('./routes/metal');
+const totalInfoRoutes = require('./routes/totalInfo');
+
 const app = express();
 
 // 서버 포트번호 설정
@@ -80,6 +82,8 @@ app.use('/metal', metalRoutes);
 app.use('/realTime', realTimeRoutes);
 // 대기중 오염 정보 라우트 설정
 app.use('/air-pollution', airPollutionRoutes);
+// 통계정보 라우트 설정
+app.use('/totalInfo', totalInfoRoutes);
 
 
 
