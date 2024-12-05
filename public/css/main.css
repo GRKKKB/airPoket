@@ -159,6 +159,8 @@ nav ul li a:hover {
  /* 지도 컨테이너 */
 .map-container {
     position: relative;
+    width: 100%;
+    height: 1000px;
     display: grid; /* 그리드 레이아웃 사용 */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동 정렬 */
     gap: 20px; /* 지역 간 간격 */
@@ -167,7 +169,7 @@ nav ul li a:hover {
   
   /* 지역별 박스 */
   .region {
-    position: relative;
+    position: absolute;
     width: 100%;
     max-width: 300px; /* 각 지역의 최대 크기 */
     margin: auto;
@@ -178,6 +180,148 @@ nav ul li a:hover {
   .region-map {
     width: 100%;
     height: auto; /* 비율 유지 */
+  }
+
+  /* 지역별 이미지 */
+  .gyeonggi {
+    position: absolute;
+    top: 150px;
+    width: 55%;
+    left: 220px;
+    height: auto;
+  }
+  .seoul {
+    position: absolute;
+    top: 250px; 
+    width: 15%;
+    left: 280px;
+    height: auto; /* 비율 유지 */
+  }
+  .incheon {
+    position: absolute;
+    top: 170px;
+    width: 30%;
+    left: 150px;
+    height: auto;
+  }
+  .gangwon {
+    position: absolute;
+    top: 75px;  
+    width: 100%;
+    left: 300px;
+    height: auto;
+  }
+  .chungbuk {
+    position: absolute;
+    top: 310px;  
+    width: 73%;
+    left: 305px;
+    height: auto;
+  }
+  .chungnam {
+    position: absolute;
+    top: 338px;  
+    width: 85%;
+    left: 100px;
+    height: auto;
+  }
+  .sejong {
+    position: absolute;
+    top: 413px;  
+    width: 10%;
+    left: 275px;
+    height: auto;
+  }
+  .daejeon {
+    position: absolute;
+    top: 458px;  
+    width: 10%;
+    left: 295px;
+    height: auto;
+  }
+  .gyeongbug {
+    position: absolute;
+    top: 353px;  
+    width: 80%;
+    left: 415px;
+    height: auto;
+  }
+  .daegu {
+    position: absolute;
+    top: 475px;  
+    width: 30%;
+    left: 500px;
+    height: auto;
+  }
+  .gyeongnam {
+    position: absolute;
+    top: 570px;  
+    width: 85%;
+    left: 355px;
+    height: auto;
+  }
+  .ulsan {
+    position: absolute;
+    top: 600px;  
+    width: 20%;
+    left: 595px;
+    height: auto;
+  }
+  .busan {
+    position: absolute;
+    top: 675px;  
+    width: 20%;
+    left: 575px;
+    height: auto;
+  }
+  .jeonbug {
+    position: absolute;
+    top: 535px;  
+    width: 70%;
+    left: 170px;
+    height: auto;
+  }
+  .jeonnam {
+    position: absolute;
+    top: 670px;  
+    width: 90%;
+    left: 105px;
+    height: auto;
+  }
+  .gwangju {
+    position: absolute;
+    top: 720px;  
+    width: 18%;
+    left: 200px;
+    height: auto;
+  }
+  .baeglyeongdo {
+    position: absolute;
+    top: 150px;  
+    width: 10%;
+    left: 50px;
+    height: auto;
+  }
+  .jeju {
+    position: absolute;
+    top: 930px;  
+    width: 35%;
+    left: 180px;
+    height: auto;
+  }
+  .ulleungdo {
+    position: absolute;
+    top: 240px;  
+    width: 10%;
+    left: 650px;
+    height: auto;
+  }
+  .dokdo {
+    position: absolute;
+    top: 250px;  
+    width: 3%;
+    left: 720px;
+    height: auto;
   }
 
   /* 데이터 포인트 (점) */
