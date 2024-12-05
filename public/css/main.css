@@ -122,14 +122,12 @@ nav ul li a:hover {
     display: flex;
     margin-bottom: 20px;
     cursor: pointer;
- 
   }
   
   
   .tab-btn {
     flex: 1;
     padding: 10px;
-
     border: 1px solid #ccc;
     background-color: #f4f4f4;
     transition: background-color 0.3s ease, border 0.3s ease;
@@ -324,6 +322,7 @@ nav ul li a:hover {
     height: auto;
   }
 
+
   /* 데이터 포인트 (점) */
   .map-point {
     position: absolute;
@@ -342,12 +341,13 @@ nav ul li a:hover {
   
   .map-point span {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
+    color: #151825;
   }
   
   .region:hover {
-    transform: scale(1.2); /* 호버 시 확대 */
+    transform: scale(1.1); /* 호버 시 확대 */
    
   }
 
