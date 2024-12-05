@@ -1,7 +1,5 @@
 
 
-
-
 async function fetchData() {
 
 
@@ -47,9 +45,19 @@ function updateChartData(data1, data2) {
                     '#FF6384', 
                     '#36A1EB', 
                     '#FFCE56', 
-                    '#5BC0C0', 
+                    '#2BC0C0', 
                     '#9966FF', 
                     ],
+                options: {
+                    resoponsive: false,
+                    scales:{
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
             }]
         },
         options: {
