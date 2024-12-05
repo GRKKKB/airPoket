@@ -44,7 +44,9 @@
     grid-template-columns: repeat(2, 1fr); /* 2열로 설정 */
     gap: 20px; /* 섹션 간 간격 */
     padding: 20px; /* 패딩 추가 */
+    margin-top: 0px;
 }
+
 
 /* 섹션 스타일 */
 .real-info {
@@ -73,6 +75,12 @@ h2 {
     font-size: 2.5rem; /* 폰트 크기 */
     color: #333; /* 텍스트 색상 */
     font-weight: bold; /* 폰트 두께 */
+}
+
+h3{
+    padding-left: 30px;
+    padding-top: 10px;
+    margin-bottom: 0px;
 }
 
 /* 차트 캔버스 */
