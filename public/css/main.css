@@ -122,28 +122,31 @@ nav ul li a:hover {
     display: flex;
     margin-bottom: 20px;
     cursor: pointer;
+ 
   }
   
   
   .tab-btn {
     flex: 1;
     padding: 10px;
-    text-align: center;
+
     border: 1px solid #ccc;
     background-color: #f4f4f4;
     transition: background-color 0.3s ease, border 0.3s ease;
+
   }
   
   .tab-btn.active {
     background-color: #fff;
     border-bottom: 2px solid #007bff;
     font-weight: bold;
+    width: 300px;
   }
 
   
   .tab-content {
     display: block; /* 기본 상태 */
-    padding: 15px;
+    padding: 35px;
     border: 1px solid #ddd;
     background-color: #ffffff;
     border-radius: 0 0 5px 5px;
@@ -153,6 +156,57 @@ nav ul li a:hover {
     display: none; /* 숨김 처리 */
   }
   
+ /* 지도 컨테이너 */
+.map-container {
+    position: relative;
+    display: grid; /* 그리드 레이아웃 사용 */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동 정렬 */
+    gap: 20px; /* 지역 간 간격 */
+    padding: 20px;
+  }
+  
+  /* 지역별 박스 */
+  .region {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* 각 지역의 최대 크기 */
+    margin: auto;
+    text-align: center;
+  }
+  
+  /* 지역 지도 이미지 */
+  .region-map {
+    width: 100%;
+    height: auto; /* 비율 유지 */
+  }
+
+  /* 데이터 포인트 (점) */
+  .map-point {
+    position: absolute;
+    background-color: rgba(30, 144, 255, 0.8); /* 점 배경색 */
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%); /* 중심 정렬 */
+    transition: transform 0.3s ease;
+  }
+  
+  .map-point span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .region:hover {
+    transform: scale(1.2); /* 호버 시 확대 */
+   
+  }
+
 /* Table styling */
 table {
     width: 100%;

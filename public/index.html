@@ -63,14 +63,47 @@
 
             <!-- 왼쪽 정보 지도 -->
             <div id="air-tab" class="tab-content active"  style="width:100%; height:100%; padding:0; margin:0;">
+             
               <p style="text-align: center;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
-              <p><img src="/public/img/PNG/PNG/map.png" alt="mapimg"></p>
+        
+              <div class="map-container">
+                <!-- 서울 -->
+                <div class="region">
+                  <img src="img/PNG/PNG/경기.png" alt="서울 지도" class="region-map" />
+                  <div class="map-point" style="top: 30%; left: 40%;">서울<br><span>11</span></div>
+                </div>
+                <!-- 경기 -->
+                <div class="region"> 
+                  <img src="/public/img/PNG/PNG/강원.png" alt="경기 지도" class="region-map"  id="pic1"/>
+                  <div class="map-point" style="top: 40%; left: 50%;">경기<br><span>17</span></div>
+                </div>
+                <!-- 강원 -->
+                <div class="region">
+                  <img src="img/PNG/PNG/경북.png" alt="강원 지도" class="region-map" />
+                  <div class="map-point" style="top: 20%; left: 50%;">강원<br><span>12</span></div>
+                </div>
+                <!-- 충남 -->
+                <div class="region">
+                  <img src="img/PNG/PNG/경기.png" alt="충남 지도" class="region-map" />
+                  <div class="map-point" style="top: 50%; left: 60%;">충남<br><span>21</span></div>
+                </div>
+                <!-- 추가 지역 -->
+                <!-- 나중에 필요할 경우 여기에 새로운 지역을 추가 -->
+              </div>
             </div>
+              
+           
 
             
             <div id="metal-tab" class="tab-content hidden" style="width:100%; height:100%; padding:0; margin:0;">
               <p style="text-align: center;">대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
-              <p><img src="/public/img/PNG/PNG/map.png" alt="mapimg"></p>
+              <div class="map-puzzle">
+                <div class="region region1"><img src="개별사진1경로" alt="지역1" /></div>
+                <div class="region region2"><img src="개별사진2경로" alt="지역2" /></div>
+                <div class="region region3"><img src="개별사진3경로" alt="지역3" /></div>
+                <div class="region region4"><img src="개별사진4경로" alt="지역4" /></div>
+                <!-- 추가 지역 -->
+              </div>
             </div>
           </div>
 
