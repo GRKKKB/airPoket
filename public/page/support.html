@@ -11,12 +11,15 @@
             
             <link rel="stylesheet" href="/public/css/main.css" />
             <link rel="stylesheet" href="/public/css/support.css" />
+
             <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
 </script>
 </head>
 <body>
     <div class="wrap">
       <!-- 기능구현 설정 -->
+      <!-- 경고창 평소에 히든 -->
+      <div id="alert" class="hidden"></div>
         <header>
             <div class="logo">
               <a href="/public/index.html">
@@ -32,6 +35,9 @@
                 <li><a href="/public/page/support.html">고객지원</a></li>
               </ul>
             </nav>
+
+            
+
             <div class="search-bar">
               <form action="/search" method="get">
                 <!-- <input type="text" name="query" placeholder="검색어를 입력하세요" />
@@ -40,35 +46,68 @@
             </div>
           </header>
 
+          <main class="container mt-6">
+            <div class="row justify-content-center">
+              <!-- 챗봇 섹션 -->
+              <section id="chatbot" class="bg-light col-md-5 p-4 mx-4 rounded shadow">
+                <h3 class="text-center mb-3">고객지원 챗봇</h3>
+                <div id="chat-container" class="chat-container">
+        
+                 
+                  
+                     <div div id="chat-output" class="chat-output mb-3">
+                    </div>
 
-          <main class="container mt-5"> <!-- 부트스트랩 컨테이너 사용 -->
-            <h1 class="page-title text-center mb-4">고객지원</h1> <!-- 제목 중앙 정렬 -->
-            <h3 class="page-title text-center mb-4">고객님, 소중한 의견 부탁드립니다! 감사합니다.</h3>
-            <section class="form-wrap bg-light p-4 rounded shadow">
-              <form id="support-form" onsubmit="sendEmail(event)">
-                <div class="mb-3">
+              
+
+                  <div class="chat-input-container mt-3">
+                    <select id="faq-select" class="form-select mb-2">
+                      <option value="">질문을 선택하세요...</option>
+                      <option value="저도 답변적을게 없네요">질문 할게없어요</option>
+                      <option value="에어포켓은 대기질 데이터를 실시간으로 제공합니다.">에어포켓이 무엇인가요?</option>
+                      <option value="종합건강점수는 다양한 대기질 정보를 종합한뒤 각종 환경 변수등을 조합하여 만들어진 점수입니다">종합건강점수란 무엇인가요?</option>
+                      <option value="실시간 자료는 '실시간자료조회' 메뉴에서 확인할 수 있습니다.">실시간 자료는 어디에서 확인할 수 있나요?</option>
+                    </select>
+                    <button id="send-button" class="btn btn-primary w-100">전송</button>
+                  </div>
+                </div>
+              </section>
+          
+              <!-- 이메일 폼 섹션 -->
+              <section class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
+                <h3 class="page-title text-center mb-4">메일로 보내기</h3>
+                <h5 class="text-center mb-4">문제가 아직 해결되지 않았다면 언제든 연락해주세요.</h5>
+                <form id="support-form" onsubmit="sendEmail(event)">
+                  <div class="mb-3">
                     <label for="name" class="form-label">이름</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" />
-                </div>
-                <div class="mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
+                  </div>
+                  <div class="mb-3">
                     <label for="email" class="form-label">이메일 주소</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" />
-                </div>
-                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required />
+                  </div>
+                  <div class="mb-3">
                     <label for="phone" class="form-label">전화번호</label>
                     <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" />
-                </div>
-                <div class="mb-4">
+                  </div>
+                  <div class="mb-4">
                     <label for="message" class="form-label">문의 내용</label>
                     <textarea class="form-control" id="message" name="message" style="height: 13rem; resize: none" placeholder="Comments"></textarea>
-                </div>
-                <div class="text-end">
-                    <button type="submit" class="custom-button">전송</button>
-                </div>
-            </form>
-            
-            </section>
+                  </div>
+                  <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" id="privacy-policy" required />
+                    <label class="form-check-label" for="privacy-policy">
+                      <small>개인정보 처리방침에 동의합니다.</small>
+                    </label>
+                  </div>
+                  <div class="text-end">
+                    <button type="submit" class="btn btn-primary w-100">전송</button>
+                  </div>
+                </form>
+              </section>
+            </div>
           </main>
+          
 
           
           
@@ -100,9 +139,13 @@
         </div>
       </footer>
     </div> <!-- wrap -->   
-
     
-    <script  src="/public/js/customerSupport.js"></script> <!-- JavaScript 파일 연결 -->
+    <!-- 알람 설정 -->
+    <script  src="/public/js/alert.js"></script> 
+    <!-- 챗봇 js 설정 -->
+    <script  src="/public/js/customerSupportChat.js"></script> <!-- JavaScript 파일 연결 -->
+    <!-- 이메일 js 이메일 자바스크립트 파일 연결 -->
+    <script  src="/public/js/customerSupportEmail.js"></script> 
     
 </body>
 </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뉴스 스크롤</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+            .comments-container {
+            width: 800px;
+            height: 100px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            }
+
+            .comment-card {
+            position: absolute;
+            width: 100%;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            font-size: 1.2em;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 1s ease;
+            }
+            .comment-card.active {
+            opacity: 1;
+            transform: translateY(0);
+            }
+
+    </style>
+</head>
+<body>
+
+
+
+    <section class="comments-section">
+        <h2>댓글</h2>
+        <div class="comments-container" id="comments-container">
+          <!-- 댓글 카드가 동적으로 추가됩니다 -->
+        </div>
+        <form id="comment-form">
+          <input type="text" style="height: 50px; width: 70%;" id="comment-input" placeholder="댓글을 입력하세요" required />
+          <button type="submit">댓글 추가</button>
+        </form>
+        <p id="filter-warning" style="color: rgb(253, 0, 0); display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
+      </section>
+      
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- 채팅 js -->
+    <script src="/public/js/Chat.js"></script>
+
+
+</body>
+</html>
