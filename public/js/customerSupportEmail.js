@@ -1,3 +1,6 @@
+
+
+
 // EmailJS 초기화
 (function () {
     emailjs.init("Qx7d4HQk3iGbBWLUl");
@@ -26,11 +29,13 @@ function sendEmail(event) {
         .send("service_roqavba", "template_p5yia8q", templateParams)
         .then(
             function (response) {
-                alert("문의가 성공적으로 전송되었습니다!");
+                // alert("문의가 성공적으로 전송되었습니다!");
+                showAlert("문의가 성공적으로 전송되었습니다!");
                 document.getElementById("support-form").reset(); // 폼 초기화
             },
             function (error) {
-                alert("문의 전송에 실패했습니다. 다시 시도해주세요.");
+                // alert("문의 전송에 실패했습니다. 다시 시도해주세요.");
+                showAlert("문의 전송에 실패했습니다. 다시 시도해주세요.");
                 console.error("EmailJS Error:", error);
             }
         );
