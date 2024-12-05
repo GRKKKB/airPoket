@@ -166,231 +166,296 @@ nav ul li a:hover {
     background-color: #fff;
     border-bottom: 2px solid #007bff;
     font-weight: bold;
-    width: 300px;
+    
+    
   }
 
   .tab-content {
+    position: relative;
+    weight:100%;
+    height:auto;
     display: block; /* 기본 상태 */
-    padding: 35px;
+   
     border: 1px solid #ddd;
     background-color: #ffffff;
     border-radius: 0 0 5px 5px;
   }
+
   
+  .tab-content.active {
+
+    height:auto;
+  }
+
   .hidden {
     display: none; /* 숨김 처리 */
   }
-  
- /* 지도 컨테이너 */
+
+/* 지도 컨테이너 */
 .map-container {
-    position: relative;
+  position: relative;
     width: 100%;
-    height: 1150px;
+    height: 900px;
+
     display: grid; /* 그리드 레이아웃 사용 */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동 정렬 */
     gap: 20px; /* 지역 간 간격 */
     padding: 20px;
-  }
+  overflow: hidden;
+
+}
+
+/* 지역 이미지 설정 */
+.region {
+  transform: scale(0.94); /* 이미지 확대 */
+  max-width: 260px; /* 각 지역의 최대 크기 */
+ 
   
-  /* 지역별 박스 */
-  .region {
-    position: absolute;
-    width: 100%;
-    max-width: 300px; /* 각 지역의 최대 크기 */
-    margin: auto;
-    text-align: center;
-  }
-  
-  /* 지역 지도 이미지 */
-  .region-map {
-    width: 100%;
-    height: auto; /* 비율 유지 */
-    overflow: hidden;
-  }
+}
 
-  /* 지역별 이미지 */
-  .gyeonggi {
-    position: absolute;
-    top: 150px;
-    width: 55%;
-    left: 220px;
-    height: auto;
-  }
+.region img {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  z-index: 20 ;
 
 
-  .seoul {
-    position: absolute;
-    top: 250px; 
-    width: 15%;
-    left: 280px;
-    height: auto; /* 비율 유지 */
-  }
-  .incheon {
-    position: absolute;
-    top: 170px;
-    width: 30%;
-    left: 150px;
-    height: auto;
-  }
-  .gangwon {
-    position: absolute;
-    top: 75px;  
-    width: 100%;
-    left: 300px;
-    height: auto;
-  }
-  .chungbuk {
-    position: absolute;
-    top: 310px;  
-    width: 73%;
-    left: 305px;
-    height: auto;
-  }
-  .chungnam {
-    position: absolute;
-    top: 338px;  
-    width: 85%;
-    left: 100px;
-    height: auto;
-  }
-  .sejong {
-    position: absolute;
-    top: 413px;  
-    width: 10%;
-    left: 275px;
-    height: auto;
-  }
-  .daejeon {
-    position: absolute;
-    top: 458px;  
-    width: 10%;
-    left: 295px;
-    height: auto;
-  }
-  .gyeongbug {
-    position: absolute;
-    top: 353px;  
-    width: 80%;
-    left: 415px;
-    height: auto;
-  }
-  .daegu {
-    position: absolute;
-    top: 475px;  
-    width: 30%;
-    left: 500px;
-    height: auto;
-  }
-  .gyeongnam {
-    position: absolute;
-    top: 570px;  
-    width: 85%;
-    left: 355px;
-    height: auto;
-  }
-  .ulsan {
-    position: absolute;
-    top: 600px;  
-    width: 20%;
-    left: 595px;
-    height: auto;
-  }
-  .busan {
-    position: absolute;
-    top: 675px;  
-    width: 20%;
-    left: 575px;
-    height: auto;
-  }
-  .jeonbug {
-    position: absolute;
-    top: 535px;  
-    width: 70%;
-    left: 170px;
-    height: auto;
-  }
-  .jeonnam {
-    position: absolute;
-    top: 670px;  
-    width: 90%;
-    left: 105px;
-    height: auto;
-  }
-  .gwangju {
-    position: absolute;
-    top: 720px;  
-    width: 18%;
-    left: 200px;
-    height: auto;
-  }
-  .baeglyeongdo {
-    position: absolute;
-    top: 150px;  
-    width: 10%;
-    left: 50px;
-    height: auto;
-  }
-  .jeju {
-    position: absolute;
-    top: 930px;  
-    width: 35%;
-    left: 180px;
-    height: auto;
-  }
-  .ulleungdo {
-    position: absolute;
-    top: 240px;  
-    width: 10%;
-    left: 650px;
-    height: auto;
-  }
-  .dokdo {
-    position: absolute;
-    top: 250px;  
-    width: 3%;
-    left: 720px;
-    height: auto;
-  }
+  object-fit: contain; /* 이미지 비율 유지 */
+  transition: transform 0.3s ease, filter 0.3s ease; /* 부드러운 효과 추가 */
+}
+
+/* 마우스 호버 효과 - 이미지 */
+.region:hover img {
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  transform: scale(0.91); /* 이미지 확대 */
+  filter: brightness(0.85); /* 밝기 살짝 어둡게 */
+}
+
+/* 지역 마커 설정 */
+ .map-point {
+
+  position: absolute;
+
+  background: rgba(0, 123, 255, 0.8);
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 21;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 마우스 호버 효과 - 마커 */
+ .map-point:hover {
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  transform: scale(1.1); /* 마커 확대 */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+}
 
 
-  /* 기본 이미지 스타일 */
-  .region img {
-    transition: transform 0.3s ease, filter 0.3s ease; /* 부드러운 효과 추가 */
-  }
+/* 개별 이미지 크기 설정 (작게 조정) */
+/* 지역별 이미지 크기 조정 (한국지도에 맞게 설정) */
+/* 경기도 */
+.gyeonggi {
+  position: absolute;
+  top: 6%;
+  left: 26%;
+  width: 24%;
+  height: auto;
+}
 
-  /* 호버 효과 */
-  .region:hover img {
-    transform: scale(1.1); /* 확대 효과 */
-    filter: brightness(0.6); /* 밝기 조정 */
-  }
+/* 서울 */
+.seoul {
+  position: absolute;
+  top: 7%;
+  left:21%;
+  width: 4%;
+  height: auto;
+}
+
+/* 인천 */
+.incheon {
+  position: absolute;
+  top: 11%;
+  left:22.9%;
+  width: 10%;
+  height: auto;
+}
+
+/* 강원 */
+.gangwon {
+  position: absolute;
+  top: -2%;
+  transform: scale(1.2); /* 마커 확대 */
+  left: 44%;
+  width: 100%;
+  height: auto;
+}
 
 
 
-  .map-point {
-    position: absolute;
-    background: rgba(0, 123, 255, 0.8); /* 반투명 배경 */
-    border-radius: 50%; /* 원형 */
-    display: flex; /* Flexbox 사용 */
-    flex-direction: column; /* 세로 정렬 */
-    align-items: center; /* 가로 중앙 정렬 */
-    justify-content: center; /* 세로 중앙 정렬 */
-    text-align: center; /* 텍스트 정렬 */
-    font-size: 1rem;
-    font-weight: bold;
-    z-index: 2;
-    width: 50px; /* 원형 크기 */
-    height: 50px; /* 원형 크기 */
-    line-height: normal; /* 기본 줄 간격 */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 123, 255, 0.4); /* 스판 효과 */
-  }
-  
-  /* 호버 시 강조 효과 */
-  .map-point:hover {
-    transform: scale(1.2); /* 크기 확대 */
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8), 0 0 30px rgba(0, 123, 255, 0.6); /* 스판 강조 */
-    opacity: 1; /* 완전히 보이도록 설정 */
-  }
-  
+/* 충남 */
+.chungnam {
+  position: absolute;
+  top: 26%;
+  left: 11%;
+  width: 85%;
+  height: auto;
+}
+
+/* 세종 */
+.sejong {
+  position: absolute;
+  top: 34.3%;
+  left: 35%;
+  width: 4%;
+  height: auto;
+}
+
+/* 대전 */
+.daejeon {
+  position: absolute;
+  top: 39.7%;
+  left: 36.8%;
+  width: 5.5%;
+  height: auto;
+}
+
+/* 대구 */
+.daegu {
+  position: absolute;
+  top: 46%;
+  left: 64%;
+  width: 7.8%;
+  z-index: 22;
+  height: auto;
+}
+
+/* 충북 */
+.chungbuk {
+  position: absolute;
+  top: 25%;
+  left: 41%;
+  width: 26%;
+  height: auto;
+}
+/* 경북 */
+.gyeongbug {
+  position: absolute;
+  top: 28%;
+  left: 55%;
+  width: 34%;
+  height: auto;
+}
+
+/* 경남 */
+.gyeongnam {
+  position: absolute;
+  top: 55%;
+  left: 48%;
+  width: 90%;
+  height: auto;
+}
+
+/* 울산 */
+.ulsan {
+  position: absolute;
+  top: 57%;
+  left: 80%;
+  width: 12%;
+  height: auto;
+}
+
+/* 부산 */
+.busan {
+  position: absolute;
+  top: 67%;
+  left: 73%;
+  width: 20%;
+  height: auto;
+}
+
+/* 전북 */
+.jeonbug {
+  position: absolute;
+  top: 49%;
+  left: 21%;
+  width: 30%;
+  height: auto;
+}
+
+/* 전남 */
+.jeonnam {
+  position: absolute;
+  top: 65%;
+  left: 13%;
+  width: 90%;
+  height: auto;
+}
+
+/* 광주 */
+.gwangju {
+  position: absolute;
+  top: 68%;
+  left: 22%;
+  width: 18%;
+  height: auto;
+}
+
+/* 백령도 */
+.baeglyeongdo {
+  position: absolute;
+  top: 5%;
+  left: 8%;
+  width: 10%;
+  height: auto;
+}
+
+/* 제주 */
+.jeju {
+  position: absolute;
+  top: 90%;
+  left: 10%;
+  width: 35%;
+  height: auto;
+}
+
+/* 울릉도 */
+.ulleungdo {
+  position: absolute;
+  top: 12%;
+  left: 85%;
+  width: 10%;
+  height: auto;
+}
+
+/* 독도 */
+.dokdo {
+  position: absolute;
+  top: 12%;
+  left: 95%;
+  width: 4%;
+  height: auto;
+}
+
+
+
+
+
+
+
+/* 나머지 지역들도 동일한 방식으로 좌표 설정 */
+
+
+
 
 /* Table styling */
 table {
@@ -407,8 +472,8 @@ th {
 }
 
 main {
-    margin-top: 30px;
     
+    margin-top: 30px;
     flex-wrap: wrap;
     gap: 20px;
 }
@@ -420,11 +485,11 @@ main {
 }
 
 .map-section, .local-info {
-    flex: 1 1 45%; /* Flex-basis for equal sections */
+    flex: 1 1 35%; /* Flex-basis for equal sections */
     background: #fff;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
-    height: 100%;
+    height:auto;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }

@@ -17,14 +17,16 @@
   </head>
   <body>
     
-    <div id="modal" class="modal">
+    <!-- 모달창 광고창? -->
+    <!-- <div id="modal" class="modal">
       <div class="modal-content">
         
         <h2>Recommend<span class="close" id="closeModalBtn">&times;</span></h2>
         
         <p><img src="/public/img/m2.jpg" alt="" ></p>
       </div>
-    </div>
+    </div> -->
+
     <div class="wrap">
 
     
@@ -54,237 +56,351 @@
         </header>
 
       <main>
-        <section class="real-time-info mx-3 ">
-          <!-- 제일 왼쪽 세션 아마 지도 들어갈거 같음 -->
+        <section class="real-time-info mx-2 ">
+                <!-- 지도 섹션 -->
           <div class="map-section">
             <div class="tabs">
               <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
               <div class="tab-btn" data-target="metal-tab">대기중 중금속 오염정보</div>
             </div>
 
-            <!-- 왼쪽 정보 지도 -->
-            <div id="air-tab" class="tab-content active"  style="width:100%; height:100%; padding:0; margin:0;">
-             
+            <!-- 지도 컨테이너 -->
+            <div id="air-tab" class="tab-content active">
               <p style="text-align: center;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
-        
               <div class="map-container">
                 <!-- 경기 -->
-                <div class="region">
-                  <img src="/public/img/PNG/PNG/경기.png" alt="경기 지도" class="gyeonggi" style="z-index: 1;" />
-                  <div class="map-point" style="top: 190px; left: 100%;">경기<span>17</span></div>
+                <div class="region gyeonggi">
+                  <img src="/public/img/PNG/PNG/경기.png" alt="경기 지도">
+                  <div class="map-point">
+                    <span class="location">경기</span>
+                    <span class="value">17</span>
+                  </div>
                 </div>
                 <!-- 서울 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/서울.png" alt="서울 지도" class="seoul" style="z-index: 2;" />
-                  <div class="map-point" style="top: 275px; left: 100%;">서울<br /><span>11</span></div>
+                <div class="region seoul">
+                  <img src="/public/img/PNG/PNG/서울.png" alt="서울 지도">
+                  <div class="map-point">
+                    <span class="location">서울</span>
+                    <span class="value">11</span>
+                  </div>
                 </div>
                 <!-- 인천 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/인천.png" alt="인천 지도" class="incheon" />
-                  <div class="map-point" style="top: 220px; left: 69%;">인천<br /><span>21</span></div>
+                <div class="region incheon">
+                  <img src="/public/img/PNG/PNG/인천.png" alt="인천 지도">
+                  <div class="map-point">
+                    <span class="location">인천</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 강원 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/강원.png" alt="강원 지도" class="gangwon" />
-                  <div class="map-point" style="top: 210px; left: 155%;">강원<br /><span>12</span></div>
+                <div class="region gangwon">
+                  <img src="/public/img/PNG/PNG/강원.png" alt="강원 지도">
+                  <div class="map-point">
+                    <span class="location">강원</span>
+                    <span class="value">12</span>
+                  </div>
                 </div>
                 <!-- 충북 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/충북.png" alt="충북 지도" class="chungbuk" />
-                  <div class="map-point" style="top: 390px; left: 125%;">충북<br /><span>21</span></div>
+                <div class="region chungbuk">
+                  <img src="/public/img/PNG/PNG/충북.png" alt="충북 지도">
+                  <div class="map-point">
+                    <span class="location">충북</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 충남 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/충남.png" alt="충남 지도" class="chungnam" />
-                  <div class="map-point" style="top: 430px; left: 75%;">충남<br /><span>21</span></div>
+                <div class="region chungnam">
+                  <img src="/public/img/PNG/PNG/충남.png" alt="충남 지도">
+                  <div class="map-point">
+                    <span class="location">충남</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 세종 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/세종.png" alt="세종 지도" class="sejong" />
-                  <div class="map-point" style="top: 445px; left: 95%;">세종<br /><span>21</span></div>
+                <div class="region sejong">
+                  <img src="/public/img/PNG/PNG/세종.png" alt="세종 지도">
+                  <div class="map-point">
+                    <span class="location">세종</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 대전 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/대전.png" alt="대전 지도" class="daejeon" />
-                  <div class="map-point" style="top: 490px; left: 110%;">대전<br /><span>21</span></div>
+                <div class="region daejeon">
+                  <img src="/public/img/PNG/PNG/대전.png" alt="대전 지도">
+                  <div class="map-point">
+                    <span class="location">대전</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 전북 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/전북.png" alt="전북 지도" class="jeonbug" />
-                  <div class="map-point" style="top: 600px; left: 90%;">전북<br /><span>21</span></div>
+                <div class="region jeonbug">
+                  <img src="/public/img/PNG/PNG/전북.png" alt="전북 지도">
+                  <div class="map-point">
+                    <span class="location">전북</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 전남 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/전남.png" alt="전남 지도" class="jeonnam" />
-                  <div class="map-point" style="top: 750px; left: 100%;">전남<br /><span>21</span></div>
+                <div class="region jeonnam">
+                  <img src="/public/img/PNG/PNG/전남.png" alt="전남 지도">
+                  <div class="map-point">
+                    <span class="location">전남</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 광주 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/광주.png" alt="광주 지도" class="gwangju" />
-                  <div class="map-point" style="top: 740px; left: 75%;">광주<br /><span>21</span></div>
+                <div class="region gwangju">
+                  <img src="/public/img/PNG/PNG/광주.png" alt="광주 지도">
+                  <div class="map-point">
+                    <span class="location">광주</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 경북 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/경북.png" alt="경북 지도" class="gyeongbug" style="z-index: 1;" />
-                  <div class="map-point" style="top: 430px; left: 185%;">경북<br /><span>21</span></div>
+                <div class="region gyeongbug">
+                  <img src="/public/img/PNG/PNG/경북.png" alt="경북 지도">
+                  <div class="map-point">
+                    <span class="location">경북</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 대구 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/대구.png" alt="대구 지도" class="daegu" style="z-index: 2;" />
-                  <div class="map-point" style="top: 540px; left: 180%;">대구<br /><span>21</span></div>
+                <div class="region daegu">
+                  <img src="/public/img/PNG/PNG/대구.png" alt="대구 지도">
+                  <div class="map-point">
+                    <span class="location">대구</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 울산 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/울산.png" alt="울산 지도" class="ulsan" />
-                  <div class="map-point" style="top: 630px; left: 210%;">울산<br /><span>21</span></div>
+                <div class="region ulsan">
+                  <img src="/public/img/PNG/PNG/울산.png" alt="울산 지도">
+                  <div class="map-point">
+                    <span class="location">울산</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 경남 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/경남.png" alt="경남 지도" class="gyeongnam" />
-                  <div class="map-point" style="top: 670px; left: 150%;">
+                <div class="region gyeongnam">
+                  <img src="/public/img/PNG/PNG/경남.png" alt="경남 지도">
+                  <div class="map-point">
                     <span class="location">경남</span>
-                      <span class="value">21</span>
-              
+                    <span class="value">21</span>
                   </div>
                 </div>
                 <!-- 부산 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/부산.png" alt="부산 지도" class="busan" />
-                    <div class="map-point" style="top: 705px; left: 205%;"> 
-                      <span class="location">부산</span>
-                      <span class="value">21</span>
-                    </div>
+                <div class="region busan">
+                  <img src="/public/img/PNG/PNG/부산.png" alt="부산 지도">
+                  <div class="map-point">
+                    <span class="location">부산</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 제주 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/제주.png" alt="제주 지도" class="jeju" />
-                  <div class="map-point" style="top: 955px; left: 75%;">제주<br /><span>21</span></div>
+                <div class="region jeju">
+                  <img src="/public/img/PNG/PNG/제주.png" alt="제주 지도">
+                  <div class="map-point">
+                    <span class="location">제주</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 독도 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/독도.png" alt="독도 지도" class="dokdo" />
-                  <div class="map-point" style="top: 250px; left: 240%;">독도<br /><span>21</span></div>
+                <div class="region dokdo">
+                  <img src="/public/img/PNG/PNG/독도.png" alt="독도 지도">
+                  <div class="map-point">
+                    <span class="location">독도</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 울릉도 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/울릉도.png" alt="울릉도 지도" class="ulleungdo" />
-                  <div class="map-point" style="top: 250px; left: 220%;">울릉도<br /><span>21</span></div>
+                <div class="region ulleungdo">
+                  <img src="/public/img/PNG/PNG/울릉도.png" alt="울릉도 지도">
+                  <div class="map-point">
+                    <span class="location">울릉도</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 백령도 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/백령도.png" alt="백령도 지도" class="baeglyeongdo" />
-                  <div class="map-point" style="top: 150px; left: 20%;">백령도<br /><span>21</span></div>
+                <div class="region baeglyeongdo">
+                  <img src="/public/img/PNG/PNG/백령도.png" alt="백령도 지도">
+                  <div class="map-point">
+                    <span class="location">백령도</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
               </div>
+              
             </div>
               
-           
+          
 
             
-            <div id="metal-tab" class="tab-content hidden" style="width: 100%; height: 100%; padding: 0; margin: 0;">
+            <div id="metal-tab" class="tab-content hidden">
               <p style="text-align: center;">대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
+             
               <div class="map-container">
                 <!-- 경기 -->
-                <div class="region">
-                  <img src="/public/img/PNG/PNG/경기.png" alt="경기 지도" class="gyeonggi" style="z-index: 1;" />
-                  <div class="map-point" style="top: 190px; left: 100%;">경기<span>17</span></div>
+                <div class="region gyeonggi">
+                  <img src="/public/img/PNG/PNG/경기.png" alt="경기 지도">
+                  <div class="map-point">
+                    <span class="location">경기</span>
+                    <span class="value">17</span>
+                  </div>
                 </div>
                 <!-- 서울 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/서울.png" alt="서울 지도" class="seoul" style="z-index: 2;" />
-                  <div class="map-point" style="top: 275px; left: 100%;">서울<br /><span>11</span></div>
+                <div class="region seoul">
+                  <img src="/public/img/PNG/PNG/서울.png" alt="서울 지도">
+                  <div class="map-point">
+                    <span class="location">서울</span>
+                    <span class="value">11</span>
+                  </div>
                 </div>
                 <!-- 인천 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/인천.png" alt="인천 지도" class="incheon" />
-                  <div class="map-point" style="top: 220px; left: 69%;">인천<br /><span>21</span></div>
+                <div class="region incheon">
+                  <img src="/public/img/PNG/PNG/인천.png" alt="인천 지도">
+                  <div class="map-point">
+                    <span class="location">인천</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 강원 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/강원.png" alt="강원 지도" class="gangwon" />
-                  <div class="map-point" style="top: 210px; left: 155%;">강원<br /><span>12</span></div>
+                <div class="region gangwon">
+                  <img src="/public/img/PNG/PNG/강원.png" alt="강원 지도">
+                  <div class="map-point">
+                    <span class="location">강원</span>
+                    <span class="value">12</span>
+                  </div>
                 </div>
                 <!-- 충북 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/충북.png" alt="충북 지도" class="chungbuk" />
-                  <div class="map-point" style="top: 390px; left: 125%;">충북<br /><span>21</span></div>
+                <div class="region chungbuk">
+                  <img src="/public/img/PNG/PNG/충북.png" alt="충북 지도">
+                  <div class="map-point">
+                    <span class="location">충북</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 충남 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/충남.png" alt="충남 지도" class="chungnam" />
-                  <div class="map-point" style="top: 430px; left: 75%;">충남<br /><span>21</span></div>
+                <div class="region chungnam">
+                  <img src="/public/img/PNG/PNG/충남.png" alt="충남 지도">
+                  <div class="map-point">
+                    <span class="location">충남</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 세종 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/세종.png" alt="세종 지도" class="sejong" />
-                  <div class="map-point" style="top: 445px; left: 95%;">세종<br /><span>21</span></div>
+                <div class="region sejong">
+                  <img src="/public/img/PNG/PNG/세종.png" alt="세종 지도">
+                  <div class="map-point">
+                    <span class="location">세종</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 대전 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/대전.png" alt="대전 지도" class="daejeon" />
-                  <div class="map-point" style="top: 490px; left: 110%;">대전<br /><span>21</span></div>
+                <div class="region daejeon">
+                  <img src="/public/img/PNG/PNG/대전.png" alt="대전 지도">
+                  <div class="map-point">
+                    <span class="location">대전</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 전북 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/전북.png" alt="전북 지도" class="jeonbug" />
-                  <div class="map-point" style="top: 600px; left: 90%;">전북<br /><span>21</span></div>
+                <div class="region jeonbug">
+                  <img src="/public/img/PNG/PNG/전북.png" alt="전북 지도">
+                  <div class="map-point">
+                    <span class="location">전북</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 전남 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/전남.png" alt="전남 지도" class="jeonnam" />
-                  <div class="map-point" style="top: 750px; left: 100%;">전남<br /><span>21</span></div>
+                <div class="region jeonnam">
+                  <img src="/public/img/PNG/PNG/전남.png" alt="전남 지도">
+                  <div class="map-point">
+                    <span class="location">전남</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 광주 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/광주.png" alt="광주 지도" class="gwangju" />
-                  <div class="map-point" style="top: 740px; left: 75%;">광주<br /><span>21</span></div>
+                <div class="region gwangju">
+                  <img src="/public/img/PNG/PNG/광주.png" alt="광주 지도">
+                  <div class="map-point">
+                    <span class="location">광주</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 경북 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/경북.png" alt="경북 지도" class="gyeongbug" style="z-index: 1;" />
-                  <div class="map-point" style="top: 430px; left: 185%;">경북<br /><span>21</span></div>
+                <div class="region gyeongbug">
+                  <img src="/public/img/PNG/PNG/경북.png" alt="경북 지도">
+                  <div class="map-point">
+                    <span class="location">경북</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 대구 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/대구.png" alt="대구 지도" class="daegu" style="z-index: 2;" />
-                  <div class="map-point" style="top: 540px; left: 180%;">대구<br /><span>21</span></div>
+                <div class="region daegu">
+                  <img src="/public/img/PNG/PNG/대구.png" alt="대구 지도">
+                  <div class="map-point">
+                    <span class="location">대구</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 울산 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/울산.png" alt="울산 지도" class="ulsan" />
-                  <div class="map-point" style="top: 630px; left: 210%;">울산<br /><span>21</span></div>
+                <div class="region ulsan">
+                  <img src="/public/img/PNG/PNG/울산.png" alt="울산 지도">
+                  <div class="map-point">
+                    <span class="location">울산</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 경남 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/경남.png" alt="경남 지도" class="gyeongnam" />
-                  <div class="map-point" style="top: 670px; left: 150%;">경남<br /><span>21</span></div>
+                <div class="region gyeongnam">
+                  <img src="/public/img/PNG/PNG/경남.png" alt="경남 지도">
+                  <div class="map-point">
+                    <span class="location">경남</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 부산 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/부산.png" alt="부산 지도" class="busan" />
-                  <div class="map-point" style="top: 705px; left: 205%;">부산<br /><span>21</span></div>
+                <div class="region busan">
+                  <img src="/public/img/PNG/PNG/부산.png" alt="부산 지도">
+                  <div class="map-point">
+                    <span class="location">부산</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 제주 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/제주.png" alt="제주 지도" class="jeju" />
-                  <div class="map-point" style="top: 955px; left: 75%;">제주<br /><span>21</span></div>
+                <div class="region jeju">
+                  <img src="/public/img/PNG/PNG/제주.png" alt="제주 지도">
+                  <div class="map-point">
+                    <span class="location">제주</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 독도 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/독도.png" alt="독도 지도" class="dokdo" />
-                  <div class="map-point" style="top: 250px; left: 240%;">독도<br /><span>21</span></div>
+                <div class="region dokdo">
+                  <img src="/public/img/PNG/PNG/독도.png" alt="독도 지도">
+                  <div class="map-point">
+                    <span class="location">독도</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 울릉도 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/울릉도.png" alt="울릉도 지도" class="ulleungdo" />
-                  <div class="map-point" style="top: 250px; left: 220%;">울릉도<br /><span>21</span></div>
+                <div class="region ulleungdo">
+                  <img src="/public/img/PNG/PNG/울릉도.png" alt="울릉도 지도">
+                  <div class="map-point">
+                    <span class="location">울릉도</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
                 <!-- 백령도 -->
-                <div class="region">
-                  <img src="img/PNG/PNG/백령도.png" alt="백령도 지도" class="baeglyeongdo" />
-                  <div class="map-point" style="top: 150px; left: 20%;">백령도<br /><span>21</span></div>
+                <div class="region baeglyeongdo">
+                  <img src="/public/img/PNG/PNG/백령도.png" alt="백령도 지도">
+                  <div class="map-point">
+                    <span class="location">백령도</span>
+                    <span class="value">21</span>
+                  </div>
                 </div>
               </div>
+              
             </div>
             
           </div>
@@ -392,8 +508,7 @@
       </footer>
     </div> 
 
-    <!-- map js -->
-    <script src="/public/js/airmap.js"></script>
+
 
 
     <!-- map js -->
