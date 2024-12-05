@@ -59,6 +59,11 @@
     background-color: #f9f9f9; /* 배경색 */
 }
 
+.map-section{
+    width: 100%;
+    height: 450px;
+}
+
 /* 섹션 제목 스타일 */
 h2 {
     text-align: center; /* 제목 중앙 정렬 */
@@ -72,14 +77,10 @@ h2 {
 canvas {
     display: block; /* 블록 요소로 설정 */
     max-width: 100%; /* 최대 너비 100% */
-    height: auto; /* 높이는 비율에 맞춰 자동 조절 */
+    
+    
     margin: 0 auto; /* 중앙 정렬 */
     border-radius: 8px; /* 캔버스 모서리 둥글게 */
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    #chart-grid {
-        grid-template-columns: 1fr; /* 화면이 작을 때 1열로 변경 */
-    }
-}
+

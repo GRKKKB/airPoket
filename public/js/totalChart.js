@@ -1,23 +1,86 @@
+
+
+
+
+async function fetchData() {
+
+
+
+    try{
+        //api 호출
+        const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
+        const metalResponse = await fetch('http://localhost:3000/totalInfo/week-metal-avg-ratio');
+
+        const metalNameData = await metalNameResponse.json(); //data1
+        const metalData = await metalResponse.json(); //data2
+     
+        updateChartData(metalNameData,metalData);
+
+    } catch (error) {
+        console.error('데이터를 가져오는 중 에러 발생:', error);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    fetchData(); // 초기 데이터 로드
+});
+
+function updateChartData(data1, data2) {
+    
     // 구성 비율 차트 (Pie Chart)
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    const pieCtx = document.getElementById('totalInfo').getContext('2d');
+    const labels = data1.map(row => row.element_name);
+    console.log(labels);
+    const scores = data2.map(row => row.measurement);
+    console.log(scores);
+
+
     new Chart(pieCtx, {
         type: 'pie',
         data: {
-            labels: ['PM25', 'PM10', 'SO2', 'CO', 'O3', 'NO2'],
+            labels: labels,
             datasets: [{
-                data: [20, 25, 15, 10, 20, 10],
-                backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+                
+                data: scores,
+                backgroundColor: [
+                    '#FF6384', 
+                    '#36A1EB', 
+                    '#FFCE56', 
+                    '#5BC0C0', 
+                    '#9966FF', 
+                    ],
             }]
         },
         options: {
             plugins: {
                 legend: {
-                    position: 'bottom',
+                    position: 'top',
                 },
+                
+                
             },
-        },
+            resoponsive: true,
+            maintainAspectRatio:false
+        } 
     });
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // 변화 통합 라인 차트 (Line Chart)
     const lineCtx = document.getElementById('lineChart').getContext('2d');
@@ -130,4 +193,5 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         },
     });
-});
+
+
