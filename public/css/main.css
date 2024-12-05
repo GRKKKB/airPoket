@@ -124,14 +124,12 @@ nav ul li a:hover {
     cursor: pointer;
   }
   
-  
   .tab-btn {
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #f4f4f4;
     transition: background-color 0.3s ease, border 0.3s ease;
-
   }
   
   .tab-btn.active {
@@ -141,7 +139,6 @@ nav ul li a:hover {
     width: 300px;
   }
 
-  
   .tab-content {
     display: block; /* 기본 상태 */
     padding: 35px;
@@ -158,7 +155,7 @@ nav ul li a:hover {
 .map-container {
     position: relative;
     width: 100%;
-    height: 1000px;
+    height: 1150px;
     display: grid; /* 그리드 레이아웃 사용 */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동 정렬 */
     gap: 20px; /* 지역 간 간격 */
@@ -328,12 +325,12 @@ nav ul li a:hover {
     position: absolute;
     background-color: rgba(30, 144, 255, 0.8); /* 점 배경색 */
     color: white;
-    font-size: 14px;
+    font-size: 20px;
     text-align: center;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 80px;
+    height: 80px;
+    line-height: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: translate(-50%, -50%); /* 중심 정렬 */
     transition: transform 0.3s ease;
@@ -341,14 +338,15 @@ nav ul li a:hover {
   
   .map-point span {
     display: block;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     color: #151825;
+    margin-top: 3px;
   }
   
   .region:hover {
+    transition: all 0.2s linear;
     transform: scale(1.1); /* 호버 시 확대 */
-   
   }
 
 /* Table styling */
