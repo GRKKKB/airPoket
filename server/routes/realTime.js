@@ -92,6 +92,32 @@ router.get('/air', async (req, res) => {
     }
   });
 
+  router.get('/air-total-chart', async (req, res) => {
+    try {
+      // 프로시저 호출 또는 SELECT 쿼리 실행
+      const sql = `
+      SELECT ap.region,
+             ap.timestamp,
+             ap.PM25,
+             ap.PM19,
+             ap.SO2,
+             ap.CO,
+             ap.O3,
+             ap.NO2
+      FROM week_avg_air_pollution ap;
+
+      `;
+      const results = await db.query(sql);
+  
+      // 결과 반환
+      res.json(results);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).send('Error retrieving data');
+    }
+  });
+  
+
   
 
 
