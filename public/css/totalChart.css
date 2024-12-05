@@ -44,7 +44,9 @@
     grid-template-columns: repeat(2, 1fr); /* 2열로 설정 */
     gap: 20px; /* 섹션 간 간격 */
     padding: 20px; /* 패딩 추가 */
+    margin-top: 0px;
 }
+
 
 /* 섹션 스타일 */
 .real-info {
@@ -62,24 +64,32 @@
 .map-section{
     width: 100%;
     height: 450px;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
 }
 
 /* 섹션 제목 스타일 */
 h2 {
     text-align: center; /* 제목 중앙 정렬 */
-    padding-top: 20px;
-    padding-bottom: 20px; /* 아래쪽 여백 */
-    font-size: 1.5rem; /* 폰트 크기 */
+    padding-top: 10px;
+    padding-bottom: 0px; /* 아래쪽 여백 */
+    font-size: 2.5rem; /* 폰트 크기 */
     color: #333; /* 텍스트 색상 */
     font-weight: bold; /* 폰트 두께 */
+}
+
+h3{
+    padding-left: 30px;
+    padding-top: 10px;
+    margin-bottom: 0px;
 }
 
 /* 차트 캔버스 */
 canvas {
     display: block; /* 블록 요소로 설정 */
     max-width: 100%; /* 최대 너비 100% */
-    margin: 0 auto; /* 중앙 정렬 */
+    /* margin:  auto; 중앙 정렬 */
+    padding-top: 10px;
+    
     
     border-radius: 8px; /* 캔버스 모서리 둥글게 */
 }

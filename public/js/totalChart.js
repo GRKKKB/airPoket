@@ -1,9 +1,13 @@
+const today = document.getElementById('today');
 
+// 현재 날짜 표시
+function displayCurrentDate() {
+    const now = new Date();
+    const formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    today.textContent = `현재 날짜: ${formattedDate}`;
+  }
 
 async function fetchData() {
-
-
-
     try{
         //api 호출
         const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
@@ -19,20 +23,17 @@ async function fetchData() {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     fetchData(); // 초기 데이터 로드
 });
 
 function updateChartData(data1, data2) {
-    
     // 구성 비율 차트 (Pie Chart)
     const pieCtx = document.getElementById('totalInfo').getContext('2d');
     const labels = data1.map(row => row.element_name);
     console.log(labels);
     const scores = data2.map(row => row.measurement);
     console.log(scores);
-
 
     new Chart(pieCtx, {
         type: 'pie',
@@ -72,21 +73,7 @@ function updateChartData(data1, data2) {
             maintainAspectRatio:false
         } 
     });
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
