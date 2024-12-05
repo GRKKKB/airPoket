@@ -116,6 +116,36 @@ nav ul li a:hover {
     pointer-events: none;
   }
 
+  /* 댓글창  */
+  .comments-container {
+
+    height: 50px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    }
+
+    .comment-card {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+
+    border-radius: 5px;
+    font-size: 1.2em;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 1s ease;
+    }
+    .comment-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
  /* 탭 스타일 */
 .tabs {
     justify-content: space-between; /* 양옆으로 배치 */
@@ -175,6 +205,7 @@ nav ul li a:hover {
   .region-map {
     width: 100%;
     height: auto; /* 비율 유지 */
+    overflow: hidden;
   }
 
   /* 지역별 이미지 */
@@ -185,6 +216,8 @@ nav ul li a:hover {
     left: 220px;
     height: auto;
   }
+
+
   .seoul {
     position: absolute;
     top: 250px; 
@@ -320,34 +353,44 @@ nav ul li a:hover {
   }
 
 
-  /* 데이터 포인트 (점) */
+  /* 기본 이미지 스타일 */
+  .region img {
+    transition: transform 0.3s ease, filter 0.3s ease; /* 부드러운 효과 추가 */
+  }
+
+  /* 호버 효과 */
+  .region:hover img {
+    transform: scale(1.1); /* 확대 효과 */
+    filter: brightness(0.6); /* 밝기 조정 */
+  }
+
+
+
   .map-point {
     position: absolute;
-    background-color: rgba(30, 144, 255, 0.8); /* 점 배경색 */
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    line-height: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translate(-50%, -50%); /* 중심 정렬 */
-    transition: transform 0.3s ease;
-  }
-  
-  .map-point span {
-    display: block;
-    font-size: 20px;
+    background: rgba(0, 123, 255, 0.8); /* 반투명 배경 */
+    border-radius: 50%; /* 원형 */
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    text-align: center; /* 텍스트 정렬 */
+    font-size: 1rem;
     font-weight: bold;
-    color: #151825;
-    margin-top: 3px;
+    z-index: 2;
+    width: 50px; /* 원형 크기 */
+    height: 50px; /* 원형 크기 */
+    line-height: normal; /* 기본 줄 간격 */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 123, 255, 0.4); /* 스판 효과 */
   }
   
-  .region:hover {
-    transition: all 0.2s linear;
-    transform: scale(1.1); /* 호버 시 확대 */
+  /* 호버 시 강조 효과 */
+  .map-point:hover {
+    transform: scale(1.2); /* 크기 확대 */
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8), 0 0 30px rgba(0, 123, 255, 0.6); /* 스판 강조 */
+    opacity: 1; /* 완전히 보이도록 설정 */
   }
+  
 
 /* Table styling */
 table {
@@ -389,19 +432,56 @@ main {
 .map-section img {
     max-width: 100%;
     border-radius: 10px;
+  
 }
 
-.news-alerts .carousel .slide {
-    padding: 10px;
-    background: #f4f4f4;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
+.carousel {
+  height: 100px;
+  position: relative;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+
 }
 
-.news-alerts .carousel .slide:hover {
-    transform: scale(1.02);
+.news-container {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
 }
+
+.news-item, .news-item2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 40px); /* 마진을 고려하여 너비 계산 */
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+
+
+.news-item.active, .news-item2.active {
+  opacity: 1;
+  animation: slide-up 1s forwards;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
 
 .comments-section {
     margin-top: 20px;

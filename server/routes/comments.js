@@ -2,7 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
-let comments = []; // 메모리에 댓글 저장
+let comments = [{"id":1,"content":"오늘날씨그지같당","createdAt":"2024-12-05T07:15:12.380Z"}
+  ,{"id":2,"content":"우와아글이써져용","createdAt":"2024-12-05T07:15:12.380Z"}
+  ,{"id":3,"content":"테스트1","createdAt":"2024-12-05T07:15:12.380Z"}]; // 메모리에 댓글 저장
 const MAX_COMMENTS = 10;
 const RATE_LIMIT_TIME = 5000;
 const rateLimit = {};
