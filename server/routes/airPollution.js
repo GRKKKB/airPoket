@@ -78,12 +78,15 @@ router.get('/procedure/serchOption', async (req, res) => {
 router.get('/dayairMap', async (req, res) => {
   try {
     // 프로시저 호출 또는 SELECT 쿼리 실행
-    const sql = `SELECT a.region
-                       ,AVG(a.weighted_score) AS score
-                       ,MIN(a.timestamp) AS timestamp
-                       ,MIN(a.hour) AS hour
-                  FROM day_air_pollution a
-                  GROUP BY a.region`;
+    const sql = `SELECT 
+    a.region AS region, 
+    ROUND(100-AVG(a.weighted_score)) AS score, 
+    MAX(a.TIMESTAMP) AS latest_timestamp, 
+    MAX(a.hour) AS latest_hour
+FROM 
+    day_air_pollution a
+GROUP BY 
+    a.region`;
     const results = await db.query(sql);
 
     // 결과 반환
