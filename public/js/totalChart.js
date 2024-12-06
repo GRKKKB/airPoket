@@ -13,16 +13,17 @@ async function fetchData() {
         const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
         const metalResponse = await fetch('http://localhost:3000/totalInfo/week-metal-avg-ratio');
         const airResponse = await fetch('http://localhost:3000/totalInfo/week-air-avg-ratio');
-        const 
+        const rankResponse = await fetch('http://localhost:3000/totalInfo/week-air-avg-rank')
         
 
         const metalNameData = await metalNameResponse.json(); //data1
         const metalData = await metalResponse.json(); //data2
         const airData = await airResponse.json(); //data3
+        const rankData = await rankResponse.json(); //data4
         
         updateChartData(metalNameData,metalData);
         updateAirChartData(airData);
-        
+        updateRankData(rankData);
 
     } catch (error) {
         console.error('데이터를 가져오는 중 에러 발생:', error);
@@ -138,18 +139,43 @@ function updateAirChartData(data3){
 }
 
 
-function updateCityData(data4){
-
+function updateRankData(data4){
     // 도시별 대기질 순위 (Bar Chart)
     const barCtx = document.getElementById('barChart').getContext('2d');
+    const labels = data4.map(row => row.region);
+    console.log(labels);
+    
+    const ranking = data4.map(row => row.RANK);
+    console.log(ranking);
+
+    const scores = data4.map(row => row.RANK);
+    console.log(scores);
+
     new Chart(barCtx, {
         type: 'bar',
         data: {
-            labels: ['Seoul', 'Busan', 'Daegu', 'Incheon', 'Gwangju'],
+            labels: labels,
             datasets: [{
                 label: '종합 건강 점수',
-                data: [96, 91, 92, 94, 90],
-                backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue'],
+                data: ranking,
+                backgroundColor: ['red'
+                                , 'orange'
+                                , 'yellow'
+                                , 'green'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                                , 'blue'
+                            ],
             }]
         },
         options: {
