@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "ejs": "^3.1.10",
     "emailjs-com": "^3.2.0",
     "express": "^4.21.1",
     "helmet": "^8.0.0",

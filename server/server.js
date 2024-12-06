@@ -4,122 +4,99 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
-const airPollutionRoutes = require('./routes/airPollution'); // API 라우트 가져오기
+const airPollutionRoutes = require('./routes/airPollution');
 const realTimeRoutes = require('./routes/realTime');
 const metalRoutes = require('./routes/metal');
 const totalInfoRoutes = require('./routes/totalInfo');
-const bom  = require('./routes/bom');
-const min  = require('./routes/min');
+const bom = require('./routes/bom');
+const min = require('./routes/min');
 
 const app = express();
 
-// 서버 포트번호 설정
-const HTTP_PORT = 3000; // HTTP API와 정적 파일 제공용
-const WS_PORT = 8080; // WebSocket 연결용
+// 서버 포트 설정
+const HTTP_PORT = 3000;
+const WS_PORT = 8080;
 
 // HTTP 서버 생성
 const httpServer = http.createServer(app);
 
-// 웹소켓 서버 생성 (독립적으로 8080 포트에서 실행)
+// WebSocket 서버 생성
 const wss = new WebSocket.Server({ port: WS_PORT });
-
-// WebSocket 클라이언트 관리용 Set
 const clients = new Set();
 
-// 클라이언트 연결 시 이벤트
 wss.on('connection', (ws) => {
-    clients.add(ws);
-    console.log('새 클라이언트 연결됨');
+  clients.add(ws);
+  console.log('새 클라이언트 연결됨');
 
-    // 메시지 수신 시 모든 클라이언트에 브로드캐스트
-    ws.on('message', (data) => {
-        console.log('받은 메시지:', data);
-
-        // 모든 클라이언트에 JSON 메시지 브로드캐스트
-        clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(data); // 받은 메시지 그대로 브로드캐스트
-            }
-        });
-    });
-
-    // 연결 종료 시 클라이언트 목록에서 제거
-    ws.on('close', () => {
-        clients.delete(ws);
-        console.log('클라이언트 연결 종료됨');
-    });
-
-    // 에러 발생 시 처리
-    ws.on('error', (error) => {
-        console.error('WebSocket 에러:', error);
+  ws.on('message', (data) => {
+    console.log('받은 메시지:', data);
+    clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(data);
+      }
     });
   });
-  
 
+  ws.on('close', () => {
+    clients.delete(ws);
+    console.log('클라이언트 연결 종료됨');
+  });
+
+  ws.on('error', (error) => {
+    console.error('WebSocket 에러:', error);
+  });
+});
 
 // Middleware 설정
 app.use(cors());
 app.use(
-    helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: [
-            "'self'",
-            "'unsafe-inline'",
-            "https://cdn.jsdelivr.net",
-            "https://oapi.map.naver.com",
-          ],
-          styleSrc: [
-            "'self'",
-            "'unsafe-inline'",
-            "https://cdn.jsdelivr.net",
-            "https://stackpath.bootstrapcdn.com",
-            "ws://localhost:8080", // WebSocket 허용
-          ],
-          imgSrc: ["'self'", "data:"],
-          connectSrc: ["'self'", "https://oapi.map.naver.com"],
-        },
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+          "https://oapi.map.naver.com",
+        ],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+          "https://stackpath.bootstrapcdn.com",
+        ],
+        imgSrc: ["'self'", "data:"],
+        connectSrc: [
+          "'self'",
+          "https://oapi.map.naver.com",
+          "https://naveropenapi.apigw.ntruss.com", // 네이버 OpenAPI 허용
+          "ws://localhost:8080", // WebSocket 허용
+        ],
       },
-    })
-  );
-// JSON 요청 본문 파싱을 위한 미들웨어 추가
-app.use(express.json());
+    },
+  })
+);
 
-// 정적 파일 제공 설정
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-// 기본 라우트 설정
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-// 중금속 API 라우트 설정
 app.use('/metal', metalRoutes);
-// 실시간 라우트 설정
 app.use('/realTime', realTimeRoutes);
-// 대기중 오염 정보 라우트 설정
 app.use('/air-pollution', airPollutionRoutes);
-// 통계정보 라우트 설정
 app.use('/totalInfo', totalInfoRoutes);
-
-
-
-// 통계정보 라우트 설정 임시(1)
 app.use('/bom', bom);
-
-// 통계정보 라우트 설정 임시(2)
 app.use('/min', min);
 
-// WebSocket 서버를 `commentsRoutes`에 전달
-const commentsRoutes = require('./routes/comments')(wss); // WebSocket 서버 전달
-app.use('/comments', commentsRoutes); // `/comments` 경로로 댓글 라우트 연결
+const commentsRoutes = require('./routes/comments')(wss);
+app.use('/comments', commentsRoutes);
 
-
-// HTTP 서버 실행
 httpServer.listen(HTTP_PORT, () => {
-    console.log(`HTTP Server running on http://localhost:${HTTP_PORT}`);
+  console.log(`HTTP Server running on http://localhost:${HTTP_PORT}`);
 });
 
-// WebSocket 서버 실행 확인
 console.log(`WebSocket Server running on ws://localhost:${WS_PORT}`);
