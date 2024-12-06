@@ -6,14 +6,31 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="maskFilter">
+        <select name="work" id="work">
+            <option value="1">마스크 착용 유무 8시간 실내 작업</option>
+            <option value="2">마스크 착용 유무 8시간 실외 작업</option>
+            <option value="3">마스크 착용 유무  12시간 실내 작업</option>
+            <option value="4">마스크 착용 유무  12시간 실외 작업</option>
+        </select>
 
-    <canvas id="mask-in-8h-chart"></canvas> 
+    </div>
+
+    <div class="mask_8h_in">
+        <canvas id="mask-in-8h-chart"></canvas> 
+    </div>
+    
     <canvas id="mask-in-12h-chart"></canvas>
 
     <canvas id="mask-out-8h-chart"></canvas> 
     <canvas id="mask-out-12h-chart"></canvas>
+
+
     
+
     <script src="/public/js/test/min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </body>
 </html>
