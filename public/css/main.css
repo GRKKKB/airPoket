@@ -213,39 +213,37 @@ nav ul li a:hover {
   
 }
 
+/*   지도 이미지 위치 설정 */
 .region img {
   position: absolute;
-
   top: 0;
   left: 0;
   z-index: 20 ;
-
-
   object-fit: contain; /* 이미지 비율 유지 */
   transition: transform 0.3s ease, filter 0.3s ease; /* 부드러운 효과 추가 */
 }
 
+
+
 /* 마우스 호버 효과 - 이미지 */
 .region:hover img {
   cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-  transform: scale(0.91); /* 이미지 확대 */
+  transform: scale(1.033); /* 이미지 확대 */
   filter: brightness(0.85); /* 밝기 살짝 어둡게 */
 }
 
 /* 지역 마커 설정 */
  .map-point {
-
-  position: absolute;
-
-  background: rgba(0, 123, 255, 0.8);
-  top: 0;
-  left: 0;
+  position:absolute;
+  background: #2A3A2F;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   z-index: 21;
   color: white;
   display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  text-align: center; /* 텍스트 중앙 정렬 */
   align-items: center;
   justify-content: center;
   font-size: 0.9rem;
@@ -253,10 +251,91 @@ nav ul li a:hover {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+/* 지도 스판태그 설정 지도위글자  */
+/*경기도 */
+.location-gyeonggi{
+ 
+  top:100px;
+  left: 40%;
+}
+/* 서울  */
+.location-seoul{
+  top:0;
+  left:0;
+}
+/* 인천 */
+.location-incheon{
+  top:10px;
+  left:10%;
+}
+/* 강원 */
+.location-gangwon{
+  top:100px;
+  left: 40%;
+}
+/* 충북 */
+.location-chungbuk{
+  top:50px;
+  left: 15%;
+}
+/* 충남 */
+.location-chungnam{
+  top:50px;
+  left: 35%;
+}
+/* 세종 */
+.location-sejong{
+  top:0;
+  left: -3%;
+}
+/* 대전 */
+.location-deajeon{
+  top:0;
+  left: -4%;
+}
+/* 전북 */
+.location-jeonbug{
+  top:0;
+  left: -4%;
+}
+/* 전남 */
+.location-jeonnam{
+  top:80px;
+  left: 30%;
+}
+.location-gwangju{
+  top:0;
+  left: 10%;
+}
+.location-gyeongbug{
+  top:80px;
+  left: 30%;
+}
+.location-deagu{
+  top:20px;
+  left: 10%;
+
+}
+.location-ulsan{
+  top:0;
+  left: 10%;
+}
+.location-gyeongnam{
+  top:70px;
+  left: 30%;
+}
+.location-busan{
+  top:10px;
+  left: 30%;
+}
+.location-jeju{ 
+   top:20px;
+  left: 20%;}
+
 /* 마우스 호버 효과 - 마커 */
  .map-point:hover {
   cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-  transform: scale(1.1); /* 마커 확대 */
+  transform: scale(1.2); /* 마커 확대 */
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
 }
 
@@ -275,28 +354,29 @@ nav ul li a:hover {
 /* 서울 */
 .seoul {
   position: absolute;
-  top: 7%;
-  left:21%;
-  width: 4%;
+  top: 9%;
+  left:31%;
+  width: 7%;
+  z-index:24;
   height: auto;
 }
 
 /* 인천 */
 .incheon {
   position: absolute;
-  top: 11%;
-  left:22.9%;
-  width: 10%;
+  top: 12%;
+  left:26%;
+  width: 8%;
   height: auto;
 }
 
 /* 강원 */
 .gangwon {
   position: absolute;
-  top: 0;
+  top: 1.4%;
   
-  transform: scale(1.2); /* 사이즈 확대 */
-  left: 40%;
+  transform: scale(1.1); /* 사이즈 확대 */
+  left: 39%;
   width: 100%;
   height: auto;
 }
@@ -333,9 +413,9 @@ nav ul li a:hover {
 /* 대구 */
 .daegu {
   position: absolute;
-  top: 46%;
-  left: 64%;
-  width: 7.8%;
+  top: 43%;
+  left: 66%;
+  width: 9%;
   z-index: 22;
   height: auto;
 }
@@ -351,26 +431,26 @@ nav ul li a:hover {
 /* 경북 */
 .gyeongbug {
   position: absolute;
-  top: 28.8%;
-  left: 55.2%;
-  width: 27.8%;
+  top: 29.1%;
+  left: 52%;
+  width: 28%;
   height: auto;
 }
 
 /* 경남 */
 .gyeongnam {
   position: absolute;
-  top:48%;
+  top:50%;
   left: 47%;
-  width: 80%;
+  width: 31%;
   height: auto;
 }
 
 /* 울산 */
 .ulsan {
   position: absolute;
-  top: 51%;
-  left: 77%;
+  top: 52%;
+  left: 74%;
   width:9%;
   height: auto;
 }
@@ -378,8 +458,8 @@ nav ul li a:hover {
 /* 부산 */
 .busan {
   position: absolute;
-  top: 58%;
-  left: 73%;
+  top: 59%;
+  left: 71%;
   width: 10%;
   height: auto;
 }
@@ -405,18 +485,18 @@ nav ul li a:hover {
 /* 광주 */
 .gwangju {
   position: absolute;
-  top: 68%;
-  left: 22%;
-  width: 18%;
+  top: 59%;
+  left: 31%;
+  width: 8%;
   height: auto;
 }
 
 /* 백령도 */
 .baeglyeongdo {
   position: absolute;
-  top: 5%;
-  left: 8%;
-  width: 10%;
+  top: 10%;
+  left: 10%;
+  width: 40%;
   height: auto;
 }
 
@@ -433,8 +513,8 @@ nav ul li a:hover {
 .ulleungdo {
   position: absolute;
   top: 12%;
-  left: 85%;
-  width: 10%;
+  left: 80%;
+  width: 14%;
   height: auto;
 }
 
@@ -442,8 +522,8 @@ nav ul li a:hover {
 .dokdo {
   position: absolute;
   top: 12%;
-  left: 95%;
-  width: 4%;
+  left: 90%;
+  width: 10%;
   height: auto;
 }
 

@@ -92,7 +92,7 @@ app.use('/totalInfo', totalInfoRoutes);
 app.use('/bom', bom);
 
 // 통계정보 라우트 설정 임시(2)
-app.use('/min ', min);
+app.use('/min', min);
 
 // WebSocket 서버를 `commentsRoutes`에 전달
 const commentsRoutes = require('./routes/comments')(wss); // WebSocket 서버 전달
