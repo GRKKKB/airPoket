@@ -53,7 +53,7 @@
     display: contents; /* 부모 요소의 display 속성을 무시하고 자식 요소들이 직접 그리드에 배치되도록 설정 */
 }
 
-.map-section, .local-info, .city-ranking {
+.map-section, .local-info, .city-ranking, .major{
     padding: 5px; /* 내부 여백 */
     border: 1px solid #ddd; /* 테두리 */
     border-radius: 10px; /* 모서리 둥글게 */
