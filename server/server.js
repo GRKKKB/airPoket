@@ -61,22 +61,38 @@ wss.on('connection', (ws) => {
 app.use(cors());
 app.use(
     helmet({
-        contentSecurityPolicy: {
-            directives: {
-                defaultSrc: ["'self'"],
-                scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
-                styleSrc: ["'self'", "'unsafe-inline'"],
-                imgSrc: ["'self'", "data:"],
-                connectSrc: ["'self'", `http://localhost:${HTTP_PORT}`],
-            },
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://cdn.jsdelivr.net",
+            "https://oapi.map.naver.com",
+          ],
+          styleSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://cdn.jsdelivr.net",
+            "https://stackpath.bootstrapcdn.com",
+            "ws://localhost:8080", // WebSocket 허용
+          ],
+          imgSrc: ["'self'", "data:"],
+          connectSrc: ["'self'", "https://oapi.map.naver.com"],
         },
+      },
     })
-);
-
+  );
 // JSON 요청 본문 파싱을 위한 미들웨어 추가
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// 정적 파일 제공 설정
+app.use(express.static(path.join(__dirname, '../public')));
+
+// 기본 라우트 설정
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 // 중금속 API 라우트 설정
 app.use('/metal', metalRoutes);
@@ -86,6 +102,7 @@ app.use('/realTime', realTimeRoutes);
 app.use('/air-pollution', airPollutionRoutes);
 // 통계정보 라우트 설정
 app.use('/totalInfo', totalInfoRoutes);
+
 
 
 // 통계정보 라우트 설정 임시(1)
