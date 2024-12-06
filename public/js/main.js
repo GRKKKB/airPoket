@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     Sejong: '세종',
     // 중금속 데이터에 추가된 매핑
     경기권: 'gyeonggigwon',
-    수도권: 'seoul', // 수도권은 서울로 매핑
+    수도권: 'sudogwon', // 수도권은 서울로 매핑
     강원권: 'gangwongwon',
     충북권: 'chungbukgwon',
     충청권: 'chungchunggwon',
     전북권: 'jeonbuggwon',
     호남권: 'honamgwon',
     영남권: 'yeongnamgwon',
-    제주도: 'jeju',
+    제주도: 'jejudo',
     백령도: 'baeglyeongdo',
     중부권: 'joongbugwon',
   };
@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (locationElement) {
             locationElement.textContent = item.city_name; // API에서 받은 한글 이름 그대로 사용
+            console.log(locationElement);
           }
           if (valueElement) {
             const score = parseFloat(item.score);
