@@ -1,3 +1,4 @@
+
 const today = document.getElementById('today');
 
 // 현재 날짜 표시
@@ -5,17 +6,21 @@ function displayCurrentDate() {
     const now = new Date();
     const formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
     today.textContent = `현재 날짜: ${formattedDate}`;
-  }
-
+}
 async function fetchData() {
+
+
+
     try{
+
+
         //api 호출
         const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
         const metalResponse = await fetch('http://localhost:3000/totalInfo/week-metal-avg-ratio');
 
         const metalNameData = await metalNameResponse.json(); //data1
         const metalData = await metalResponse.json(); //data2
-     
+        
         updateChartData(metalNameData,metalData);
 
     } catch (error) {
@@ -24,6 +29,7 @@ async function fetchData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    displayCurrentDate();
     fetchData(); // 초기 데이터 로드
 });
 
