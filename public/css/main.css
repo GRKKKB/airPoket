@@ -347,14 +347,26 @@ nav ul li a:hover {
   left: 23%;
   width: 27%;
   height: auto;
+  z-index: 27;
 }
 /* 수도권 */
 .sudogwon {
   position: absolute;
   top: 15%;
   left: 32%;
-  width: 5%;
+  width: 7%;
   height: auto;
+  z-index: 50;
+}
+/* 강원권 */
+.gangwongwon {
+  position: absolute;
+  top: 1%;
+  transform: scale(1.1); /* 사이즈 확대 */
+  z-index: 1;
+  left: 40%;
+  width: 100%;
+  height: auto; 
 }
 /* 충북권 */
 .chungbukgwon{
@@ -363,6 +375,7 @@ nav ul li a:hover {
   left: 41.5%;
   width: 25%;
   height: auto;
+  z-index: 80;
 }
 /* 충청권 */
 .chungchunggwon {
@@ -483,6 +496,7 @@ nav ul li a:hover {
   left: 27.4%;
   width: 23%;
   height: auto;
+  z-index: 50;
 }
 
 /* 서울 */
@@ -491,7 +505,7 @@ nav ul li a:hover {
   top: 15%;
   left:32%;
   width: 7%;
-  z-index:24;
+  z-index:60;
   height: auto;
 }
 
@@ -509,7 +523,7 @@ nav ul li a:hover {
   position: absolute;
   top: 1%;
   transform: scale(1.1); /* 사이즈 확대 */
-  z-index: 0;
+  z-index: 1;
 
   left: 40%;
   width: 100%;
@@ -523,6 +537,7 @@ nav ul li a:hover {
   left: 42%;
   width: 23.5%;
   height: auto;
+  z-index: 80;
 }
 
 /* 충남 */
