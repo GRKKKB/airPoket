@@ -103,6 +103,7 @@ function updateAirChartData(data3){
                     borderColor: '#5050FF',
                     fill: false,
                     tension: 0.3,
+                    
                 }
 
             ]
@@ -119,16 +120,20 @@ function updateAirChartData(data3){
                     title: {
                         display: true,
                         text: '성분',
-                        
                     },
+                    
+
                 },
+
+
                 y: {
                     title: {
                         display: true,
                         text: '농도 수준',
                     },
                     beginAtZero: true,
-                    
+                    min:-40,
+                    max:100
 
                 },
             },
