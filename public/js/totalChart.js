@@ -189,7 +189,13 @@ function updateRankData(data4){
                 label: '종합건강점수 반영 RANK',
                 data: ranking,
                 borderColor:'#FAF0AD',
-                backgroundColor: '#FFC314'
+                backgroundColor:['#FFA500','#FFAF0A','#FFB914','#FFC31E'
+                                ,'#FFCD28','#FFD732','#FFDC37','#FFE13C'
+                                ,'#FFE641','#FFEB46','#FFA98F','#FFB399'
+                                ,'#FFBDA3','#FFC7AD','#FFD1B7','#FFDBC1'
+                                ,'#FFE0C6'
+                                ],
+                            
             }],
 
         },
