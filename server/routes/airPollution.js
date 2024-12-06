@@ -74,6 +74,27 @@ router.get('/procedure/serchOption', async (req, res) => {
 
 });
 
+// ` http://localhost:3000/air-pollution/dayairMap` 현재 지역 종합건강점수 평균
+router.get('/dayairMap', async (req, res) => {
+  try {
+    // 프로시저 호출 또는 SELECT 쿼리 실행
+    const sql = `SELECT a.region
+                       ,AVG(a.weighted_score) AS score
+                       ,MIN(a.timestamp) AS timestamp
+                       ,MIN(a.hour) AS hour
+                  FROM day_air_pollution a
+                  GROUP BY a.region`;
+    const results = await db.query(sql);
+
+    // 결과 반환
+    res.json(results);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Error retrieving data');
+  }
+});
+
+
 // // 특정 프로시저 호출 라우트 예제 
 // router.get('/call-procedure', async (req, res) => {
 //     try {

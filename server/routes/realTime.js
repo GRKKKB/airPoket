@@ -99,7 +99,7 @@ router.get('/air', async (req, res) => {
       SELECT ap.region,
              ap.timestamp,
              ap.PM25,
-             ap.PM19,
+             ap.PM10,
              ap.SO2,
              ap.CO,
              ap.O3,
