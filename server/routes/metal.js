@@ -18,6 +18,24 @@ router.get('/', async (req, res) => {
     }
   });
 
+// `http://localhost:3000/metal/dayMetal` API 그냥 전체 값
+router.get('/dayMetal', async (req, res) => {
+  try {
+    // 프로시저 호출 또는 SELECT 쿼리 실행
+    const sql = `SELECT A.city_name
+		                   ,AVG(A.metal_score) AS score
+                       ,A.timestamp
+                       FROM day_avg_metal_pollution A 
+                       GROUP BY A.city_name`;
+    const results = await db.query(sql);
+
+    // 결과 반환
+    res.json(results);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Error retrieving data');
+  }
+});
 
 
 

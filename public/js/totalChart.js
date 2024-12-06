@@ -13,6 +13,7 @@ async function fetchData() {
         const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
         const metalResponse = await fetch('http://localhost:3000/totalInfo/week-metal-avg-ratio');
         const airResponse = await fetch('http://localhost:3000/totalInfo/week-air-avg-ratio');
+        
 
         const metalNameData = await metalNameResponse.json(); //data1
         const metalData = await metalResponse.json(); //data2
@@ -80,7 +81,6 @@ function updateChartData(data1, data2) {
     });
 }
 
-
 function updateAirChartData(data3){
 
     // 변화 통합 라인 차트 (Line Chart)
@@ -89,7 +89,6 @@ function updateAirChartData(data3){
     const weekLabels = Object.keys(data3[0]);
     console.log("테스트1111",weekLabels);
     const scores = Object.values(data3[0]);
-    
     
     console.log(weekLabels);
     new Chart(lineCtx, {
@@ -101,11 +100,11 @@ function updateAirChartData(data3){
                     label:"성분 농도",
                     data: scores,
                     borderColor: '#5050FF',
-                    fill: false,
+                    fill: true,
+                    backgroundColor: '#A4C3FF',
                     tension: 0.3,
                     
                 }
-
             ]
         },
         options: {
@@ -121,11 +120,7 @@ function updateAirChartData(data3){
                         display: true,
                         text: '성분',
                     },
-                    
-
                 },
-
-
                 y: {
                     title: {
                         display: true,
@@ -134,15 +129,12 @@ function updateAirChartData(data3){
                     beginAtZero: true,
                     min:-40,
                     max:100
-
                 },
             },
         },
+        
     });
 }
-
-
-
 
 
 
