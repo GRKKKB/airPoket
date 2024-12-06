@@ -254,7 +254,7 @@ nav ul li a:hover {
 /* 지도 스판태그 설정 지도위글자  */
 /*경기도 */
 .location-gyeonggi{
- 
+  z-index:36;
   top:100px;
   left: 40%;
 }
@@ -289,29 +289,34 @@ nav ul li a:hover {
   left: -3%;
 }
 /* 대전 */
-.location-deajeon{
+.location-daejeon{
   top:0;
   left: -4%;
 }
 /* 전북 */
-.location-jeonbug{
-  top:0;
-  left: -4%;
+.location-jeonbuk{
+  top:40px;
+  left: 34%;
 }
 /* 전남 */
 .location-jeonnam{
   top:80px;
   left: 30%;
 }
+
+/* 광주 */
 .location-gwangju{
   top:0;
   left: 10%;
 }
-.location-gyeongbug{
-  top:80px;
+
+/* 경북 */
+.location-gyeongbuk{
+  top:70px;
   left: 30%;
 }
-.location-deagu{
+/* 대구 */
+.location-daegu{
   top:20px;
   left: 10%;
 
@@ -374,8 +379,9 @@ nav ul li a:hover {
 .gangwon {
   position: absolute;
   top: 1.4%;
-  
   transform: scale(1.1); /* 사이즈 확대 */
+  z-index: 0;
+
   left: 39%;
   width: 100%;
   height: auto;
