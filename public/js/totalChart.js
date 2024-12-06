@@ -46,24 +46,6 @@ async function fetchData() {
         const rankData = await rankResponse.json(); //data4
         
 
-        rankData.forEach(item => {
-            const koreanRegion = regionMapping[item.region]; // 영어 지역 이름을 한글로 매핑
-            const regionClass = `.location-${item.region.toLowerCase()}`;
-            const mapPoint = document.querySelector(regionClass);
-            
-            if(mapPoint){
-                // 한글 이름 및 값 업데이트
-                const locationElement = mapPoint.querySelector('.location');
-
-                if (locationElement) {
-                    locationElement.textContent = koreanRegion || item.region; // 한글 이름 설정
-                  }
-            }else {
-                console.warn(`"${item.region}"에 해당하는 HTML 요소를 찾을 수 없습니다.`);
-            }
-
-        });
-
         updateChartData(metalNameData,metalData);
         updateAirChartData(airData);
         updateRankData(rankData);
@@ -186,7 +168,11 @@ function updateAirChartData(data3){
 function updateRankData(data4){
     // 도시별 대기질 순위 (Bar Chart)
     const barCtx = document.getElementById('barChart').getContext('2d');
-    const labels = data4.map(row => row.region);
+    const labels = data4.map(row => regionMapping[row.region]);
+
+
+
+
     console.log(labels);
     
     const ranking = data4.map(row => row.RANK);
