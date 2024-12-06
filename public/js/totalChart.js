@@ -148,7 +148,7 @@ function updateRankData(data4){
     const ranking = data4.map(row => row.RANK);
     console.log(ranking);
 
-    const scores = data4.map(row => row.RANK);
+    const scores = data4.map(row => row.weighted_score);
     console.log(scores);
 
     new Chart(barCtx, {
@@ -156,28 +156,17 @@ function updateRankData(data4){
         data: {
             labels: labels,
             datasets: [{
-                label: '종합 건강 점수',
-                data: ranking,
-                backgroundColor: ['red'
-                                , 'orange'
-                                , 'yellow'
-                                , 'green'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                                , 'blue'
-                            ],
+                label: '종합 건강 점수 : MAX=100',
+                data: scores,
+                borderColor:'#FF9364',
+                backgroundColor: '#ffaa28',
             }]
+
         },
+
+
+
+
         options: {
             plugins: {
                 legend: {
@@ -197,6 +186,8 @@ function updateRankData(data4){
                         text: '건강 점수',
                     },
                     beginAtZero: true,
+                    max:100,
+                    min:80
                 },
             },
         },
