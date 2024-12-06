@@ -98,9 +98,9 @@ function updateAirChartData(data3){
             labels: weekLabels,
             datasets: [
                 {
-                    
+                    label:"성분 농도",
                     data: scores,
-                    borderColor: 'red',
+                    borderColor: '#5050FF',
                     fill: false,
                     tension: 0.3,
                 }
@@ -108,6 +108,7 @@ function updateAirChartData(data3){
             ]
         },
         options: {
+            
             plugins: {
                 legend: {
                     position: 'top',
@@ -118,6 +119,7 @@ function updateAirChartData(data3){
                     title: {
                         display: true,
                         text: '성분',
+                        
                     },
                 },
                 y: {
@@ -126,6 +128,8 @@ function updateAirChartData(data3){
                         text: '농도 수준',
                     },
                     beginAtZero: true,
+                    
+
                 },
             },
         },
