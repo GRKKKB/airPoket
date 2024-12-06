@@ -8,6 +8,8 @@ const airPollutionRoutes = require('./routes/airPollution'); // API 라우트 �
 const realTimeRoutes = require('./routes/realTime');
 const metalRoutes = require('./routes/metal');
 const totalInfoRoutes = require('./routes/totalInfo');
+const bom  = require('./routes/bom');
+const min  = require('./routes/min');
 
 const app = express();
 
@@ -86,6 +88,11 @@ app.use('/air-pollution', airPollutionRoutes);
 app.use('/totalInfo', totalInfoRoutes);
 
 
+// 통계정보 라우트 설정 임시(1)
+app.use('/bom', bom);
+
+// 통계정보 라우트 설정 임시(2)
+app.use('/min ', min);
 
 // WebSocket 서버를 `commentsRoutes`에 전달
 const commentsRoutes = require('./routes/comments')(wss); // WebSocket 서버 전달
