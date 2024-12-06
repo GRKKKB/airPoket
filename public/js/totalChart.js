@@ -13,6 +13,7 @@ async function fetchData() {
         const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
         const metalResponse = await fetch('http://localhost:3000/totalInfo/week-metal-avg-ratio');
         const airResponse = await fetch('http://localhost:3000/totalInfo/week-air-avg-ratio');
+        const 
         
 
         const metalNameData = await metalNameResponse.json(); //data1
@@ -137,6 +138,7 @@ function updateAirChartData(data3){
 }
 
 
+function updateCityData(data4){
 
     // 도시별 대기질 순위 (Bar Chart)
     const barCtx = document.getElementById('barChart').getContext('2d');
@@ -173,5 +175,6 @@ function updateAirChartData(data3){
             },
         },
     });
+}
 
 
