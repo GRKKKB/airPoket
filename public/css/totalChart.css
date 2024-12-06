@@ -90,8 +90,6 @@ canvas {
     max-width: 100%; /* 최대 너비 100% */
     /* margin:  auto; 중앙 정렬 */
     padding-top: 10px;
-    
-    
     border-radius: 8px; /* 캔버스 모서리 둥글게 */
 }
 

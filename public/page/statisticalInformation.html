@@ -42,24 +42,24 @@
             </div>
           </header>
           <!-- 메인 콘텐츠 -->
-          <h3 id="today" onload="displayCurrentDate()">현재 날짜:</h3>
+          <h3 id="today" >현재 날짜:</h3>
           <main id="chart-grid">
             
             <section class="real-info"> 
-              <!-- 구성 비율 섹션 -->
+              <!-- 구성 비율 섹션(해란하는중) -->
               <div class="map-section">
-                <h2>중금속 일주일 대기질 구성 비율</h2>
-                <canvas id="totalInfo" style="position: relative; width:30vW;"></canvas>
+                <h2>[일주일] 중금속 대기질 구성 비율</h2>
+                <canvas id="metalAvg" style="position: relative; width:30vW;"></canvas>
               </div>
 
               <!-- 오른쪽 부분   -->
               <div class="local-info">
-                <!-- 변화 통합 라인 차트 섹션 -->
-                <h2>대기질 변화 (일주일)</h2>
-                <canvas id="lineChart"></canvas>
+                <!-- 변화 통합 라인 차트 섹션(해란하는중) -->
+                <h2>[일주일] 대기질 구성 농도변화</h2>
+                <canvas id="airAvg"></canvas>
               </div>
     
-                <!-- 도시별 대기질 순위 섹션 -->
+                <!-- 도시별 대기질 순위 섹션(해란하는중) -->
                 <div class="city-ranking">
                   <h2>도시별 대기질 순위</h2>
                   <canvas id="barChart"></canvas>

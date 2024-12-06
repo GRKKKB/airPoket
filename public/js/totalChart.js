@@ -8,20 +8,19 @@ function displayCurrentDate() {
     today.textContent = `현재 날짜: ${formattedDate}`;
 }
 async function fetchData() {
-
-
-
     try{
-
-
         //api 호출
         const metalNameResponse = await fetch('http://localhost:3000/totalInfo/week-metal-name');
         const metalResponse = await fetch('http://localhost:3000/totalInfo/week-metal-avg-ratio');
+        const airResponse = await fetch('http://localhost:3000/totalInfo/week-air-avg-ratio');
 
         const metalNameData = await metalNameResponse.json(); //data1
         const metalData = await metalResponse.json(); //data2
+        const airData = await airResponse.json(); //data3
         
         updateChartData(metalNameData,metalData);
+        updateAirChartData(airData);
+        
 
     } catch (error) {
         console.error('데이터를 가져오는 중 에러 발생:', error);
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateChartData(data1, data2) {
     // 구성 비율 차트 (Pie Chart)
-    const pieCtx = document.getElementById('totalInfo').getContext('2d');
+    const pieCtx = document.getElementById('metalAvg').getContext('2d');
     const labels = data1.map(row => row.element_name);
     console.log(labels);
     const scores = data2.map(row => row.measurement);
@@ -82,60 +81,35 @@ function updateChartData(data1, data2) {
 }
 
 
+function updateAirChartData(data3){
 
     // 변화 통합 라인 차트 (Line Chart)
-    const lineCtx = document.getElementById('lineChart').getContext('2d');
-    const weekLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const lineCtx = document.getElementById('airAvg').getContext('2d'); //airAvg
+    console.log(data3);
+    const weekLabels = Object.keys(data3[0]);
+    console.log("테스트1111",weekLabels);
+    const scores = Object.values(data3[0]);
+    
+    
+    console.log(weekLabels);
     new Chart(lineCtx, {
         type: 'line',
         data: {
             labels: weekLabels,
             datasets: [
                 {
-                    label: 'PM25',
-                    data: [12, 15, 10, 20, 25, 30, 18],
-                    borderColor: 'red',
+                    label:"성분 농도",
+                    data: scores,
+                    borderColor: '#5050FF',
                     fill: false,
                     tension: 0.3,
-                },
-                {
-                    label: 'PM10',
-                    data: [20, 30, 25, 28, 35, 40, 32],
-                    borderColor: 'orange',
-                    fill: false,
-                    tension: 0.3,
-                },
-                {
-                    label: 'SO2',
-                    data: [0.005, 0.004, 0.006, 0.007, 0.005, 0.008, 0.007],
-                    borderColor: 'yellow',
-                    fill: false,
-                    tension: 0.3,
-                },
-                {
-                    label: 'CO',
-                    data: [0.3, 0.35, 0.32, 0.28, 0.3, 0.4, 0.35],
-                    borderColor: 'green',
-                    fill: false,
-                    tension: 0.3,
-                },
-                {
-                    label: 'O3',
-                    data: [0.03, 0.04, 0.035, 0.025, 0.03, 0.04, 0.038],
-                    borderColor: 'blue',
-                    fill: false,
-                    tension: 0.3,
-                },
-                {
-                    label: 'NO2',
-                    data: [0.01, 0.012, 0.011, 0.013, 0.015, 0.012, 0.011],
-                    borderColor: 'purple',
-                    fill: false,
-                    tension: 0.3,
+                    
                 }
+
             ]
         },
         options: {
+            
             plugins: {
                 legend: {
                     position: 'top',
@@ -145,19 +119,32 @@ function updateChartData(data1, data2) {
                 x: {
                     title: {
                         display: true,
-                        text: '요일',
+                        text: '성분',
                     },
+                    
+
                 },
+
+
                 y: {
                     title: {
                         display: true,
                         text: '농도 수준',
                     },
                     beginAtZero: true,
+                    min:-40,
+                    max:100
+
                 },
             },
         },
     });
+}
+
+
+
+
+
 
     // 도시별 대기질 순위 (Bar Chart)
     const barCtx = document.getElementById('barChart').getContext('2d');
