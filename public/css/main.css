@@ -172,7 +172,7 @@ nav ul li a:hover {
 
   .tab-content {
     position: relative;
-    weight:100%;
+
     height:auto;
     display: block; /* 기본 상태 */
    
@@ -255,7 +255,7 @@ nav ul li a:hover {
 /*경기도 */
 .location-gyeonggi{
   z-index:36;
-  top:100px;
+  top:115px;
   left: 40%;
 }
 /* 서울  */
@@ -270,23 +270,23 @@ nav ul li a:hover {
 }
 /* 강원 */
 .location-gangwon{
-  top:100px;
-  left: 40%;
+  top:95px;
+  left: 45%;
 }
 /* 충북 */
 .location-chungbuk{
-  top:50px;
+  top:49px;
   left: 15%;
 }
 /* 충남 */
 .location-chungnam{
   top:50px;
-  left: 35%;
+  left: 33%;
 }
 /* 세종 */
 .location-sejong{
-  top:0;
-  left: -3%;
+  top: 0px;
+  left: -60%;
 }
 /* 대전 */
 .location-daejeon{
@@ -300,24 +300,24 @@ nav ul li a:hover {
 }
 /* 전남 */
 .location-jeonnam{
-  top:80px;
-  left: 30%;
+  top:50px;
+  left: 65%;
 }
 
 /* 광주 */
 .location-gwangju{
-  top:0;
+  top: 0;
   left: 10%;
 }
 
 /* 경북 */
 .location-gyeongbuk{
-  top:70px;
-  left: 30%;
+  top:60px;
+  left: 40%;
 }
 /* 대구 */
 .location-daegu{
-  top:20px;
+  top:26px;
   left: 10%;
 
 }
@@ -335,7 +335,8 @@ nav ul li a:hover {
 }
 .location-jeju{ 
    top:20px;
-  left: 20%;}
+  left: 28%;
+}
 
 /* 마우스 호버 효과 - 마커 */
  .map-point:hover {
@@ -350,7 +351,7 @@ nav ul li a:hover {
 /* 경기도 */
 .gyeonggi {
   position: absolute;
-  top: 8.5%;
+  top: 8.8%;
   left: 27.4%;
   width: 23%;
   height: auto;
@@ -359,8 +360,8 @@ nav ul li a:hover {
 /* 서울 */
 .seoul {
   position: absolute;
-  top: 9%;
-  left:31%;
+  top: 15%;
+  left:32%;
   width: 7%;
   z-index:24;
   height: auto;
@@ -369,8 +370,8 @@ nav ul li a:hover {
 /* 인천 */
 .incheon {
   position: absolute;
-  top: 12%;
-  left:26%;
+  top: 16%;
+  left:23.5%;
   width: 8%;
   height: auto;
 }
@@ -378,32 +379,39 @@ nav ul li a:hover {
 /* 강원 */
 .gangwon {
   position: absolute;
-  top: 1.4%;
+  top: 1%;
   transform: scale(1.1); /* 사이즈 확대 */
   z-index: 0;
 
-  left: 39%;
+  left: 40%;
   width: 100%;
   height: auto;
 }
 
-
+/* 충북 */
+.chungbuk {
+  position: absolute;
+  top: 25.7%;
+  left: 42%;
+  width: 23.5%;
+  height: auto;
+}
 
 /* 충남 */
 .chungnam {
   position: absolute;
-  top: 29.4%;
-  left: 23.6%;
-  width:24%;
+  top: 30%;
+  left: 22.5%;
+  width:23.5%;
   height: auto;
 }
 
 /* 세종 */
 .sejong {
   position: absolute;
-  top: 34%;
-  left: 39.6%;
-  width: 4%;
+  top: 35.3%;
+  left: 39%;
+  width: 3%;
   height: auto;
 }
 
@@ -412,33 +420,25 @@ nav ul li a:hover {
   position: absolute;
   top: 38%;
   left: 42%;
-  width: 5%;
+  width: 4%;
   height: auto;
 }
 
 /* 대구 */
 .daegu {
   position: absolute;
-  top: 43%;
-  left: 66%;
+  top: 41.5%;
+  left: 63%;
   width: 9%;
   z-index: 22;
   height: auto;
 }
 
-/* 충북 */
-.chungbuk {
-  position: absolute;
-  top: 25.7%;
-  left: 41.5%;
-  width: 24%;
-  height: auto;
-}
 /* 경북 */
 .gyeongbug {
   position: absolute;
-  top: 29.1%;
-  left: 52%;
+  top: 28.5%;
+  left: 53.5%;
   width: 28%;
   height: auto;
 }
@@ -446,7 +446,7 @@ nav ul li a:hover {
 /* 경남 */
 .gyeongnam {
   position: absolute;
-  top:50%;
+  top: 49%;
   left: 47%;
   width: 31%;
   height: auto;
@@ -455,16 +455,16 @@ nav ul li a:hover {
 /* 울산 */
 .ulsan {
   position: absolute;
-  top: 52%;
+  top: 51.3%;
   left: 74%;
-  width:9%;
+  width:8%;
   height: auto;
 }
 
 /* 부산 */
 .busan {
   position: absolute;
-  top: 59%;
+  top: 58%;
   left: 71%;
   width: 10%;
   height: auto;
@@ -473,17 +473,17 @@ nav ul li a:hover {
 /* 전북 */
 .jeonbug {
   position: absolute;
-  top: 44%;
-  left: 26%;
-  width: 27%;
+  top: 44.5%;
+  left: 25.5%;
+  width: 26.5%;
   height: auto;
 }
 
 /* 전남 */
 .jeonnam {
   position: absolute;
-  top: 57%;
-  left: 18%;
+  top: 58%;
+  left: 17%;
   width: 60%;
   height: auto;
 }
@@ -491,8 +491,8 @@ nav ul li a:hover {
 /* 광주 */
 .gwangju {
   position: absolute;
-  top: 59%;
-  left: 31%;
+  top: 62%;
+  left: 29%;
   width: 8%;
   height: auto;
 }
@@ -502,16 +502,16 @@ nav ul li a:hover {
   position: absolute;
   top: 10%;
   left: 10%;
-  width: 40%;
+  width: 3%;
   height: auto;
 }
 
 /* 제주 */
 .jeju {
   position: absolute;
-  top: 90%;
+  top: 87%;
   left: 10%;
-  width: 35%;
+  width: 25%;
   height: auto;
 }
 
@@ -520,7 +520,7 @@ nav ul li a:hover {
   position: absolute;
   top: 12%;
   left: 80%;
-  width: 14%;
+  width: 5%;
   height: auto;
 }
 
