@@ -29,7 +29,7 @@ router.get('/air', async (req, res) => {
              a.hour,
              a.weighted_score,
              a.pm25,
-             a.PM19,
+             a.PM10,
              a.SO2,
              a.CO,
              a.O3,
