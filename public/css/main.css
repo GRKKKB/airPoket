@@ -392,38 +392,47 @@ nav ul li a:hover {
 
 
 /* 지도 스판태그 설정 지도위글자(중금속)*/
+/* 경기권 */
 .metal-gyeonggigwon {
   top: 120px;
   left: 40%;
 }
+/* 강원권 */
 .metal-gangwongwon {
   top: 95px;
   left: 42%;
 }
+/* 충북권 */
 .metal-chungbukgwon {
   top: 40px;
   left: 19%;
 }
+/* 충청권 */
 .metal-chungchunggwon {
   top: 52px;
   left: 35%;
 }
+/* 영남권 */
 .metal-Yeongnamgwon {
   top: 125px;
   left: 40%;
 }
+/* 전북권 */
 .metal-jeonbuggwon {
   top: 43.5px;
   left: 40%;
 }
+/* 호남권 */
 .metal-honamgwon {
   top: 65px;
   left: 40%;
 }
+/* 제주 */
 .metal-jeju {
   top: 20px;
   left: 30%;
 }
+/* 백령도 */
 .metal-baeglyeongdo {
   top: -12px;
   left: -3%;
