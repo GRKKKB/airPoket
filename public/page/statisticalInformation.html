@@ -29,32 +29,36 @@
       <h1 class="text-center mb-4">통계 정보</h1>
       <h3 id="today" class="text-center mb-5">현재 날짜: 2024-12-08</h3>
 
+
       <!-- 차트 섹션 -->
       <div class="row g-5">
+        <!-- 구성 비율 섹션(해란하는중) -->
         <!-- 중금속 대기질 구성 비율 -->
         <div class="col-lg-6">
           <div class="chart-card">
             <canvas id="metalAvg" class="chart"></canvas>
             <div class="chart-description">
               <h4>[일주일] 중금속 대기질 구성 비율</h4>
-              <p class="typing">중금속 대기질 데이터를 기반으로 구성 비율을 확인하세요. 분석된 데이터를 통해 환경의 질적 상태를 모니터링할 수 있습니다.</p>
+              <p class="typing">원본 대기중 중금속 구성비율입니다 설명을 길게 적어야하는데 생각보다 어렵습니다 그래도 애니메이션 잘들어간거 같아요.</p>
             </div>
           </div>
         </div>
 
 
         <!-- 중금속 대기질 구성 비율2 -->
+        <!-- 와! 상용로그 쓰면 차트가 이뻐져요! -->
         <div class="col-lg-6">
           <div class="chart-card">
             <canvas id="metalAvg2" class="chart"></canvas>
             <div class="chart-description">
               <h4>[일주일] 중금속 대기질 구성 비율</h4>
-              <p class="typing">중금속 대기질 데이터를 기반으로 구성 비율을 확인하세요. 분석된 데이터를 통해 환경의 질적 상태를 모니터링할 수 있습니다.</p>
+              <p class="typing"> 원본 중금속 데이터에서 x′=log(x+1)를 사용해서 극단적으로 큰 값의 스케일을 줄였습니다 좀 길게 적어야하는데 어렵네요 </p>
             </div>
           </div>
         </div>
 
         <!-- 대기질 구성 농도변화 -->
+        <!-- 변화 통합 라인 차트 섹션(해란하는중) -->
         <div class="col-lg-6">
           <div class="chart-card">
             <canvas id="airAvg" class="chart"></canvas>
@@ -66,6 +70,8 @@
         </div>
 
         <!-- 도시별 대기질 순위 -->
+        <!-- 도시별 대기질 순위 섹션(해란하는중) -->
+         <!-- 데이터 조금 건들였습니다  -->
         <div class="col-lg-6">
           <div class="chart-card">
             <canvas id="barChart" class="chart"></canvas>
@@ -77,6 +83,7 @@
         </div>
 
         <!-- 특별시, 광역시 대기 오염 점수 -->
+        <!-- 특별시, 광역시 대기 오염 점수(범찬) -->
         <div class="col-lg-6">
           <div class="chart-card">
             <canvas id="myChart" class="chart"></canvas>
