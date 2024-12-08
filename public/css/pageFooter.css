@@ -1,0 +1,146 @@
+.privacy-policy {
+    padding: 20px;
+    background-color: #f9f9f9;
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  .policy-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .policy-section h2 {
+    font-size: 1.6em;
+    color: #1e90ff;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #1e90ff;
+    padding-bottom: 5px;
+  }
+  
+  .policy-section p {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  
+  .policy-section ul {
+    list-style: disc;
+    margin: 10px 0 0 20px;
+    padding: 0;
+  }
+  
+  .policy-section ul li {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+  }
+  
+  /* 반응형 디자인 */
+  @media (max-width: 768px) {
+    .policy-section {
+      padding: 15px;
+    }
+  
+    .policy-section h2 {
+      font-size: 1.4em;
+    }
+  
+    .policy-section p, 
+    .policy-section ul li {
+      font-size: 0.9em;
+    }
+  }
+  
+
+  .related-sites {
+
+    max-width: 100%; /* 중앙 정렬과 너비 70% 설정 */
+ 
+    
+  }
+  
+  .related-sites .card {
+    border: none; /* 카드 테두리 제거 */
+  }
+  
+  .related-sites .card-title {
+    font-family: 'GmarketSansMedium', sans-serif;
+    font-size: 1.5rem;
+    color: #123456;
+  }
+  
+  .related-sites .card-text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .related-sites .btn-primary {
+    background-color: #123456;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .related-sites .btn-primary:hover {
+    background-color: #0d2b5f;
+  }
+  
+
+.related-sites .card {
+  border: none; /* 카드 테두리 제거 */
+  border-radius: 15px; /* 카드에 부드러운 모서리 추가 */
+  overflow: hidden; /* 이미지가 카드 크기를 넘어가지 않도록 설정 */
+}
+
+.related-sites .card-img-top {
+  max-height: 150px; /* 이미지 크기 제한 */
+  object-fit: contain; /* 이미지 비율 유지 */
+}
+
+.related-sites .card-title {
+  font-family: 'GmarketSansMedium', sans-serif;
+  font-size: 1.2rem; /* 제목 크기 */
+  color: #123456; /* 제목 색상 */
+}
+
+.related-sites .card-text {
+  font-size: 0.9rem; /* 텍스트 크기 */
+  margin-bottom: 1rem; /* 텍스트와 버튼 간격 */
+}
+
+.related-sites .btn-primary {
+  background-color: #123456; /* 버튼 색상 */
+  border: none; /* 버튼 테두리 제거 */
+  transition: background-color 0.3s ease; /* 부드러운 호버 효과 */
+}
+
+.related-sites .btn-primary:hover {
+  background-color: #0d2b5f; /* 호버 시 버튼 색상 */
+}
+
+.related-sites .row.g-4 {
+  gap: 2rem; /* 카드 간 공백 */
+}
+
+  
+ /* 애니메이션 초기 상태 */
+.animate-card {
+  opacity: 0; /* 처음에는 보이지 않음 */
+  transition: all 0.8s ease-out; /* 부드러운 전환 효과 */
+}
+
+/* 애니메이션 방향 */
+.from-left {
+  transform: translateX(-100px); /* 왼쪽에서 등장 */
+}
+
+.from-right {
+  transform: translateX(100px); /* 오른쪽에서 등장 */
+}
+
+/* 애니메이션 완료 상태 */
+.animate-card.visible {
+  opacity: 1;
+  transform: translateX(0); /* 원래 위치로 */
+}

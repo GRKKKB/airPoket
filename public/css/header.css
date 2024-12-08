@@ -1,0 +1,100 @@
+/* 헤더 영역 */
+header {
+  position: fixed; /* 스크롤 시 고정 */
+  top: 0; /* 화면의 맨 위 */
+  width: 100%; /* 전체 폭 차지 */
+  font-family: 'GmarketSansMedium'; /* 폰트 */
+  font-size: 20px; /* 텍스트 크기 */
+  font-weight: 300; /* 텍스트 두께 */
+  color: #fff; /* 텍스트 색상 흰색 */
+  background-color: #123456; /* 배경색 설정 */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* 하단 테두리 */
+  z-index: 999; /* 다른 요소 위에 표시 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 스크롤 시 애니메이션 */
+  padding: 15px 20px; /* 여백 조정 */
+}
+
+header:hover {
+  background-color: #0f2a44; /* 헤더 호버 시 배경색 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
+}
+
+/* 로고 스타일 */
+header .navbar-brand {
+  font-size: 1.8em; /* 로고 텍스트 크기 */
+  color: #fff; /* 로고 텍스트 색상 */
+  text-decoration: none; /* 밑줄 제거 */
+  font-weight: bold; /* 로고 텍스트 두께 */
+  display: flex; /* 로고와 이미지 정렬 */
+  align-items: center; /* 중앙 정렬 */
+  gap: 15px; /* 로고와 이미지 간격 */
+  transition: color 0.3s ease; /* 부드러운 색상 전환 */
+}
+
+header .navbar-brand:hover {
+  color: #00BFFF; /* 로고 호버 시 색상 변경 */
+}
+
+/* 로고 이미지 */
+header .navbar-brand img {
+  max-width: 60px; /* 로고 이미지 너비 */
+  height: auto; /* 비율 유지 */
+  border-radius: 8px; /* 약간의 둥근 모서리 */
+  transition: transform 0.3s ease; /* 부드러운 확대 효과 */
+}
+
+header .navbar-brand img:hover {
+  transform: scale(1.1); /* 호버 시 약간 확대 */
+}
+
+/* 네비게이션 설정 */
+.navbar-nav {
+  display: flex;
+  gap: 20px; /* 메뉴 항목 간 간격 */
+  margin-left: auto; /* 오른쪽 정렬 */
+}
+
+.navbar-nav .nav-item {
+  margin: 0; /* 개별 항목 간 여백 제거 */
+}
+
+.navbar-nav .nav-link {
+  color: #fff; /* 기본 네비게이션 텍스트 흰색 */
+  text-decoration: none; /* 밑줄 제거 */
+  font-weight: 400; /* 텍스트 두께 */
+  padding: 10px 15px; /* 내부 여백 */
+  border-radius: 25px; /* 완전히 둥근 모서리 */
+  transition: color 0.3s ease, background-color 0.3s ease; /* 색상 변경 애니메이션 */
+  /* background-color: rgba(255, 255, 255, 0.1); 기본 배경 투명 흰색 */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #123456; /* 호버 시 텍스트 색상 */
+  background-color: #96C2CB; /* 호버 시 배경색 */
+  font-weight: bold; /* 호버 시 텍스트 두께 강조 */
+}
+
+/* 활성화된 메뉴 항목 */
+.navbar-nav .nav-link.active {
+  color: #fff; /* 활성화 상태 텍스트 */
+  font-weight: bold; /* 활성화 상태 두께 */
+  background-color: #00BFFF; /* 활성화 상태 배경 */
+  box-shadow: 0 3px 8px rgba(0, 191, 255, 0.3); /* 활성화 상태 그림자 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  header {
+      padding: 10px; /* 작은 화면에서 여백 축소 */
+  }
+
+  .navbar-nav {
+      flex-direction: column; /* 메뉴 항목 세로 정렬 */
+      gap: 10px; /* 간격 조정 */
+  }
+
+  .nav-link {
+      text-align: center; /* 텍스트 중앙 정렬 */
+  }
+}

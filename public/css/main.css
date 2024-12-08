@@ -16,19 +16,15 @@
     font-style: normal;
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: 'Pretendard-Regular';
-    
 }
 
 
 body { 
     font-family: 'Pretendard-Regular';
     line-height: 1.6;
-    background-color: rgba(28, 118, 208, 0.194); /* 검은색 반투명 배경 */ /* Softer background */
-
+    background-color:  #e8f3fc; /* 검은색 반투명 배경 */ /* Softer background */
+    margin: 0 auto; /* 가운데 정렬 */
     color: #333;
 }
 
@@ -36,156 +32,265 @@ body {
 .wrap {
     max-width: 1280px; /* Increased for wider screens */
     margin: auto;
-    padding: 20px;
-}
-/* 헤더 영역***********************  */
-header {
-    font-family: 'GmarketSansMedium';
-    font-size: 20px;
-    font-weight: 300;
-    border-radius: 3px;
-    color: #ADC0DD;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color : #151825;
-    border-bottom: 3px solid #96C2CB; /* Add a distinct border */
+   
 }
 
-header .logo  {
 
-    font-size: 1.5em;
-    color: #ADC0DD;
-    text-decoration: none;
-    font-weight: 300;
-}
-header img  {
-    max-width: 100px;
-    height:auto; /* 이미지 비율 유지 */
-    display: block; /* 이미지 아래 여백 제거 */
+
+/* 메인 콘텐츠 아래로 밀기 */
+main {
+  margin-top: 120px; /* 헤더 높이만큼 여백 추가 */
+  margin-bottom: 120px; /* 헤더 높이만큼 여백 추가 */
 }
 
-/* 헤더 네비게이션 설정 */
-nav ul {
-    list-style: none;
-    display: flex;
-}
 
-nav ul li {
-    margin: 0 30px;
-}
 
-nav ul li a {
-    color: #E0FFFF;
-    text-decoration: none;
-    font-weight: 300;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #00BFFF;
-}
-
-/* 경고 메세지 css */
-#alert {
-    position: fixed;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff4444;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    font-size: 1em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    visibility: hidden; /* 숨김 상태 */
-  }
-  
-  #alert.show {
-    opacity: 1;
-    visibility: visible; /* 표시 상태 */
-  }
-  
-  #alert.hidden {
-    opacity: 0;
-    visibility: hidden; /* 숨김 상태 */
-    pointer-events: none;
-  }
 
   /* 댓글창  */
-  .comments-container {
 
-    height: 50px;
-    margin: 10px auto;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+.comments-section {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+}
 
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    }
+/* 댓글 제목 */
+.comments-section h2 {
+  font-family: 'Pretendard-Regular';
+  font-size: 1.8rem;
+  color: #123456;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #96C2CB; /* 하단 테두리 */
+  padding-bottom: 10px;
+}
 
-    .comment-card {
-    position: absolute;
+/* 댓글 컨테이너 */
+.comments-container {
+  max-height: 200px; /* 댓글 컨테이너 최대 높이 */
+  overflow-y: auto; /* 댓글이 많으면 스크롤 표시 */
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+}
+
+/* 댓글 카드 */
+.comment-card {
+  background-color: #f1f5f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: all 0.5s ease-out;
+}
+
+.comment-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 댓글 입력창 */
+#comment-input {
+  border: 1px solid #96C2CB;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  width: 70%;
+  margin-right: 10px;
+}
+
+#comment-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 댓글 추가 버튼 */
+button[type="submit"] {
+  background-color: #123456;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #105b73;
+  transform: scale(1.05);
+}
+
+/* 금칙어 경고 */
+#filter-warning {
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+  display: none;
+}
+
+/* 위치 선택 컨테이너 */
+#user-location {
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 로딩 정보 컨테이너 */
+#info {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  background-color: #fefefe;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-weight: bold;
+}
+
+/* 로딩 스피너 */
+#loading-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  #comment-input {
     width: 100%;
-    padding: 10px;
+    margin-bottom: 10px;
+  }
 
-    border-radius: 5px;
-    font-size: 1.2em;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 1s ease;
-    }
-    .comment-card.active {
-    opacity: 1;
-    transform: translateY(0);
-    }
+  button[type="submit"] {
+    width: 100%;
+    text-align: center;
+  }
+
+  .comments-container {
+    max-height: 150px;
+  }
+}
+
 
  /* 탭 스타일 */
+/* 탭 버튼 스타일 */
 .tabs {
-    justify-content: space-between; /* 양옆으로 배치 */
-    display: flex;
-    margin-bottom: 20px;
-    cursor: pointer;
+  justify-content: space-between; /* 양옆으로 배치 */
+  display: flex;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-bottom: 3px solid #123456; /* 헤더와 어울리는 경계선 */
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid transparent; /* 기본 테두리 없음 */
+  background-color: #123456; /* 배경색: 헤더와 같은 블루 계열 */
+  color: #ffffff; /* 텍스트 색상: 흰색 */
+  text-align: center; /* 중앙 정렬 */
+  font-weight: bold;
+  transition: background-color 0.3s ease, border 0.3s ease, transform 0.2s ease; /* 애니메이션 */
+  border-radius: 5px 5px 0 0; /* 상단 둥근 모서리 */
+}
+
+.tab-btn:hover {
+  background-color: #96C2CB; /* 호버 시 색상 변경 */
+  transform: translateY(-2px); /* 살짝 위로 올라오는 효과 */
+}
+
+.tab-btn.active {
+  background-color: #00BFFF; /* 활성화된 탭 배경색 */
+  color: #ffffff; /* 활성화된 탭 텍스트 색상 */
+  border: 1px solid #96C2CB; /* 활성화된 탭 테두리 */
+  border-bottom: none; /* 하단 테두리 제거 */
+  transform: translateY(-3px); /* 활성화된 탭 살짝 위로 이동 */
+}
+
+/* 탭 콘텐츠 영역 */
+.tab-content {
+  position: relative;
+  height: auto;
+  display: block;
+  padding: 20px;
+  border: 1px solid #96C2CB; /* 콘텐츠 테두리 */
+  background-color: #ffffff; /* 콘텐츠 배경 흰색 */
+  border-radius: 0 0 5px 5px; /* 하단 둥근 모서리 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 입체감 추가 */
+  animation: fadeIn 0.5s ease; /* 페이드 인 애니메이션 */
+}
+
+.tab-content.hidden {
+  display: none; /* 숨김 처리 */
+}
+
+/* 텍스트와 조화를 위한 콘텐츠 스타일 */
+.tab-content h3 {
+  font-family: 'GmarketSansMedium', sans-serif;
+  color: #123456; /* 헤더와 조화로운 텍스트 색상 */
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.tab-content p {
+  font-size: 1rem;
+  color: #333333;
+  line-height: 1.6;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .tabs {
+      flex-wrap: wrap; /* 작은 화면에서는 줄 바꿈 */
+  }
+
   .tab-btn {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f4f4f4;
-    transition: background-color 0.3s ease, border 0.3s ease;
-  }
-  
-  .tab-btn.active {
-    background-color: #fff;
-    border-bottom: 2px solid #007bff;
-    font-weight: bold;
-    
-    
+      flex: none; /* 고정 너비 */
+      width: 100%; /* 화면 너비에 맞춤 */
+      margin-bottom: 5px; /* 버튼 간격 */
+      border-radius: 5px; /* 둥근 모서리 */
   }
 
   .tab-content {
-    position: relative;
-
-    height:auto;
-    display: block; /* 기본 상태 */
-   
-    border: 1px solid #ddd;
-    background-color: #ffffff;
-    border-radius: 0 0 5px 5px;
+      padding: 15px; /* 작은 화면에서 패딩 줄임 */
   }
 
-  
-  .tab-content.active {
-
-    height:auto;
+  .tab-content h3 {
+      font-size: 1.3rem; /* 텍스트 크기 줄임 */
   }
+
+  .tab-content p {
+      font-size: 0.9rem; /* 본문 텍스트 크기 줄임 */
+  }
+}
+
 
   .hidden {
     display: none; /* 숨김 처리 */
@@ -210,18 +315,27 @@ nav ul li a:hover {
   transform: scale(0.94); /* 이미지 확대 */
   max-width: 260px; /* 각 지역의 최대 크기 */
  
-  
 }
 
-/*   지도 이미지 위치 설정 */
+/* 지도 이미지 초기 스타일 */
 .region img {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 20 ;
   object-fit: contain; /* 이미지 비율 유지 */
+  opacity: 0; /* 초기 상태: 투명 */
+  transform: scale(0.9); /* 약간 축소 */
   transition: transform 0.3s ease, filter 0.3s ease; /* 부드러운 효과 추가 */
 }
+
+/* 애니메이션 완료 상태 */
+.region img.visible {
+  opacity: 1; /* 투명도 100% */
+  transform: scale(1); /* 원래 크기 */
+}
+
+
 
 
 
@@ -290,6 +404,7 @@ nav ul li a:hover {
 }
 /* 대전 */
 .location-daejeon{
+  z-index: 990;
   top:0;
   left: -4%;
 }
@@ -375,7 +490,7 @@ nav ul li a:hover {
   left: 41.5%;
   width: 25%;
   height: auto;
-  z-index: 80;
+ 
 }
 /* 충청권 */
 .chungchunggwon {
@@ -678,10 +793,6 @@ nav ul li a:hover {
 
 
 
-
-
-
-
 /* 나머지 지역들도 동일한 방식으로 좌표 설정 */
 
 
@@ -701,12 +812,7 @@ th {
     background: #f4f4f4;
 }
 
-main {
-    
-    margin-top: 30px;
-    flex-wrap: wrap;
-    gap: 20px;
-}
+
 
 .real-time-info {
     display: flex;
@@ -729,44 +835,46 @@ main {
     border-radius: 10px;
   
 }
-
-.carousel {
-  height: 100px;
-  position: relative;
-  border-radius: 10px;
-  background: #fff;
-  overflow: hidden;
-
-}
-
+/* 뉴스 컨테이너 스타일 */
 .news-container {
-  position: relative;
-  margin: 0 auto;
-  border-radius: 10px;
-  overflow: hidden;
+  margin: 20px auto;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 뉴스 슬라이드 스타일 */
+.carousel {
+  position: relative;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/* 뉴스 아이템 스타일 */
 .news-item, .news-item2 {
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100% - 40px); /* 마진을 고려하여 너비 계산 */
-  height: 100px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
+  font-size: 1.5rem;
+  color: #333;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
-
-
 
 .news-item.active, .news-item2.active {
   opacity: 1;
   animation: slide-up 1s forwards;
 }
 
+/* 애니메이션 */
 @keyframes slide-up {
   from {
     transform: translateY(100%);
@@ -776,67 +884,26 @@ main {
   }
 }
 
-
-
-.comments-section {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  #comments-list {
-    margin-bottom: 15px;
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-  #comments-list .comment {
-    margin-bottom: 10px;
-    padding: 5px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9em;
-  }
-  
-  #comment-form {
-    display: flex;
-    gap: 10px;
-  }
-  
-  #comment-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-  }
-  
-  #comment-form button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
-  }
-  
-  #comment-form button:hover {
-    background-color: #0056b3;
-  }
-
-main h1 {
-    font-size: x-large;
+/* 컨트롤 버튼 그룹 스타일 */
+.control-group {
+  z-index: 2;
 }
 
-main h2 {
-    font-size: large;
+.control-btn {
+  border-radius: 50%;
+  padding: 8px;
+  margin: 5px 0;
+  background-color: #123456;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
 }
+
+.control-btn:hover {
+  background-color: #105b73;
+}
+
+
 
 #elementSymbol {
     margin-top: 15px;
@@ -849,6 +916,8 @@ main h2 {
     background-color: #eef2f7; /* 밝은 회색 배경 */
 }
 
+
+
 th, td {
     border: 2px solid black; /* 굵은 선 설정 */
     padding: 10px; /* 셀 패딩 */
@@ -856,49 +925,10 @@ th, td {
     background-color: #eef2f7; /* 밝은 회색 배경 */
 }
 
-footer {
-    font-family: 'GmarketSansMedium';
-    margin-top: 40px;
-    background-color : #151825;
-
-    color: #fff;
-    padding: 20px;
-    border-top: 3px solid #96C2CB; /* Add a distinct border */
+/* 애니메이션 초기 상태 */
+.animate-card {
+  opacity: 0;
+  transform: scale(0.9) translateY(50px);
+  transition: all 0.6s ease-out;
 }
 
-.footer-links ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.footer-links ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.footer-links ul li a:hover {
-    color: #dfe;
-}
-
-.footer-bottom {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 15px;
-}
-
-.footer-info p {
-    margin: 0;
-    font-size: 0.9em;
-}
-
-.logos img {
-    width: 80px;
-    margin: 0 10px;
-}

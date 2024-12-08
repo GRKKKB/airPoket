@@ -3,147 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-            <!-- css 리셋 -->
-            <link rel="stylesheet" href="/css/reset.css" />
-            <!-- 부트 스트랩설정 -->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            
-            <link rel="stylesheet" href="/css/main.css" />
-            <link rel="stylesheet" href="/css/support.css" />
+    <title>에어 포켓 - 문의하기</title>
+    <link href="/img/miniLogo.png" rel="shortcut icon" type="image/x-icon">
+    
+    <!-- css 리셋 -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <!-- 부트 스트랩설정 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/support.css" />
 
-            <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
 </script>
 </head>
 <body>
-    <div class="wrap">
-      <!-- 기능구현 설정 -->
-      <!-- 경고창 평소에 히든 -->
-      <div id="alert" class="hidden"></div>
-        <header>
-            <div class="logo">
-              <a href="/index.html">
-              <img src="/img/airlogo.jpg" alt="Air Poket Logo">
-            </a>
-            </div>
-            <nav>
-              <ul>
-                <li><a href="/page/airpoketWhat.html">에어포켓소개</a></li>
-                <li><a href="/page/totalHealthWhat.html">종합건강점수란</a></li>
-                <li><a href="/page/realTimeInformation.html">실시간자료조회</a></li>
-                <li><a href="/page/statisticalInformation.html">통계정보</a></li>
-                <li><a href="/page/support.html">고객지원</a></li>
-              </ul>
-            </nav>
+  <div class="wrap">
+    <!-- 기능구현 설정 -->
+ 
+  <!-- 광고 로드 -->
+  <div id="modal"></div>
+    <!-- 헤더가 로드될 위치 -->
+    <div id="header"></div> 
 
-            
-
-            <div class="search-bar">
-              <form action="/search" method="get">
-                <!-- <input type="text" name="query" placeholder="검색어를 입력하세요" />
-                <button type="submit">검색</button> -->
-              </form>
-            </div>
-          </header>
-
-          <main class="container mt-6">
-            <div class="row justify-content-center">
-              <!-- 챗봇 섹션 -->
-              <section id="chatbot" class="bg-light col-md-5 p-4 mx-4 rounded shadow">
-                <h3 class="text-center mb-3">고객지원 챗봇</h3>
-                <div id="chat-container" class="chat-container">
-        
-                 
-                  
-                     <div div id="chat-output" class="chat-output mb-3">
-                    </div>
-
+      <main class="container mt-6">
+        <div class="row justify-content-center">
+          <!-- 챗봇 섹션 -->
+          <section id="chatbot" class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
+            <h3 class="text-center mb-3">고객지원 챗봇</h3>
+            <div id="chat-container" class="chat-container">
+    
               
+              
+              <div div id="chat-output" class="chat-output mb-3">
+              </div>
 
-                  <div class="chat-input-container mt-3">
-                    <select id="faq-select" class="form-select mb-2">
-                      <option value="">질문을 선택하세요...</option>
-                      <option value="저도 답변적을게 없네요">질문 할게없어요</option>
-                      <option value="에어포켓은 대기질 데이터를 실시간으로 제공합니다.">에어포켓이 무엇인가요?</option>
-                      <option value="종합건강점수는 다양한 대기질 정보를 종합한뒤 각종 환경 변수등을 조합하여 만들어진 점수입니다">종합건강점수란 무엇인가요?</option>
-                      <option value="실시간 자료는 '실시간자료조회' 메뉴에서 확인할 수 있습니다.">실시간 자료는 어디에서 확인할 수 있나요?</option>
-                    </select>
-                    <button id="send-button" class="btn btn-primary w-100">전송</button>
-                  </div>
-                </div>
-              </section>
           
-              <!-- 이메일 폼 섹션 -->
-              <section class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
-                <h3 class="page-title text-center mb-4">메일로 보내기</h3>
-                <h5 class="text-center mb-4">문제가 아직 해결되지 않았다면 언제든 연락해주세요.</h5>
-                <form id="support-form" onsubmit="sendEmail(event)">
-                  <div class="mb-3">
-                    <label for="name" class="form-label">이름</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label">이메일 주소</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required />
-                  </div>
-                  <div class="mb-3">
-                    <label for="phone" class="form-label">전화번호</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" />
-                  </div>
-                  <div class="mb-4">
-                    <label for="message" class="form-label">문의 내용</label>
-                    <textarea class="form-control" id="message" name="message" style="height: 13rem; resize: none" placeholder="Comments"></textarea>
-                  </div>
-                  <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="privacy-policy" required />
-                    <label class="form-check-label" for="privacy-policy">
-                      <small>개인정보 처리방침에 동의합니다.</small>
-                    </label>
-                  </div>
-                  <div class="text-end">
-                    <button type="submit" class="btn btn-primary w-100">전송</button>
-                  </div>
-                </form>
-              </section>
+
+              <div class="chat-input-container mt-3">
+                <select id="faq-select" class="form-select mb-2">
+                  <option value="">질문을 선택하세요...</option>
+                  <option value="저도 답변적을게 없네요">질문 할게없어요</option>
+                  <option value="에어포켓은 대기질 데이터를 실시간으로 제공합니다.">에어포켓이 무엇인가요?</option>
+                  <option value="종합건강점수는 다양한 대기질 정보를 종합한뒤 각종 환경 변수등을 조합하여 만들어진 점수입니다">종합건강점수란 무엇인가요?</option>
+                  <option value="실시간 자료는 '실시간자료조회' 메뉴에서 확인할 수 있습니다.">실시간 자료는 어디에서 확인할 수 있나요?</option>
+                </select>
+                <button id="send-button" class="btn btn-primary w-100">전송</button>
+              </div>
             </div>
-          </main>
-          
+          </section>
+      
+          <!-- 이메일 폼 섹션 -->
+          <section class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
+            <h3 class="page-title text-center mb-4">메일로 보내기</h3>
+            <h5 class="text-center mb-4">문제가 아직 해결되지 않았다면 언제든 연락해주세요.</h5>
+            <form id="support-form" onsubmit="sendEmail(event)">
+              <div class="mb-3">
+                <label for="name" class="form-label">이름</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">이메일 주소</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required />
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">전화번호</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" />
+              </div>
+              <div class="mb-4">
+                <label for="message" class="form-label">문의 내용</label>
+                <textarea class="form-control" id="message" name="message" style="height: 13rem; resize: none" placeholder="Comments"></textarea>
+              </div>
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="privacy-policy" required />
+                <label class="form-check-label" for="privacy-policy">
+                  <small>개인정보 처리방침에 동의합니다.</small>
+                </label>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary w-100">전송</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </main>
+      
+    
+  </div> <!-- wrap -->   
+    
+  <!-- 푸터가 로드될 위치 -->
+  <div id="footer"></div>
 
-          
-          
-    
-    <footer>
-        <div class="footer-top">
-          <div class="footer-links">
-            <ul>
-              <li><a href="#">개인정보처리방침</a></li>
-              <li><a href="#">저작권 정책</a></li>
-              <li><a href="#">이메일무단수집거부</a></li>
-              <li><a href="#">황사관련 사이트</a></li>
-              <li><a href="#">국내/국외 관련사이트</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <div class="footer-info">
-            <p>실시간 미세먼지 농도 및 예보 관련 문의 : 131 ()</p>
-            <p>대기측정망 및 통계자료 관련 문의 : 01001112243 ()</p>
-            <p>[우편번호] 울산 광역시 ㅁㅁㅁㅁ()</p>
-            <p>Copyright © 2024 *****, All rights reserved.</p>
-          </div>
-          <div class="logos">
-            <img src="ministry-logo.png" alt="환경부 로고">
-            <img src="keco-logo.png" alt="한국환경공단 로고">
-            <img src="open-logo.png" alt="오픈 데이터 로고">
-          </div>
-        </div>
-      </footer>
-    </div> <!-- wrap -->   
-    
+    <!-- 헤드 푸터 연결 -->
+    <script src="/js/headFooter.js"></script>
     <!-- 알람 설정 -->
     <script  src="/js/alert.js"></script> 
     <!-- 챗봇 js 설정 -->
-    <script  src="/js/customerSupportChat.js"></script> <!-- JavaScript 파일 연결 -->
+    <script  src="/js/customerSupportChat.js"></script> 
     <!-- 이메일 js 이메일 자바스크립트 파일 연결 -->
     <script  src="/js/customerSupportEmail.js"></script> 
     

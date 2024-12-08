@@ -10,25 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
         "목록에 없는 질문은 '메일 보내기'를 통해 문의하실 수 있습니다. 감사합니다!"
     ];
 
-    introMessages.forEach(message => {
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("chat-message", "bot");
+    introMessages.forEach((message, index) => {
+        setTimeout(() => {
+            const botMessage = document.createElement("div");
+            botMessage.classList.add("chat-message", "bot", "fade-in");
 
-        // 이미지 추가
-        const botImage = document.createElement("img");
-        botImage.src = "/public/img/airlogo.jpg";
-        botImage.alt = "Bot";
-        botImage.classList.add("chat-image");
+            // 이미지 추가
+            const botImage = document.createElement("img");
+            botImage.src = "/img/miniLogo.png";
+            botImage.alt = "Bot";
+            botImage.classList.add("chat-image");
 
-        // 메시지 텍스트 추가
-        const messageText = document.createElement("div");
-        messageText.classList.add("chat-text");
-        messageText.textContent = message;
+            // 메시지 텍스트 추가
+            const messageText = document.createElement("div");
+            messageText.classList.add("chat-text");
+            messageText.textContent = message;
 
-        // 메시지와 이미지를 분리하여 추가
-        botMessage.appendChild(botImage);
-        botMessage.appendChild(messageText);
-        chatOutput.appendChild(botMessage);
+            // 메시지와 이미지를 분리하여 추가
+            botMessage.appendChild(botImage);
+            botMessage.appendChild(messageText);
+            chatOutput.appendChild(botMessage);
+
+            // 스크롤을 최신 메시지로 이동
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        }, index * 1000); // 각 메시지에 1초 간격 적용
     });
 
     sendButton.addEventListener("click", () => {
@@ -38,34 +43,36 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedAnswer) {
             // 사용자 메시지 추가
             const userMessage = document.createElement("div");
-            userMessage.classList.add("chat-message", "user");
-
-          
+            userMessage.classList.add("chat-message", "user", "fade-in");
 
             const userMessageText = document.createElement("div");
             userMessageText.classList.add("chat-text");
             userMessageText.textContent = selectedQuestion;
 
-
             userMessage.appendChild(userMessageText);
             chatOutput.appendChild(userMessage);
 
             // 봇 메시지 추가
-            const botMessage = document.createElement("div");
-            botMessage.classList.add("chat-message", "bot");
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("chat-message", "bot", "fade-in");
 
-            const botImage = document.createElement("img");
-            botImage.src = "/public/img/airlogo.jpg";
-            botImage.alt = "Bot";
-            botImage.classList.add("chat-image");
+                const botImage = document.createElement("img");
+                botImage.src = "/img/miniLogo.png";
+                botImage.alt = "Bot";
+                botImage.classList.add("chat-image");
 
-            const botMessageText = document.createElement("div");
-            botMessageText.classList.add("chat-text");
-            botMessageText.textContent = selectedAnswer;
+                const botMessageText = document.createElement("div");
+                botMessageText.classList.add("chat-text");
+                botMessageText.textContent = selectedAnswer;
 
-            botMessage.appendChild(botImage);
-            botMessage.appendChild(botMessageText);
-            chatOutput.appendChild(botMessage);
+                botMessage.appendChild(botImage);
+                botMessage.appendChild(botMessageText);
+                chatOutput.appendChild(botMessage);
+
+                // 스크롤을 최신 메시지로 이동
+                chatOutput.scrollTop = chatOutput.scrollHeight;
+            }, 500); // 봇 메시지는 사용자 메시지 이후에 나타남
 
             // 스크롤을 최신 메시지로 이동
             chatOutput.scrollTop = chatOutput.scrollHeight;

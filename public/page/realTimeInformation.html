@@ -3,185 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실시간 자료 조회</title>
-        <!-- css 리셋 -->
-        <link rel="stylesheet" href="/css/reset.css" />
-        <link rel="stylesheet" href="/css/main.css" />
+    <title>에어 포켓 - 실시간자료조회</title>
+    <link href="/img/miniLogo.png" rel="shortcut icon" type="image/x-icon">
 
-        <link rel="stylesheet" href="/css/tab.css" />
+    
+    <!-- css 리셋 -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <!-- 부트 스트랩설정 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/totalChart.css"/>
+ 
+    <link rel="stylesheet" href="/css/tab.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+>
 </head>
 <body>
-    <div class="wrap">
-
-
-
-      <header>
-        <div class="logo">
-          <a href="/index.html">
-          <img src="/img/airlogo.jpg" alt="Air Poket Logo">
-        </a>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="/page/airpoketWhat.html">에어포켓소개</a></li>
-            <li><a href="/page/totalHealthWhat.html">종합건강점수란</a></li>
-            <li><a href="/page/realTimeInformation.html">실시간자료조회</a></li>
-            <li><a href="/page/statisticalInformation.html">통계정보</a></li>
-            <li><a href="/page/support.html">고객지원</a></li>
-          </ul>
-        </nav>
-        <div class="search-bar">
-          <form action="/search" method="get">
-            <!-- <input type="text" name="query" placeholder="검색어를 입력하세요" />
-            <button type="submit">검색</button> -->
-          </form>
-        </div>
-      </header>
-
+  <div class="wrap">
   
-      <main>
-        <h1>실시간 자료 조회</h1>
-        <h2 id="today">현재 날짜</h2>
+    <!-- 헤더가 로드될 위치 -->
+    <div id="header"></div> 
+    <!-- 광고 로드 -->
+    <div id="modal"></div>
+    <!-- 차트 화면 -->
+    <main class="container mt-6">
+      <h1>실시간 자료 조회</h1>
+      <h2 id="today">현재 날짜</h2>
     
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
-            <div class="tab-btn" data-target="metal-tab">중금속 오염정보</div>
-        </div>
-    <!-- Tab Contents -->
-    <div id="air-tab" class="tab-content active">
-        <h2>대기오염정보</h2>
-        <table>
-          <thead>
-            <tr>
-              <th><canvas id="chart-air" ></canvas></th>
-            </tr>
-          </thead>
-          <tbody id="air-chart"></tbody>
-        </table>
-        <div class="filter">
-            <select name="region" id="region">
-                <option value="Seoul">서울</option>
-                <option value="all">전국</option>
-                <option value="Busan">부산</option>
-                <option value="Daegu">대구</option>
-                <option value="Incheon">인천</option>
-                <option value="Gwangju">광주</option>
-                <option value="Daejeon">대전</option>
-                <option value="Ulsan">울산</option>
-                <option value="Gyeonggi">경기</option>
-                <option value="Gangwon">강원</option>
-                <option value="Chungbuk">충북</option>
-                <option value="Chungnam">충남</option>
-                <option value="Jeonbuk">전북</option>
-                <option value="Jeonnam">전남</option>
-                <option value="Gyeongbuk">경북</option>
-                <option value="Gyeongnam">경남</option>
-                <option value="Jeju">제주</option>
-                <option value="Sejong">세종</option>
-            </select>
-    
-            <select name="station" id="station">
-                <option value="all">전체</option>
-            </select>
-        </div>
-        <table >
-          <thead>
-            <tr>
-              <th>지역</th>
-              <th>측정소</th>
-              <th>시간</th>
-              <th>종합 건강 점수</th>
-              <th>PM25</th>
-              <th>PM19</th>
-              <th>SO2</th>
-              <th>CO</th>
-              <th>O3</th>
-              <th>NO2</th>
-            </tr>
-          </thead>
-          <tbody id="air-data"></tbody>
-        </table>
-    </div>
-
-    <div id="metal-tab" class="tab-content">
-        <h2>중금속 오염정보</h2>
-        <table>
-          <thead>
-            <tr>
-              <th><canvas id="metal-chart"></canvas></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <div class="filter">
-            <select name="city_name" id="city_name">
-                <option value="all">전국</option>
-                <option value="강원권">강원권</option>
-                <option value="경기권">경기도</option>
-                <option value="백령도">백령도</option>
-                <option value="수도권">수도권</option>
-                <option value="영남권">영남권</option>
-                <option value="전북권">전북권</option>
-                <option value="제주도">제주도</option>
-                <option value="중부권">중부권</option>
-                <option value="충북권">충북권</option>
-                <option value="충청권">충청권</option>
-                <option value="호남권">호남권</option>
+      <!-- Tabs -->
+      <div class="tabs">
+          <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
+          <div class="tab-btn" data-target="metal-tab">중금속 오염정보</div>
+      </div>
+      <!-- Tab Contents -->
+      <div id="air-tab" class="tab-content active">
+          <h2>대기오염정보</h2>
+          <table>
+            <thead>
+              <tr>
+                <th><canvas id="chart-air" height="600px" ></canvas></th>
+              </tr>
+            </thead>
+            <tbody id="air-chart"></tbody>
+          </table>
+          <div class="filter">
+              <select name="region" id="region">
+                  <option value="Seoul">서울</option>
+                  <option value="all">전국</option>
+                  <option value="Busan">부산</option>
+                  <option value="Daegu">대구</option>
+                  <option value="Incheon">인천</option>
+                  <option value="Gwangju">광주</option>
+                  <option value="Daejeon">대전</option>
+                  <option value="Ulsan">울산</option>
+                  <option value="Gyeonggi">경기</option>
+                  <option value="Gangwon">강원</option>
+                  <option value="Chungbuk">충북</option>
+                  <option value="Chungnam">충남</option>
+                  <option value="Jeonbuk">전북</option>
+                  <option value="Jeonnam">전남</option>
+                  <option value="Gyeongbuk">경북</option>
+                  <option value="Gyeongnam">경남</option>
+                  <option value="Jeju">제주</option>
+                  <option value="Sejong">세종</option>
               </select>
-        </div>
-        <table >
-          <thead>
-            <tr>
-              <th>도시 이름</th>
-              <th>시간</th>
-              <th>Pb</th>
-              <th>Ni</th>
-              <th>Mn</th>
-              <th>Zn</th>
-              <th>S</th>
-            </tr>
-          </thead>
-          <tbody id="metal-data"></tbody>
-        </table>
-    </div>
-      </main>
-      <footer>
-        <div class="footer-top">
-          <div class="footer-links">
-            <ul>
-              <li><a href="#">개인정보처리방침</a></li>
-              <li><a href="#">저작권 정책</a></li>
-              <li><a href="#">이메일무단수집거부</a></li>
-              <li><a href="#">황사관련 사이트</a></li>
-              <li><a href="#">국내/국외 관련사이트</a></li>
-            </ul>
+      
+              <select name="station" id="station">
+                  <option value="all">전체</option>
+              </select>
           </div>
-        </div>
-        <div class="footer-bottom">
-          <div class="footer-info">
-            <p>실시간 미세먼지 농도 및 예보 관련 문의 : 131 ()</p>
-            <p>대기측정망 및 통계자료 관련 문의 : 01001112243 ()</p>
-            <p>[우편번호] 울산 광역시 ㅁㅁㅁㅁ()</p>
-            <p>Copyright © 2024 *****, All rights reserved.</p>
-          </div>
-          <div class="logos">
-            <img src="ministry-logo.png" alt="환경부 로고">
-            <img src="keco-logo.png" alt="한국환경공단 로고">
-            <img src="open-logo.png" alt="오픈 데이터 로고">
-          </div>
-        </div>
-      </footer>
-    </div>
-    <!-- 현재 페이지 js -->
+          <table >
+            <thead>
+              <tr>
+                <th>지역</th>
+                <th>측정소</th>
+                <th>시간</th>
+                <th>종합 건강 점수</th>
+                <th>PM25</th>
+                <th>PM10</th>
+                <th>SO2</th>
+                <th>CO</th>
+                <th>O3</th>
+                <th>NO2</th>
+              </tr>
+            </thead>
+            <tbody id="air-data"></tbody>
+          </table>
+      </div>
 
-    <!-- 옵션 변경 js   -->
-    <script src="/js/RealTimeInformation.js"></script>
-    <!-- api호출 js 측정소 명찾기  옵션 -->
-    <script src="/js/searchStation.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <div id="metal-tab" class="tab-content">
+          <h2>중금속 오염정보</h2>
+          <table>
+            <thead>
+              <tr>
+                <th><canvas id="metal-chart" height="600px"></canvas></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="filter">
+              <select name="city_name" id="city_name">
+                  <option value="all">전국</option>
+                  <option value="강원권">강원권</option>
+                  <option value="경기권">경기도</option>
+                  <option value="백령도">백령도</option>
+                  <option value="수도권">수도권</option>
+                  <option value="영남권">영남권</option>
+                  <option value="전북권">전북권</option>
+                  <option value="제주도">제주도</option>
+                  <option value="중부권">중부권</option>
+                  <option value="충북권">충북권</option>
+                  <option value="충청권">충청권</option>
+                  <option value="호남권">호남권</option>
+                </select>
+          </div>
+          <table >
+            <thead>
+              <tr>
+                <th>도시 이름</th>
+                <th>시간</th>
+                <th>Pb</th>
+                <th>Ni</th>
+                <th>Mn</th>
+                <th>Zn</th>
+                <th>S</th>
+              </tr>
+            </thead>
+            <tbody id="metal-data"></tbody>
+          </table>
+      </div>
+    </main>
+
+
+  </div> <!-- wrap -->  
+
+  <!-- 푸터가 로드될 위치 -->
+  <div id="footer"></div>
+
+
 
     
 </body>
+  <!-- 헤드 푸터 연결 -->
+  <script src="/js/headFooter.js"></script>
+  <!-- 옵션 변경 js   -->
+  <script src="/js/RealTimeInformation.js"></script>
+  <!-- api호출 js 측정소 명찾기  옵션 -->
+  <script src="/js/searchStation.js"></script>
+
 </html>

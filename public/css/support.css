@@ -1,53 +1,56 @@
 /* 폼 전체의 최대 너비와 중앙 정렬 */
 .form-wrap {
-    background-color: #ffffff; /* 배경색 */
-    border-radius: 10px; /* 둥근 모서리 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
-    padding: 20px;
+    background-color: #f9fafb; /* 밝은 회색 배경 */
+    border-radius: 12px; /* 더 부드러운 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
+    padding: 25px;
+    max-width: 600px;
+    margin: 20px auto; /* 중앙 정렬 */
 }
 
 /* 폼 내부 스타일 */
 #support-form {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px; /* 내부 여백 확대 */
-    gap: 15px; /* 항목 간격 */
-    background-color: #fefefe; /* 폼 배경색 */
+    border: 1px solid #e0e0e0; /* 연한 테두리 */
+    border-radius: 10px;
+    padding: 20px; /* 내부 여백 */
+    gap: 20px; /* 항목 간격 */
+    background-color: #ffffff; /* 폼 배경색 */
 }
 
 /* 챗봇 컨테이너 세부 조정 */
 .chat-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px; /* 내부 여백 확대 */
-    background-color: #f9f9f9;
+    gap: 15px;
+    border: 1px solid #e0e0e0; /* 연한 테두리 */
+    border-radius: 10px;
+    padding: 20px; /* 내부 여백 확대 */
+    background-color: #f5f7fa; /* 차분한 회색 배경 */
 }
 
 /* 챗봇 대화 출력 영역 */
 .chat-output {
-    height: 500px; /* 최대 높이 조정 */
+    height: 500px; /* 최대 높이 */
     max-height: 500px;
     overflow-y: auto;
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+    gap: 15px;
+    padding: 15px;
     background-color: #ffffff; /* 출력 영역 배경색 */
-    border: 1px solid #ccc; /* 테두리 추가 */
-    border-radius: 8px;
+    border: 1px solid #e0e0e0; /* 연한 테두리 */
+    border-radius: 10px;
 }
-
 
 /* 메시지 스타일: 이미지와 텍스트 분리 */
 .chat-message {
     display: flex; /* 수평 정렬 */
     align-items: flex-start; /* 이미지와 텍스트 상단 정렬 */
-    gap: 10px; /* 이미지와 메시지 간격 */
-    margin-bottom: 10px;
+    gap: 12px; /* 이미지와 메시지 간격 */
+    margin-bottom: 12px;
+    opacity: 0; /* 초기 상태 (애니메이션) */
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
 }
 
 .chat-message.user {
@@ -60,62 +63,80 @@
 
 /* 텍스트 스타일 */
 .chat-text {
-    background-color: #e9ecef; /* 기본 메시지 배경색 */
-    padding: 10px 15px;
-    border-radius: 10px;
-    max-width: 70%;
+    background-color: #edf2fa; /* 부드러운 파란색 배경 */
+    padding: 12px 18px;
+    border-radius: 12px;
+    max-width: 75%;
     word-wrap: break-word;
+    font-size: 0.9rem;
+    color: #003366; /* 어두운 파란 텍스트 */
 }
 
 .chat-message.bot .chat-text {
-    background-color: #d1ecf1; /* 봇 메시지 배경색 */
-    color: #055160;
+    background-color: #dff2e0; /* 부드러운 녹색 배경 */
+    color: #004d00; /* 어두운 녹색 텍스트 */
+    text-align: left;
 }
 
 .chat-message.user .chat-text {
-    background-color: #e9ecef; /* 사용자 메시지 배경색 */
-    color: #333;
+    background-color: #d9ecff; /* 밝은 파란색 배경 */
+    color: #004085; /* 어두운 파란 텍스트 */
     text-align: right;
 }
 
 /* 이미지 스타일 */
 .chat-image {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-
-
-
-
 /* 버튼 커스텀 스타일 */
 .custom-button,
 #send-button {
-    background-color: #00bfff; /* 버튼 배경색 */
+    background-color: #123456;
     color: white; /* 텍스트 색상 */
     border: none;
     padding: 12px 20px; /* 버튼 내부 여백 */
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .custom-button:hover,
 #send-button:hover {
-    background-color: #007bff; /* 호버 시 색상 */
+    background-color: #105b73;
+    transform: scale(1.05); /* 버튼 살짝 확대 */
 }
 
 /* 반응형 조정 */
 @media (max-width: 768px) {
     .chat-output {
         height: 400px; /* 작은 화면에서 높이 줄임 */
+        padding: 10px;
     }
     #support-form {
         padding: 15px;
     }
     .form-wrap {
-        padding: 15px;
+        padding: 20px;
+    }
+    .chat-text {
+        font-size: 0.85rem; /* 작은 화면에서 텍스트 크기 줄임 */
+    }
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

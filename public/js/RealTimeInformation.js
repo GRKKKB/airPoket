@@ -74,102 +74,185 @@ async function fetchData() {
 }
 
 let airChart = null; // 차트를 저장할 변수
-
 function updateChartData(data1, data2) {
-  const ctx = document.getElementById('chart-air');
+    const ctx = document.getElementById('chart-air').getContext('2d');
 
-  if (airChart) {
-    // 기존 차트가 있으면 삭제
-    airChart.destroy();
-  }
+    if (airChart) {
+        airChart.destroy(); // 기존 차트가 있으면 삭제
+    }
 
-  if (ctx) {
+    if (ctx) {
+        // 데이터 처리
+        const labels = data2.map(row => row.station_name || 'Unknown'); // X축 라벨
+        const baselineValue = data1[0]?.weighted_score || 0; // 기준선 값
+        const baseline = Array(labels.length).fill(baselineValue); // 기준선 데이터
+        const barData = data2.map(row => row.weighted_score || 0); // 막대 데이터
 
+        // 그라데이션 배경 생성
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(75, 192, 192, 0.5)');
+        gradient.addColorStop(1, 'rgba(75, 192, 192, 0)');
 
-    // 데이터 처리
-    const labels = data2.map(row => row.station_name || 'Unknown'); // X축 라벨
-    const baselineValue = data1[0]?.weighted_score || 0; // 기준선 값 (데이터 1에서 첫 번째 값 사용)
-    const baseline = Array(labels.length).fill(baselineValue); // 기준선 데이터를 X축 길이에 맞게 확장
-    const barData = data2.map(row => row.weighted_score || 0); // 막대 데이터
-    // 새로운 차트를 생성하고 변수에 저장
-    airChart = new Chart(ctx, {
-      data: {
-        labels: labels, // X축 라벨
-        datasets: [
-          {
-            type: 'line', // 기준선
-            label: '지역일일평균',
-            data: baseline,
-            borderColor: 'rgba(255, 99, 132, 1)',
-    
-            fill: false, // 선 아래 채우기 비활성화
-          },
-          {
-            type: 'bar', // 막대차트
-            label: '종합건강점수',
-            data: barData,
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true, // Y축 0부터 시작
-          },
-        },
-      },
-    });
-  }
-  
+        airChart = new Chart(ctx, {
+            type: 'bar', // 기본 막대형 차트
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        type: 'line', // 기준선
+                        label: '지역일일평균',
+                        data: baseline,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(255, 99, 132, 0.8)',
+                        fill: false,
+                        tension: 0.3, // 곡선 부드럽게
+                    },
+                    {
+                        type: 'bar', // 막대차트
+                        label: '종합건강점수',
+                        data: barData,
+                        backgroundColor: gradient,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(75, 192, 192, 0.8)',
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14,
+                            },
+                        },
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return `값: ${tooltipItem.raw}`;
+                            },
+                        },
+                    },
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeOutBounce', // 애니메이션 효과
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)', // X축 그리드 색상
+                        },
+                    },
+                    y: {
+                        beginAtZero: true, // Y축 0부터 시작
+                        ticks: {
+                            stepSize: 10, // Y축 간격
+                        },
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)',
+                        },
+                    },
+                },
+            },
+        });
+    }
 }
 
-let metalChart = null;
-function updateMetalChartData(metal1,metal2){
-  const ctx = document.getElementById('metal-chart')
-  if(metalChart){
-    metalChart.destroy();
-  }
-  if(ctx){
+let metalChart = null; // 중금속 차트를 저장할 변수
+function updateMetalChartData(metal1, metal2) {
+    const ctx = document.getElementById('metal-chart').getContext('2d');
 
-    const labels = metal2.map(row => row.city_name || 'Unknown');
-    const baselineValue = metal1[0]?.metal_score || 0;
-    const baseline = Array(labels.length).fill(baselineValue);
-    const barData = metal1.map(row => row.metal_score || 0);
-    metalChart=new Chart(ctx, {
-      data: {
-        labels: labels, // X축 라벨
-        datasets: [
-          {
-            type: 'line', // 기준선
-            label: '지역일일평균',
-            data: baseline,
-            borderColor: 'rgba(255, 99, 132, 1)',
-    
-            fill: false, // 선 아래 채우기 비활성화
-          },
-          {
+    if (metalChart) {
+        metalChart.destroy(); // 기존 차트가 있으면 삭제
+    }
 
-            type: 'bar', // 막대차트
-            label: '위험도',
-            data: barData,
-            backgroundColor: 'rgba(75, 192, 192, 0.5)'
-        
-          },
-        ],
-      },
-      
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true, // Y축 0부터 시작
-          },
-        },
-      },
-    });
-  }
-  
+    if (ctx) {
+        const labels = metal2.map(row => row.city_name || 'Unknown');
+        const baselineValue = metal1[0]?.metal_score || 0;
+        const baseline = Array(labels.length).fill(baselineValue);
+        const barData = metal1.map(row => row.metal_score || 0);
+
+        const gradient = ctx.createRadialGradient(200, 200, 100, 200, 200, 300);
+        gradient.addColorStop(0, 'rgba(255, 159, 64, 0.8)');
+        gradient.addColorStop(1, 'rgba(255, 159, 64, 0)');
+
+        metalChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        type: 'line',
+                        label: '지역일일평균',
+                        data: baseline,
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(153, 102, 255, 0.8)',
+                        fill: false,
+                        tension: 0.3,
+                    },
+                    {
+                        type: 'bar',
+                        label: '위험도',
+                        data: barData,
+                        backgroundColor: gradient,
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255, 159, 64, 0.8)',
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14,
+                            },
+                        },
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return `위험도: ${tooltipItem.raw}`;
+                            },
+                        },
+                    },
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeOutExpo', // 애니메이션 효과
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)',
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 20,
+                        },
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)',
+                        },
+                    },
+                },
+            },
+        });
+    }
 }
+
 
   
 
@@ -190,7 +273,7 @@ function updateTableData(data, tableId) {
         <td>${row.hour}</td>
         <td>${row.weighted_score}</td>
         <td>${row.PM25}</td>
-        <td>${row.PM19}</td>
+        <td>${row.PM10}</td>
         <td>${row.SO2}</td>
         <td>${row.CO}</td>
         <td>${row.O3}</td>

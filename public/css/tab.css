@@ -1,40 +1,79 @@
-/* tabs.css */
 /* 탭 컨테이너 스타일 */
 .tabs {
-    display: flex;
-    justify-content: space-between; /* 버튼을 양옆으로 배치 */
-    margin-bottom: 20px;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between; /* 버튼을 양옆으로 배치 */
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-bottom: 2px solid #e0e0e0; /* 하단 테두리 추가 */
+  background-color: #f6f8fa; /* 차분한 배경색 */
+  border-radius: 8px 8px 0 0; /* 상단 모서리 둥글게 */
+  overflow: hidden; /* 테두리 밖 내용 숨김 */
+}
+
+/* 탭 버튼 기본 스타일 */
+.tab-btn {
+  flex: 1; /* 동일한 너비 */
+  text-align: center;
+  padding: 12px 0;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  color: #333; /* 기본 텍스트 색상 */
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* 활성화된 탭 버튼 스타일 */
+.tab-btn.active {
+  background-color: #ffffff; /* 활성화된 탭 배경 */
+  color: #007bff; /* 활성화된 텍스트 색상 */
+  font-weight: bold;
+  border-bottom: 3px solid #007bff; /* 강조된 하단 테두리 */
+}
+
+/* 탭 버튼 호버 스타일 */
+.tab-btn:hover {
+  background-color: #f9fafb; /* 호버 시 배경 변경 */
+  color: #0056b3; /* 호버 시 텍스트 색상 */
+}
+
+/* 탭 콘텐츠 영역 기본 스타일 */
+.tab-content {
+  display: none; /* 기본적으로 숨김 */
+  padding: 20px;
+  border: 1px solid #e0e0e0; /* 연한 테두리 */
+  background-color: #ffffff; /* 콘텐츠 배경색 */
+  border-radius: 0 0 8px 8px; /* 하단 모서리 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+  animation: fadeIn 0.3s ease; /* 콘텐츠 페이드 인 애니메이션 */
+}
+
+/* 활성화된 탭 콘텐츠 */
+.tab-content.active {
+  display: block; /* 활성화된 콘텐츠만 표시 */
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .tabs {
+      flex-direction: column; /* 작은 화면에서 수직 배치 */
   }
-  
-  /* 탭 버튼 기본 스타일 */
   .tab-btn {
-    flex: 1; /* 동일한 너비 */
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f4f4f4;
-    transition: background-color 0.3s ease, border 0.3s ease;
+      padding: 10px;
+      font-size: 0.9rem;
   }
-  
-  /* 활성화된 탭 버튼 스타일 */
-  .tab-btn.active {
-    background-color: #fff;
-    border-bottom: 2px solid #007bff;
-    font-weight: bold;
-  }
-  
-  /* 탭 콘텐츠 영역 기본 스타일 */
   .tab-content {
-    display: none; /* 기본적으로 숨김 */
-    padding: 15px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 0 0 5px 5px;
+      padding: 15px;
   }
-  
-  /* 활성화된 탭 콘텐츠 */
-  .tab-content.active {
-    display: block; /* 활성화된 콘텐츠만 표시 */
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

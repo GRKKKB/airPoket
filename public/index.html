@@ -3,464 +3,443 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>Air Quality Info</title>
-    <!-- css 리셋 -->
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css" />
-    <!-- 모달popup css -->
-    <link rel="stylesheet" href="/css/popup.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에어 포켓</title>
+    <link href="/img/miniLogo.png" rel="shortcut icon" type="image/x-icon">
     <!-- 네이버지도 api -->
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b4jsr3tieq"></script>
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b4jsr3tieq&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b4jsr3tieq&submodules=geocoder"></script>      
+    <!-- css 리셋 -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <!-- 부트 스트랩설정 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
+
   <body>
+  <!-- 메인감싸기 -->
+  <div class="wrap">
+    <!-- 광고 로드 -->
+    <div id="modal"></div>
+
+
+    <!-- 헤더가 로드될 위치 -->
+    <div id="header"></div>
+  <main class="container mt-6">
+
+    <section class="real-time-info mx-2 ">
+            <!-- 지도 섹션 -->
+      <div class="map-section">
+        <div class="tabs">
+          <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
+          <div class="tab-btn" data-target="metal-tab">대기중 중금속 오염정보</div>
+        </div>
+
+        <!-- 지도 컨테이너 -->
+        <div id="air-tab" class="tab-content active">
+          <p style="text-align: center;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
+          <div class="map-container">
+            <!-- 경기 -->
+            <div class="region gyeonggi">
+             
+              <div class="map-point location-gyeonggi">
+                <span class="location">Gyeonggi</span>
+                <span class="value">17</span>
+              </div>
+              <img src="/img/PNG/PNG/경기.png" alt="경기 지도">
+            </div>
+            <!-- 서울 -->
+            <div class="region seoul">
+              <img src="/img/PNG/PNG/서울.png" alt="서울 지도">
+              <div class="map-point location-seoul">
+                <span class="location">Seoul</span>
+                <span class="value">11</span>
+              </div>
+            </div>
+            <!-- 인천 -->
+            <div class="region incheon">
+              <img src="/img/PNG/PNG/인천.png" alt="인천 지도">
+              <div class="map-point location-incheon">
+                <span class="location">Incheon</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 강원 -->
+            <div class="region gangwon">
+              <img src="/img/PNG/PNG/강원.png" alt="강원 지도">
+              <div class="map-point location-gangwon">
+                <span class="location">Gangwon</span>
+                <span class="value">12</span>
+              </div>
+            </div>
+            <!-- 충북 -->
+            <div class="region chungbuk">
+              <img src="/img/PNG/PNG/충북.png" alt="충북 지도">
+              <div class="map-point location-chungbuk">
+                <span class="location">Chungbuk</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 충남 -->
+            <div class="region chungnam">
+              <img src="/img/PNG/PNG/충남.png" alt="충남 지도">
+              <div class="map-point location-chungnam">
+                <span class="location">Chungnam</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 세종 -->
+            <div class="region sejong">
+              <img src="/img/PNG/PNG/세종.png" alt="세종 지도">
+              <div class="map-point location-sejong">
+                <span class="location">Sejong</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 대전 -->
+            <div class="region daejeon">
+              
+              <div class="map-point location-daejeon">
+                <span class="location">daejeon</span>
+                <span class="value">21</span>
+              </div>
+              <img src="/img/PNG/PNG/대전.png" alt="대전 지도">
+            </div>
+            <!-- 전북 -->
+            <div class="region jeonbug">
+              <img src="/img/PNG/PNG/전북.png" alt="전북 지도">
+              <div class="map-point location-jeonbuk">
+                <span class="location">Jeonbuk</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 전남 -->
+            <div class="region jeonnam">
+              <img src="/img/PNG/PNG/전남.png" alt="전남 지도">
+              <div class="map-point location-jeonnam">
+                <span class="location">Jeonnam</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 광주 -->
+            <div class="region gwangju">
+              <img src="/img/PNG/PNG/광주.png" alt="광주 지도">
+              <div class="map-point location-gwangju">
+                <span class="location">Gwangju</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 경북 -->
+            <div class="region gyeongbug">
+              <img src="/img/PNG/PNG/경북.png" alt="경북 지도">
+              <div class="map-point location-gyeongbuk">
+                <span class="location">Gyeongbuk</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 대구 -->
+            <div class="region daegu">
+              <img src="/img/PNG/PNG/대구.png" alt="대구 지도">
+              <div class="map-point location-daegu">
+                <span class="location">Daegu</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 울산 -->
+            <div class="region ulsan">
+              <img src="/img/PNG/PNG/울산.png" alt="울산 지도">
+              <div class="map-point location-ulsan">
+                <span class="location">Ulsan</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 경남 -->
+            <div class="region gyeongnam">
+              <img src="/img/PNG/PNG/경남.png" alt="경남 지도">
+              <div class="map-point location-gyeongnam">
+                <span class="location">Gyeongnam</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 부산 -->
+            <div class="region busan">
+              <img src="/img/PNG/PNG/부산.png" alt="부산 지도">
+              <div class="map-point location-busan">
+                <span class="location">Busan</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 제주 -->
+            <div class="region jeju">
+              <img src="/img/PNG/PNG/제주.png" alt="제주 지도">
+              <div class="map-point location-jeju">
+                <span class="location">Jeju</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 독도 -->
+            <div class="region dokdo">
+              <img src="/img/PNG/PNG/독도.png" alt="독도 지도">
+        
+            </div>
+            <!-- 울릉도 -->
+            <div class="region ulleungdo">
+              <img src="/img/PNG/PNG/울릉도.png" alt="울릉도 지도">
+
+            </div>
+            <!-- 백령도 -->
+            <div class="region baeglyeongdo">
+              <img src="/img/PNG/PNG/백령도.png" alt="백령도 지도">
     
-    <!-- 모달창 광고창? -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
+            </div>
+          </div>
+          
+        </div>
+          
+      
+
+        <!-- 중금속 지도 -->
+        <div id="metal-tab" class="tab-content hidden">
+          <p style="text-align: center;">대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
+          
+          <div class="map-container">
+            <!-- 경기권(서울, 경기도, 인천) -->
+            <div class="region gyeonggigwon">
+              <img src="/img/PNG/PNG/경기권.png" alt="경기 지도">
+              <div class="map-point gyeonggigwon location-gyeonggigwon">
+                <span class="location">경기권</span>
+                <span class="value">17</span>
+              </div>
+            </div>
+
+            <!-- 수도권 -->
+            <div class="region sudogwon">
+              <img src="/img/PNG/PNG/서울.png" alt="서울 지도">
+              <div class="map-point metal-sudogwon location-sudogwon">
+                <span class="location">수도권</span>
+                <span class="value">11</span>
+              </div>
+            </div>
+      
+            <!-- 강원권 -->
+            <div class="region gangwongwon">
+              <img src="/img/PNG/PNG/강원.png" alt="강원 지도">
+              <div class="map-point  metal-gangwongwon location-gangwongwon">
+                <span class="location">강원권</span>
+                <span class="value">12</span>
+              </div>
+            </div>
+            <!-- 충북권 -->
+            <div class="region chungbukgwon">
+              <img src="/img/PNG/PNG/충북.png" alt="충북 지도">
+              <div class="map-point metal-chungbukgwon location-chungbukgwon">
+                <span class="location">충북권</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 충청권 -->
+            <div class="region chungchunggwon">
+              <img src="/img/PNG/PNG/충청권.png" alt="충남 지도">
+              <div class="map-point metal-chungchunggwon location-chungchunggwon">
+                <span class="location">충청권</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+
+            <!-- 중부권 -->
+            <div class="map-point metal-joongbugwon location-joongbugwon">
+              <span class="location">중부권</span>
+              <span class="value">21</span>
+            </div> 
+          
+            
+            <!-- 전북권 -->
+            <div class="region jeonbuggwon">
+              <img src="/img/PNG/PNG/전북.png" alt="전북 지도">
+              <div class="map-point metal-jeonbuggwon location-jeonbuggwon">
+                <span class="location">전북권</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+            <!-- 호남권 -->
+            <div class="region honamgwon">
+              <img src="/img/PNG/PNG/호남권.png" alt="전남 지도">
+              <div class="map-point metal-honamgwon location-honamgwon">
+                <span class="location">호남권</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+          
+            <!-- 영남권 -->
+            <div class="region Yeongnamgwon">
+              <img src="/img/PNG/PNG/영남권(2).png" alt="경북 지도">
+              <div class="map-point metal-Yeongnamgwon location-yeongnamgwon">
+                <span class="location">영남권</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+      
+            <!-- 제주 -->
+            <div class="region metal-jejudo">
+              <img src="/img/PNG/PNG/제주.png" alt="제주 지도">
+              <div class="map-point metal-jeju location-jejudo">
+                <span class="location">제주도</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+
+            <!-- 독도 -->
+            <div class="region dokdo">
+              <img src="/img/PNG/PNG/독도.png" alt="독도 지도">
+              <!-- <div class="map-point">
+                <span class="location">독도</span>
+                <span class="value">21</span>
+              </div> -->
+            </div>
+            <!-- 울릉도 -->
+            <div class="region ulleungdo">
+              <img src="/img/PNG/PNG/울릉도.png" alt="울릉도 지도">
+              <!-- <div class="map-point">
+                <span class="location">울릉도</span>
+                <span class="value">21</span>
+              </div> -->
+            </div>
+            
+            <!-- 백령도 -->
+            <div class="region baeglyeongdo">
+              <img src="/img/PNG/PNG/백령도.png" alt="백령도 지도">
+              <div class="map-point metal-baeglyeongdo location-baeglyeongdo">
+                <span class="location">백령도</span>
+                <span class="value">21</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
         
-        <h2>Recommend<span class="close" id="closeModalBtn">&times;</span></h2>
-        
-        <p><img src="/img/m2.jpg" alt="" ></p>
       </div>
-    </div>
 
-    <div class="wrap">
-
-    
-      <!-- 경고창 평소에 히든 -->
-      <div id="alert" class="hidden"></div>
-      <header>
-          <div class="logo">
-            <a href="/index.html">
-            <img src="/img/airlogo.jpg" alt="Air Poket Logo">
-          </a>
+      
+      <!-- 사용자 입력 필드와 지역 정보 -->
+      <div class="local-info" style="flex: 1; margin-right: 16px; width:100%;  ">
+        <section class="comments-section">
+          <h2>댓글</h2>
+          <div class="comments-container" id="comments-container">
+            <!-- 댓글 카드가 동적으로 추가됩니다 -->
           </div>
-          <nav>
-            <ul>
-              <li><a href="/page/airpoketWhat.html">에어포켓소개</a></li>
-              <li><a href="/page/totalHealthWhat.html">종합건강점수란</a></li>
-              <li><a href="/page/realTimeInformation.html">실시간자료조회</a></li>
-              <li><a href="/page/statisticalInformation.html">통계정보</a></li>
-              <li><a href="/page/support.html">고객지원</a></li>
-            </ul>
-          </nav>
-          <div class="search-bar">
-            <form action="/search" method="get">
-              <!-- <input type="text" name="query" placeholder="검색어를 입력하세요" />
-              <button type="submit">검색</button> -->
-            </form>
-          </div>
-        </header>
+          <form id="comment-form">
+            <input type="text" style="height: 50px; width: 60%;" id="comment-input" placeholder="댓글을 입력하세요" required />
+            <button type="submit">댓글 추가</button>
+          </form>
+          <p id="filter-warning" style="color: rgb(253, 0, 0); display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
+        </section>
 
-      <main>
-        <section class="real-time-info mx-2 ">
-                <!-- 지도 섹션 -->
-          <div class="map-section">
-            <div class="tabs">
-              <div class="tab-btn active" data-target="air-tab">대기오염정보</div>
-              <div class="tab-btn" data-target="metal-tab">대기중 중금속 오염정보</div>
-            </div>
-
-            <!-- 지도 컨테이너 -->
-            <div id="air-tab" class="tab-content active">
-              <p style="text-align: center;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
-              <div class="map-container">
-                <!-- 경기 -->
-                <div class="region gyeonggi">
-                  <img src="/img/PNG/PNG/경기.png" alt="경기 지도">
-                  <div class="map-point location-gyeonggi">
-                    <span class="location">Gyeonggi</span>
-                    <span class="value">17</span>
-                  </div>
-                </div>
-                <!-- 서울 -->
-                <div class="region seoul">
-                  <img src="/img/PNG/PNG/서울.png" alt="서울 지도">
-                  <div class="map-point location-seoul">
-                    <span class="location">Seoul</span>
-                    <span class="value">11</span>
-                  </div>
-                </div>
-                <!-- 인천 -->
-                <div class="region incheon">
-                  <img src="/img/PNG/PNG/인천.png" alt="인천 지도">
-                  <div class="map-point location-incheon">
-                    <span class="location">Incheon</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 강원 -->
-                <div class="region gangwon">
-                  <img src="/img/PNG/PNG/강원.png" alt="강원 지도">
-                  <div class="map-point location-gangwon">
-                    <span class="location">Gangwon</span>
-                    <span class="value">12</span>
-                  </div>
-                </div>
-                <!-- 충북 -->
-                <div class="region chungbuk">
-                  <img src="/img/PNG/PNG/충북.png" alt="충북 지도">
-                  <div class="map-point location-chungbuk">
-                    <span class="location">Chungbuk</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 충남 -->
-                <div class="region chungnam">
-                  <img src="/img/PNG/PNG/충남.png" alt="충남 지도">
-                  <div class="map-point location-chungnam">
-                    <span class="location">Chungnam</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 세종 -->
-                <div class="region sejong">
-                  <img src="/img/PNG/PNG/세종.png" alt="세종 지도">
-                  <div class="map-point location-sejong">
-                    <span class="location">Sejong</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 대전 -->
-                <div class="region daejeon">
-                  <img src="/img/PNG/PNG/대전.png" alt="대전 지도">
-                  <div class="map-point location-daejeon">
-                    <span class="location">daejeon</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 전북 -->
-                <div class="region jeonbug">
-                  <img src="/img/PNG/PNG/전북.png" alt="전북 지도">
-                  <div class="map-point location-jeonbuk">
-                    <span class="location">Jeonbuk</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 전남 -->
-                <div class="region jeonnam">
-                  <img src="/img/PNG/PNG/전남.png" alt="전남 지도">
-                  <div class="map-point location-jeonnam">
-                    <span class="location">Jeonnam</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 광주 -->
-                <div class="region gwangju">
-                  <img src="/img/PNG/PNG/광주.png" alt="광주 지도">
-                  <div class="map-point location-gwangju">
-                    <span class="location">Gwangju</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 경북 -->
-                <div class="region gyeongbug">
-                  <img src="/img/PNG/PNG/경북.png" alt="경북 지도">
-                  <div class="map-point location-gyeongbuk">
-                    <span class="location">Gyeongbuk</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 대구 -->
-                <div class="region daegu">
-                  <img src="/img/PNG/PNG/대구.png" alt="대구 지도">
-                  <div class="map-point location-daegu">
-                    <span class="location">Daegu</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 울산 -->
-                <div class="region ulsan">
-                  <img src="/img/PNG/PNG/울산.png" alt="울산 지도">
-                  <div class="map-point location-ulsan">
-                    <span class="location">Ulsan</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 경남 -->
-                <div class="region gyeongnam">
-                  <img src="/img/PNG/PNG/경남.png" alt="경남 지도">
-                  <div class="map-point location-gyeongnam">
-                    <span class="location">Gyeongnam</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 부산 -->
-                <div class="region busan">
-                  <img src="/img/PNG/PNG/부산.png" alt="부산 지도">
-                  <div class="map-point location-busan">
-                    <span class="location">Busan</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 제주 -->
-                <div class="region jeju">
-                  <img src="/img/PNG/PNG/제주.png" alt="제주 지도">
-                  <div class="map-point location-jeju">
-                    <span class="location">Jeju</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 독도 -->
-                <div class="region dokdo">
-                  <img src="/img/PNG/PNG/독도.png" alt="독도 지도">
-           
-                </div>
-                <!-- 울릉도 -->
-                <div class="region ulleungdo">
-                  <img src="/img/PNG/PNG/울릉도.png" alt="울릉도 지도">
-    
-                </div>
-                <!-- 백령도 -->
-                <div class="region baeglyeongdo">
-                  <img src="/img/PNG/PNG/백령도.png" alt="백령도 지도">
         
-                </div>
-              </div>
-              
-            </div>
-              
-          
-
-            <!-- 중금속 지도 -->
-            <div id="metal-tab" class="tab-content hidden">
-              <p style="text-align: center;">대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
-             
-              <div class="map-container">
-                <!-- 경기권(서울, 경기도, 인천) -->
-                <div class="region gyeonggigwon">
-                  <img src="/img/PNG/PNG/경기권.png" alt="경기 지도">
-                  <div class="map-point gyeonggigwon location-gyeonggigwon">
-                    <span class="location">경기권</span>
-                    <span class="value">17</span>
-                  </div>
-                </div>
-
-                <!-- 수도권 -->
-                <div class="region sudogwon">
-                  <img src="/img/PNG/PNG/서울.png" alt="서울 지도">
-                  <div class="map-point metal-sudogwon location-sudogwon">
-                    <span class="location">수도권</span>
-                    <span class="value">11</span>
-                  </div>
-                </div>
-         
-                <!-- 강원권 -->
-                <div class="region gangwongwon">
-                  <img src="/img/PNG/PNG/강원.png" alt="강원 지도">
-                  <div class="map-point  metal-gangwongwon location-gangwongwon">
-                    <span class="location">강원권</span>
-                    <span class="value">12</span>
-                  </div>
-                </div>
-                <!-- 충북권 -->
-                <div class="region chungbukgwon">
-                  <img src="/img/PNG/PNG/충북.png" alt="충북 지도">
-                  <div class="map-point metal-chungbukgwon location-chungbukgwon">
-                    <span class="location">충북권</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 충청권 -->
-                <div class="region chungchunggwon">
-                  <img src="/img/PNG/PNG/충청권.png" alt="충남 지도">
-                  <div class="map-point metal-chungchunggwon location-chungchunggwon">
-                    <span class="location">충청권</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-
-                <!-- 중부권 -->
-                <div class="map-point metal-joongbugwon location-joongbugwon">
-                  <span class="location">중부권</span>
-                  <span class="value">21</span>
-                </div> 
-             
-               
-                <!-- 전북권 -->
-                <div class="region jeonbuggwon">
-                  <img src="/img/PNG/PNG/전북.png" alt="전북 지도">
-                  <div class="map-point metal-jeonbuggwon location-jeonbuggwon">
-                    <span class="location">전북권</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-                <!-- 호남권 -->
-                <div class="region honamgwon">
-                  <img src="/img/PNG/PNG/호남권.png" alt="전남 지도">
-                  <div class="map-point metal-honamgwon location-honamgwon">
-                    <span class="location">호남권</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-              
-                <!-- 영남권 -->
-                <div class="region Yeongnamgwon">
-                  <img src="/img/PNG/PNG/영남권(2).png" alt="경북 지도">
-                  <div class="map-point metal-Yeongnamgwon location-yeongnamgwon">
-                    <span class="location">영남권</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-          
-                <!-- 제주 -->
-                <div class="region metal-jejudo">
-                  <img src="/img/PNG/PNG/제주.png" alt="제주 지도">
-                  <div class="map-point metal-jeju location-jejudo">
-                    <span class="location">제주도</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-
-                <!-- 독도 -->
-                <div class="region dokdo">
-                  <img src="/img/PNG/PNG/독도.png" alt="독도 지도">
-                  <!-- <div class="map-point">
-                    <span class="location">독도</span>
-                    <span class="value">21</span>
-                  </div> -->
-                </div>
-                <!-- 울릉도 -->
-                <div class="region ulleungdo">
-                  <img src="/img/PNG/PNG/울릉도.png" alt="울릉도 지도">
-                  <!-- <div class="map-point">
-                    <span class="location">울릉도</span>
-                    <span class="value">21</span>
-                  </div> -->
-                </div>
-                
-                <!-- 백령도 -->
-                <div class="region baeglyeongdo">
-                  <img src="/img/PNG/PNG/백령도.png" alt="백령도 지도">
-                  <div class="map-point metal-baeglyeongdo location-baeglyeongdo">
-                    <span class="location">백령도</span>
-                    <span class="value">21</span>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            
+        <h2 class="pt-5 pb-3 text-center">우리 동네 대기 정보</h2>
+        <div id="user-location" class="d-flex justify-content-center align-items-center mb-2">
+          <label for="city" class="me-1">시/도:</label>
+          <select id="city" class="form-select me-1" style="width: auto;">
+            <option value="서울">서울</option>
+            <option value="부산">부산</option>
+            <option value="대구">대구</option>
+            <option value="인천">인천</option>
+            <option value="광주">광주</option>
+            <option value="대전">대전</option>
+            <option value="울산">울산</option>
+            <option value="경기">경기</option>
+            <option value="강원">강원</option>
+            <option value="충북">충북</option>
+            <option value="충남">충남</option>
+            <option value="전북">전북</option>
+            <option value="전남">전남</option>
+            <option value="경북">경북</option>
+            <option value="경남">경남</option>
+            <option value="제주">제주</option>
+            <option value="세종">세종</option>
+          </select>
+          <label for="county" class="me-1">구/군:</label>
+          <input type="text" id="county" class="form-control me-1" placeholder="구/군 입력" style="width: 60px;">
+          <button id="update-location" class="btn btn-primary">위치 변경</button>
+        </div>
+        
+        <div id="info" class="text-center bg-light py-4 position-relative">
+          <div id="loading-spinner" class="spinner-border text-primary d-none" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
+          <span id="loading-text" class="typingSlow fs-5">데이터를 불러오는 중...</span>
+        </div>
+      </div>
 
-          
-          <!-- 사용자 입력 필드와 지역 정보 -->
-          <div class="local-info" style="flex: 1; margin-left: 16px; width:100%;  ">
-            <section class="comments-section">
-              <h2>댓글</h2>
-              <div class="comments-container" id="comments-container">
-                <!-- 댓글 카드가 동적으로 추가됩니다 -->
-              </div>
-              <form id="comment-form">
-                <input type="text" style="height: 50px; width: 70%;" id="comment-input" placeholder="댓글을 입력하세요" required />
-                <button type="submit">댓글 추가</button>
-              </form>
-              <p id="filter-warning" style="color: rgb(253, 0, 0); display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
-            </section>
 
-            
-            <h2 style="padding-top: 40px; padding-bottom: 15px;">우리 동네 대기 정보</h2>
-            <div id="user-location" style="margin-bottom: 16px; ">
-              <label for="city">&nbsp;시/도:</label>
-              <select id="city">
-                <option value="서울">서울</option>
-                <option value="부산">부산</option>
-                <option value="대구">대구</option>
-                <option value="인천">인천</option>
-                <option value="광주">광주</option>
-                <option value="대전">대전</option>
-                <option value="울산">울산</option>
-                <option value="경기">경기</option>
-                <option value="강원">강원</option>
-                <option value="충북">충북</option>
-                <option value="충남">충남</option>
-                <option value="전북">전북</option>
-                <option value="전남">전남</option>
-                <option value="경북">경북</option>
-                <option value="경남">경남</option>
-                <option value="제주">제주</option>
-                <option value="세종">세종</option>
-              </select>
-              <label for="county" >&nbsp;구/군:</label>
-              <input type="text" id="county" placeholder="구/군 입력" size="12px" >
-              <button id="update-location" style="padding: 3px; background-color: rgb(187, 212, 243);" >위치 변경</button>
-            </div>
-            
-            <div id="info" style="text-align: center; background-color: rgba(255, 250, 225, 0.297); padding-top: 20px; padding-bottom: 0%;">데이터를 불러오는 중...</div>
+    </section>
+    <section class="news-alerts news-container">
+      <h2 class="text-center mb-4">소식알림창</h2>
+      
+      <!-- 첫 번째 뉴스 슬라이드 -->
+      <div class="carousel mx-auto mb-4 p-4 position-relative">
+        <div class="slide">
+          <div class="news-item" id="news1">첫 번째 뉴스</div>
+          <div class="news-item" id="news2">두 번째 뉴스</div>
+          <div class="news-item" id="news3">세 번째 뉴스</div>
+        </div>
+        <div class="btn-group-vertical position-absolute top-50 end-0 translate-middle-y control-group">
+          <button class="btn btn-primary btn-sm control-btn" id="prev-news" aria-label="Previous">
+            ▲
+          </button>
+          <button class="btn btn-primary btn-sm control-btn" id="next-news" aria-label="Next">
+            ▼
+          </button>
+        </div>
+      </div>
+    
+      <!-- 두 번째 뉴스 슬라이드 -->
+      <div class="carousel mx-auto p-4 position-relative">
+        <div class="slide">
+          <div class="news-item2" id="news5">하나 번째 뉴스</div>
+          <div class="news-item2" id="news6">둘 번째 뉴스</div>
+          <div class="news-item2" id="news7">셋 번째 뉴스</div>
+        </div>
+        <div class="btn-group-vertical position-absolute top-50 end-0 translate-middle-y control-group">
+          <button class="btn btn-primary btn-sm control-btn" id="prev-news2" aria-label="Previous">
+            ▲
+          </button>
+          <button class="btn btn-primary btn-sm control-btn" id="next-news2" aria-label="Next">
+            ▼
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+      
+  </main>
+      
+
+  </div> <!-- wrap -->   
+    
+  <!-- 푸터가 로드될 위치 -->
+  <div id="footer"></div>
+
 
  
-          </div>
-    
-  
-        </section>
-        <section class="news-alerts news-container   ">
-          <h2>소식알림창</h2>
-        
-          <!-- 첫 번째 뉴스 슬라이드 -->
-          <div class="carousel mx-3  mb-4 p-4">
-            <div class="slide">
-              <div class="news-item" id="news1">첫 번째 뉴스</div>
-              <div class="news-item" id="news2">두 번째 뉴스</div>
-              <div class="news-item" id="news3">세 번째 뉴스</div>
-            </div>
-          </div>
-        
-          <!-- 두 번째 뉴스 슬라이드 -->
-          <div class="carousel mx-3 ">
-            <div class="slide">
-              <div class="news-item2" id="news5">하나 번째 뉴스</div>
-              <div class="news-item2" id="news6">둘 번째 뉴스</div>
-              <div class="news-item2" id="news7">셋 번째 뉴스</div>
-            </div>
-          </div>
-        </section>
-     
-        
-      </main>
-
-      <footer>
-        <div class="footer-top">
-          <div class="footer-links">
-            <ul>
-              <li><a href="/footer/gaeinjeongbo.html">개인정보처리방침</a></li>
-              <li><a href="/footer/jeojaggwon.html">저작권 정책</a></li>
-              <li><a href="/footer/mudansujibgeobu.html">이메일무단수집거부</a></li>
-              <li><a href="/footer/hwangsagwanlyeon.html">황사관련 사이트</a></li>
-              <li><a href="/footer/gugnaegugou.html">국내/국외 관련사이트</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <div class="footer-info">
-            <p>실시간 미세먼지 농도 및 예보 관련 문의 : 131 ()</p>
-            <p>대기측정망 및 통계자료 관련 문의 : 01001112243 ()</p>
-            <p>[우편번호] 울산 광역시 ㅁㅁㅁㅁ()</p>
-            <p>Copyright © 2024 *****, All rights reserved.</p>
-          </div>
-          <div class="logos">
-            <img src="" alt="환경부 로고">
-            <img src="" alt="한국환경공단 로고">
-            <img src="" alt="오픈 데이터 로고">
-          </div>
-        </div>
-      </footer>
-    </div> 
-
-
-
-
-    <!-- map js -->
-    <script src="/js/naejeongbo.js"></script>
-    <!-- map js -->
-    <script src="/js/news.js"></script>
-    <!-- 메인 js -->
-    <script src="/js/main.js"></script>
-     <!-- 채팅 js -->
-    <script src="/js/Chat.js"></script>
-    <!-- 모달 popup js -->
-    <script src="/js/popup.js"></script>
   </body>
+
+      <!-- 헤드 푸터 연결+광고창 -->
+      <script src="/js/headFooter.js"></script>
+
+
+      <!-- 지도 애니메이션 추가 -->
+      <script src="/js/animate-card.js"></script>
+      <!-- 메인 우측 섹션 설정 js(내위치 찾기 당일 세부정보 요청등..) -->
+      <script src="/js/naejeongbo.js"></script>
+  
+      <!-- 메인 우측 채팅 js -->
+      <script src="/js/Chat.js"></script>
+  
+      <!-- 메인 하단 뉴스부분 js -->
+      <script src="/js/news.js"></script>
+      <!--  좌측 지도 설정 및 탭이벤트 js-->
+      <script src="/js/main.js"></script>
+    
   </html>

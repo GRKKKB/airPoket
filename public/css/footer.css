@@ -1,0 +1,68 @@
+/* 하단 영역 스타일 */
+footer {
+  width: 100%; /* 전체 너비 */
+  background-color: #123456; /* 헤더와 통일된 배경색 */
+  color: #ffffff; /* 텍스트 색상 */
+  padding: 20px 10px; /* 상하좌우 여백 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-family: 'GmarketSansMedium'; /* 폰트 설정 */
+  border-top: 3px solid rgba(0, 0, 0, 0.1); /* 상단 테두리 */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+}
+
+/* 하단 링크 스타일 */
+footer a {
+  color: #96C2CB; /* 링크 색상 */
+  text-decoration: none; /* 밑줄 제거 */
+  font-weight: 500; /* 두께 */
+  transition: color 0.3s ease; /* 부드러운 색상 전환 */
+}
+
+footer a:hover {
+  color: #00BFFF; /* 호버 시 색상 */
+  text-decoration: underline; /* 호버 시 밑줄 표시 */
+}
+
+/* 하단 아이콘 스타일 */
+footer .social-icons {
+  margin-top: 15px; /* 텍스트와 아이콘 간격 */
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 15px; /* 아이콘 간 간격 */
+}
+
+footer .social-icons a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1); /* 아이콘 배경 */
+  border-radius: 50%; /* 원형 아이콘 */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+footer .social-icons a:hover {
+  background-color: #00BFFF; /* 호버 시 배경 색상 */
+  transform: scale(1.1); /* 호버 시 약간 확대 */
+}
+
+footer .social-icons img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+  footer {
+      font-size: 0.9rem; /* 작은 화면에서 텍스트 크기 축소 */
+  }
+  footer .social-icons a {
+      width: 35px;
+      height: 35px;
+  }
+  footer .social-icons img {
+      width: 18px;
+      height: 18px;
+  }
+}

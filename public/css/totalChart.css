@@ -1,98 +1,55 @@
-/* main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+/* 차트 카드 스타일 */
+.chart-card {
+    background-color: #ffffff; /* 배경색 */
+    border-radius: 15px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 */
     padding: 20px;
-} */
-
-/* 섹션 스타일 */
-/* .real-info {
-    margin: 30px 0;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-} */
-
-/* .real-info:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
-} */
-
-/* 섹션 제목 스타일 */
-/* .real-info h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #333;
-    font-weight: bold;
-} */
-
-/* 차트 캔버스 */
-/* canvas {
-    display: block;
-    max-width: 90%;
-    height: auto;
-    margin: 0 auto;
-} */
-
-/* 전체 레이아웃 */
-#chart-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열로 설정 */
-    gap: 20px; /* 섹션 간 간격 */
-    padding: 20px; /* 패딩 추가 */
-    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-/* 섹션 스타일 */
-.real-info {
-    display: contents; /* 부모 요소의 display 속성을 무시하고 자식 요소들이 직접 그리드에 배치되도록 설정 */
+/* 카드 호버 스타일 */
+.chart-card:hover {
+    transform: translateY(-5px); /* 살짝 위로 이동 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* 그림자 강화 */
 }
 
-.map-section, .local-info, .city-ranking, .major, .mask {
-    padding: 5px; /* 내부 여백 */
-    border: 1px solid #ddd; /* 테두리 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    background-color: #f9f9f9; /* 배경색 */
-}
-
-.map-section{
+/* 차트 스타일 */
+.chart {
     width: 100%;
-    height: 450px;
-    padding-bottom: 80px;
+    height: 400px; /* 고정 높이 설정 */
+    margin-bottom: 20px;
 }
 
-/* 섹션 제목 스타일 */
-h2 {
-    text-align: center; /* 제목 중앙 정렬 */
-    padding-top: 10px;
-    padding-bottom: 0px; /* 아래쪽 여백 */
-    font-size: 2.5rem; /* 폰트 크기 */
-    color: #333; /* 텍스트 색상 */
-    font-weight: bold; /* 폰트 두께 */
+/* 설명란 스타일 */
+.chart-description {
+    text-align: center;
+    margin-top: 10px;
 }
 
-h3{
-    padding-left: 30px;
-    padding-top: 15px;
-    margin-bottom: -10px;
-    font-size: large;
+.chart-description h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
 }
 
-/* 차트 캔버스 */
-canvas {
-    display: block; /* 블록 요소로 설정 */
-    max-width: 100%; /* 최대 너비 100% */
-    /* margin:  auto; 중앙 정렬 */
-    padding-top: 10px;
-    border-radius: 8px; /* 캔버스 모서리 둥글게 */
+.chart-description p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
 }
 
-
-
-
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .chart {
+        height: 300px; /* 모바일에서 차트 크기 조정 */
+    }
+    .chart-description h4 {
+        font-size: 1.2rem;
+    }
+    .chart-description p {
+        font-size: 0.9rem;
+    }
+}

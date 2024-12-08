@@ -1,48 +1,94 @@
-/* styles.css */
-
-/* 기본적인 바디와 버튼 스타일 */
-
-
-
-/* 모달 배경 스타일 */
+/* 모달 기본 설정 */
 .modal {
-    /* display: none; */ /* 기본적으로 숨김 */
-    position: fixed; /* 화면에 고정 */
-    top: 160px;
-    left: 0px;
-    pointer-events: none; /* 배경 클릭 가능하도록 설정 */
-    
-    /* overflow: auto; */ /* 필요시 스크롤 가능 */
-    
-}
-
-/* 모달 콘텐츠 스타일 */
-.modal-content {
-    background-color: #ffffff;
-    margin: 10px 0px 0px 20px; 
-    padding: 10px 15px 0px 20px; 
-    border: 1px solid #1d8fcc;
-    width: 250px ; /* 화면 크기에 따라 너비 설정 */
-    height: 300px;
-    pointer-events: all; /* 모달 콘텐츠는 클릭 가능 */
-    
-}
-
-h2 {
+    position: fixed;
+    top: 120px; /* 화면 상단 여백 */
+    left: 0; /* 좌측 고정 */
+    width: 300px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* 모달 콘텐츠 */
+  .modal-content {
+    position: relative;
+    width: 100%;
+    background: transparent; /* 배경 투명 */
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* 모달 이미지 */
+  .modal-body {
+    position: relative;
+  }
+  
+  .modal-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(1); /* 기본 밝기 */
+    transition: filter 0.3s ease-in-out;
+  }
+  
+  /* 오버레이 글과 버튼 */
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-}
-/* 닫기 버튼 스타일 */
-.close {
-    color: #c3c3c3;
-    margin-bottom: 20px;
-    float: right;
-    font-size: 25px;
+    color: white;
     font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+    background: rgba(0, 0, 0, 0.5); /* 어두운 반투명 배경 */
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%; /* 중앙 콘텐츠 크기 조정 */
+    opacity: 0; /* 기본 숨김 */
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* 이미지 호버 시 오버레이 표시 */
+  .modal-body:hover .overlay {
+    opacity: 1;
+  }
+  
+  /* 닫기 버튼 */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 5px 8px;
+    font-size: 16px;
     cursor: pointer;
-}
+    transition: background 0.3s ease, color 0.3s ease;
+    z-index: 10;
+  }
+  
+  .close-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ff4d4f;
+  }
+  
+  /* 자세히 보기 버튼 */
+  .btn-primary {
+    background-color: #123456;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #105b73;
+  }
+  
