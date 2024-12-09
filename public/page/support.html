@@ -5,104 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>에어 포켓 - 문의하기</title>
     <link href="/img/miniLogo.png" rel="shortcut icon" type="image/x-icon">
-    
-    <!-- css 리셋 -->
+
+    <!-- CSS 파일 -->
     <link rel="stylesheet" href="/css/reset.css" />
-    <!-- 부트 스트랩설정 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/support.css" />
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
 </script>
 </head>
 <body>
-  <div class="wrap">
-    <!-- 기능구현 설정 -->
- 
-  <!-- 광고 로드 -->
-  <div id="modal"></div>
-    <!-- 헤더가 로드될 위치 -->
-    <div id="header"></div> 
+    <div class="wrap">
+        <!-- 헤더 -->
+        <div id="header"></div>
+        <!-- 광고 로드 -->
+        <div id="modal"></div>
 
-      <main class="container mt-6">
-        <div class="row justify-content-center">
-          <!-- 챗봇 섹션 -->
-          <section id="chatbot" class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
-            <h3 class="text-center mb-3">고객지원 챗봇</h3>
-            <div id="chat-container" class="chat-container">
-    
-              
-              
-              <div div id="chat-output" class="chat-output mb-3">
-              </div>
 
-          
+        <!-- 메인 콘텐츠 -->
+        <main class="container mt-6">
+            <div class="row justify-content-center">
+                <!-- 챗봇 섹션 -->
+                <section id="chatbot" class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
+                    <h3 class="text-center mb-3">고객지원 챗봇</h3>
+                    <div id="chat-container" class="chat-container">
+                        <div id="chat-output" class="chat-output mb-3"></div>
+                        <div class="chat-input-container mt-3">
+                            <select id="faq-select" class="form-select mb-2">
+                                <option value="">질문을 선택하세요...</option>
+                                <option value="에어포켓은 대기질 데이터를 실시간으로 제공하여 작업자의 건강과 안전을 예방하는 사이트입니다.">에어포켓이 무엇인가요?</option>
+                                <option value="종합건강점수는 각 오염 물질 농도 위험 수치에 가중치를 부여하고 작업자의 내부, 외부 작업 환경과 같은 환경 요인을 고려하여 개발된 오염도 표현 방식입니다.">종합건강점수란 무엇인가요?</option>
+                                <option value="75~100점: 좋음, 50~75점: 보통, 25~50점: 나쁨, 0~25점: 매우 나쁨">종합건강점수로 무엇을 나타내나요?</option>
+                                <option value="실시간 자료는 '실시간자료조회' 메뉴에서 확인할 수 있습니다.">실시간 자료는 어디에서 확인할 수 있나요?</option>
+                                <option value="에어포켓은 실시간으로 대기질 오염 수치를 가져오기 때문에 현재 정보 이외의 정보는 확인이 불가합니다.">이틀 뒤 대기오염 정보를 미리 확인할 수 있나요?</option>
+                            </select>
+                            <button id="send-button" class="btn btn-primary w-100">전송</button>
+                        </div>
+                    </div>
+                </section>
 
-              <div class="chat-input-container mt-3">
-                <select id="faq-select" class="form-select mb-2">
-                  <option value="">질문을 선택하세요...</option>
-                  <option value="에어포켓은 대기질 데이터를 실시간으로 제공하여 작업자의 건강과 안전을 예방하는 사이트입니다.">에어포켓이 무엇인가요?</option>
-                  <option value="종합건강점수는 각 오염 물질 농도 위험 수치에 가중치를 부여하고 작업자의 내부, 외부 작업 환경과 같은 환경 요인을 고려하여 개발된 오염도 표현 방식입니다.">종합건강점수란 무엇인가요?</option>
-                  <option value="종합건강점수를 계산한 점수로 75~100점은 좋음, 50~75점은 보통, 25~50점은 나쁨, 0~25점은 매우 나쁨 점수별로 좋음, 보통, 나쁨, 매우 나쁨으로 출력합니다. ">종합건강점수로 무엇을 나타내나요?</option>
-                  <option value="실시간 자료는 '실시간자료조회' 메뉴에서 확인할 수 있습니다.">실시간 자료는 어디에서 확인할 수 있나요?</option>
-                  <option value="에어포켓은 실시간으로 대기질 오염 수치를 가져오기 때문에 현재 정보 이외의 정보는 확인이 불가합니다.">이틀 뒤 대기오염 정보를 미리 확인할 수 있나요?</option>
-                </select>
-                <button id="send-button" class="btn btn-primary w-100">전송</button>
-              </div>
+                <!-- 이메일 폼 섹션 -->
+                <section class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
+                    <h3 class="text-center mb-4">메일로 보내기</h3>
+                    <h5 class="text-center mb-4">문제가 아직 해결되지 않았다면 언제든 연락해주세요.</h5>
+                    <form id="support-form">
+                      <div class="mb-3">
+                          <label for="name" class="form-label">이름</label>
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
+                      </div>
+                      <div class="mb-3">
+                          <label for="email" class="form-label">이메일 주소</label>
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required />
+                      </div>
+                      <div class="mb-3">
+                          <label for="phone" class="form-label">전화번호</label>
+                          <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" />
+                      </div>
+                      <div class="mb-4">
+                          <label for="message" class="form-label">문의 내용</label>
+                          <textarea class="form-control" id="message" name="message" style="height: 13rem; resize: none" placeholder="Comments"></textarea>
+                      </div>
+                      <div class="form-check mb-4">
+                          <input class="form-check-input" type="checkbox" id="privacy-policy" required />
+                          <label class="form-check-label" for="privacy-policy">
+                              <small>개인정보 처리방침에 동의합니다.</small>
+                          </label>
+                      </div>
+                      <div class="text-end">
+                          <button type="submit" id="send-email-button" class="btn btn-primary w-100">전송</button>
+                      </div>
+                  </form>
+                </section>
             </div>
-          </section>
-      
-          <!-- 이메일 폼 섹션 -->
-          <section class="form-wrap bg-light col-md-5 p-4 mx-4 rounded shadow">
-            <h3 class="page-title text-center mb-4">메일로 보내기</h3>
-            <h5 class="text-center mb-4">문제가 아직 해결되지 않았다면 언제든 연락해주세요.</h5>
-            <form id="support-form" onsubmit="sendEmail(event)">
-              <div class="mb-3">
-                <label for="name" class="form-label">이름</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">이메일 주소</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required />
-              </div>
-              <div class="mb-3">
-                <label for="phone" class="form-label">전화번호</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" />
-              </div>
-              <div class="mb-4">
-                <label for="message" class="form-label">문의 내용</label>
-                <textarea class="form-control" id="message" name="message" style="height: 13rem; resize: none" placeholder="Comments"></textarea>
-              </div>
-              <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" id="privacy-policy" required />
-                <label class="form-check-label" for="privacy-policy">
-                  <small>개인정보 처리방침에 동의합니다.</small>
-                </label>
-              </div>
-              <div class="text-end">
-                <button type="submit" class="btn btn-primary w-100">전송</button>
-              </div>
-            </form>
-          </section>
-        </div>
-      </main>
-      
-    
-  </div> <!-- wrap -->   
-    
-  <!-- 푸터가 로드될 위치 -->
-  <div id="footer"></div>
+        </main>
 
-    <!-- 헤드 푸터 연결 -->
+        <!-- 푸터 -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- JavaScript 파일 -->
     <script src="/js/headFooter.js"></script>
-    <!-- 알람 설정 -->
-    <script  src="/js/alert.js"></script> 
-    <!-- 챗봇 js 설정 -->
-    <script  src="/js/customerSupportChat.js"></script> 
-    <!-- 이메일 js 이메일 자바스크립트 파일 연결 -->
-    <script  src="/js/customerSupportEmail.js"></script> 
-    
+    <script src="/js/alert.js"></script>
+    <script src="/js/customerSupportChat.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="/js/customerSupportEmail.js"></script>
 </body>
 </html>

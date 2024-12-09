@@ -22,7 +22,7 @@ fetch('/popUp.html') // public/footer.html의 경로
       .then(data => {
           document.getElementById('modal').innerHTML = data;
 
-                  // 모달 요소 가져오기
+          // 모달 요소 가져오기
           const modal = document.getElementById("modal");
 
           // "자세히 보기" 버튼과 "닫기" 버튼 가져오기

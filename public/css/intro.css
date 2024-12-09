@@ -1,0 +1,52 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: none;
+
+    transition: background-color 1s ease-in-out; /* 부드러운 전환 효과 */
+
+}
+
+.wrap {
+    position: relative;
+}
+
+.scroll-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.section-intro {
+ 
+}
+
+.section-content {
+    background: #f8f9fa;
+}
+
+.section-table {
+    background: #343a40;
+}
+
+.section-footer {
+    background: #123456;
+    height: 100px; /* 섹션 높이를 화면 전체로 설정 (필요에 따라 조정 가능) */
+}
+
+  
+  #footer {
+    width: 100%; /* 섹션 가로를 꽉 채우기 */
+    height: 100%; /* 섹션 높이를 꽉 채우기 */
+    display: flex; /* 내부 콘텐츠 정렬을 위한 Flexbox */
+    align-items: center; /* 세로 정렬 */
+    justify-content: center; /* 가로 정렬 */
+    background-color: inherit; /* 섹션 배경색 상속 (bg-dark와 맞춤) */
+  }

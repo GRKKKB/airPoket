@@ -57,19 +57,20 @@ app.use(
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
+          "https://cdn.jsdelivr.net", // email.js CDN 허용
           "https://oapi.map.naver.com",
         ],
         styleSrc: [
           "'self'",
           "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
+          "https://cdn.jsdelivr.net", // 스타일 관련 CDN
           "https://stackpath.bootstrapcdn.com",
         ],
-        imgSrc: ["'self'", "data:"],
+        imgSrc: ["'self'", "data:"], // 이미지 로드 허용
         connectSrc: [
           "'self'",
           "https://oapi.map.naver.com",
+          "https://api.emailjs.com", // EmailJS API 호출 허용
           "https://naveropenapi.apigw.ntruss.com", // 네이버 OpenAPI 허용
           "ws://localhost:8080", // WebSocket 허용
         ],
