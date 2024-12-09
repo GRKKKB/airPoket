@@ -41,5 +41,5 @@ document.getElementById('next-news2').addEventListener('click', showNextNews2);
 document.getElementById('prev-news2').addEventListener('click', showPrevNews);
 
 // 자동 슬라이드 (3초 간격)
-setInterval(showNextNews, 3000);
-setInterval(showNextNews2, 3000);
+setInterval(showNextNews, 4000);
+setInterval(showNextNews2, 6000);
