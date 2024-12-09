@@ -23,6 +23,7 @@
 body { 
     font-family: 'Pretendard-Regular';
     line-height: 1.6;
+    background-image: url(/img/bg.png);
     background-color:  #e8f3fc; /* 검은색 반투명 배경 */ /* Softer background */
     margin: 0 auto; /* 가운데 정렬 */
     color: #333;
