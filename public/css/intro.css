@@ -1,52 +1,67 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-image: none;
-
-    transition: background-color 1s ease-in-out; /* 부드러운 전환 효과 */
-
+/* 메인 콘텐츠 아래로 밀기 */
+main {
+  margin-top: 180px; /* 헤더 높이만큼 여백 추가 */
+  margin-bottom: 120px; /* 헤더 높이만큼 여백 추가 */
 }
 
-.wrap {
-    position: relative;
-}
-
-.scroll-container {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-}
-
-section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.section-intro {
- 
-}
-
-.section-content {
-    background: #f8f9fa;
-}
-
-.section-table {
-    background: #343a40;
-}
-
-.section-footer {
-    background: #123456;
-    height: 100px; /* 섹션 높이를 화면 전체로 설정 (필요에 따라 조정 가능) */
-}
-
-  
-  #footer {
-    width: 100%; /* 섹션 가로를 꽉 채우기 */
-    height: 100%; /* 섹션 높이를 꽉 채우기 */
-    display: flex; /* 내부 콘텐츠 정렬을 위한 Flexbox */
-    align-items: center; /* 세로 정렬 */
-    justify-content: center; /* 가로 정렬 */
-    background-color: inherit; /* 섹션 배경색 상속 (bg-dark와 맞춤) */
+/* 섹션 스타일 */
+.animated-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
   }
+  
+  .animated-section.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* 각 섹션 디자인 */
+  .section-intro {
+    background-color: #123456; /* 헤더 색상과 통일 */
+    color: #fff;
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .section-content {
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .section-content:nth-child(odd) {
+    background-color: #1f3b57;
+    color: #fff;
+  }
+  
+  .section-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .section-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+  
+  /* 헤더 스크롤 효과 */
+  #header.scrolled {
+    background-color: #0f2a44;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+
+  /* 이미지 기본 스타일 */
+img {
+  transition: filter 0.3s ease; /* 부드러운 블러 효과 전환 */
+}
