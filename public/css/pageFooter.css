@@ -124,9 +124,13 @@
 }
 
   
+
+
+
  /* 애니메이션 초기 상태 */
 .animate-card {
   opacity: 0; /* 처음에는 보이지 않음 */
+  margin-top: 30px;
   transition: all 0.8s ease-out; /* 부드러운 전환 효과 */
 }
 
@@ -142,5 +146,9 @@
 /* 애니메이션 완료 상태 */
 .animate-card.visible {
   opacity: 1;
+  margin-top: 30px;
   transform: translateX(0); /* 원래 위치로 */
+
 }
+
+
