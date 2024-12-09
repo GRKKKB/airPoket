@@ -23,8 +23,9 @@ function sendEmail(event) {
         message: message
     };
 
+    console.log(templateParams);
     // EmailJS로 데이터 전송
-    emailjs.send("service_a2qgy3f", "template_d8vzu7o", templateParams)
+    emailjs.send("service_a2qgy3f", "template_hivawpj", templateParams)
         .then(() => {
             alert("문의가 성공적으로 전송되었습니다!");
             document.getElementById("support-form").reset(); // 폼 초기화
