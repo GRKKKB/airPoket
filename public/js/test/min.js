@@ -1,7 +1,7 @@
 // async function fetchData() {
 
 //     try {
-//         const maskResponse = await fetch('http://localhost:3000/min/mask')
+//         const maskResponse = await fetch('http://localhost:3927/min/mask')
 
 //         const maskData = await maskResponse.json();
        
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 //8시간 실내 작업
-   fetch('http://localhost:3000/min/mask') // Express.js API 호출
+   fetch('http://localhost:3927/min/mask') // Express.js API 호출
    .then(response => response.json())
    .then(data => {
        const labels = data.map(row => row.region);
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded',()=>{
        });
    });
    //12시간 실내 작업
-   fetch('http://localhost:3000/min/mask') // Express.js API 호출
+   fetch('http://localhost:3927/min/mask') // Express.js API 호출
    .then(response => response.json())
    .then(data => {
        const labels = data.map(row => row.region);
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded',()=>{
        });
    });
    //8시간 실외 작업
-   fetch('http://localhost:3000/min/mask') // Express.js API 호출
+   fetch('http://localhost:3927/min/mask') // Express.js API 호출
    .then(response => response.json())
    .then(data => {
        const labels = data.map(row => row.region);
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
       //12시간 실외 작업
-      fetch('http://localhost:3000/min/mask') // Express.js API 호출
+      fetch('http://localhost:3927/min/mask') // Express.js API 호출
       .then(response => response.json())
       .then(data => {
           const labels = data.map(row => row.region);
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         console.log(data1);
  
         try{
-            const response = await fetch('http://localhost:3000/min/mask');
+            const response = await fetch('http://localhost:3927/min/mask');
             const data = await response.json();
 
             const works = data[0]||[];

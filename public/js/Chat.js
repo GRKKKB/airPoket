@@ -67,7 +67,7 @@ ws.addEventListener('message', (event) => {
 // 서버에서 댓글 목록 가져오기
 const fetchComments = async () => {
   try {
-    const response = await fetch('http://localhost:3000/comments');
+    const response = await fetch('http://localhost:3927/comments');
     const data = await response.json();
 
     comments = data; // 댓글 배열 갱신
@@ -104,7 +104,7 @@ commentForm.addEventListener('submit', async (event) => {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/comments', {
+    const response = await fetch('http://localhost:3927/comments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

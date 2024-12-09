@@ -64,7 +64,7 @@ updateLocationButton.addEventListener("click", () => {
 
 // 실시간 데이터 API 호출 및 필터링
 function fetchRealTimeData(city, county) {
-    const apiUrl = "http://localhost:3000/realTime/air";
+    const apiUrl = "http://localhost:3927/realTime/air";
 
     fetch(apiUrl)
         .then((response) => {

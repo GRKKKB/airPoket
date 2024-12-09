@@ -1,4 +1,4 @@
-fetch('http://localhost:3000/bom') // Express.js API 호출
+fetch('http://localhost:3927/bom') // Express.js API 호출
     .then(response => response.json())
     .then(data => {
         const regions = data.map(row => row.region); // 지역 이름

@@ -14,7 +14,7 @@ const min = require('./routes/min');
 const app = express();
 
 // 서버 포트 설정
-const HTTP_PORT = 3000;
+const HTTP_PORT = 3927;
 const WS_PORT = 8080;
 
 // HTTP 서버 생성

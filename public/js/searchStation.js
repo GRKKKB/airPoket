@@ -6,7 +6,7 @@ async function updateStations(region) {
 
     try {
         // API 호출
-        const response = await fetch(`http://localhost:3000/air-pollution/procedure/serchOption?region=${region}`);
+        const response = await fetch(`http://localhost:3927/air-pollution/procedure/serchOption?region=${region}`);
         const data = await response.json();
 
         // API 결과의 첫 번째 배열 가져오기

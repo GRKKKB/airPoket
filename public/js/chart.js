@@ -1,5 +1,5 @@
    // 데이터를 가져오고 Chart.js를 이용해 차트를 생성
-   fetch('http://localhost:3000/air-pollution') // Express.js API 호출
+   fetch('http://localhost:3927/air-pollution') // Express.js API 호출
    .then(response => response.json())
    .then(data => {
        const labels = data.map(row => row.station_name);

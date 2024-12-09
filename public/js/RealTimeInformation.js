@@ -24,10 +24,10 @@ async function fetchData() {
 
   try {
     // API 호출
-    const airResponse = await fetch('http://localhost:3000/realTime/air');
-    const metalResponse = await fetch('http://localhost:3000/realTime/metal');
-    const airChartResponse = await fetch("http://localhost:3000/realTime/air-chart");
-    const metalChartResponse = await fetch("http://localhost:3000/realTime/metal-chart")
+    const airResponse = await fetch('http://localhost:3927/realTime/air');
+    const metalResponse = await fetch('http://localhost:3927/realTime/metal');
+    const airChartResponse = await fetch("http://localhost:3927/realTime/air-chart");
+    const metalChartResponse = await fetch("http://localhost:3927/realTime/metal-chart")
 
     
 

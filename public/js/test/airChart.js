@@ -1,4 +1,4 @@
-fetch('http://localhost:3000/chartAir') // Express.js API 호출
+fetch('http://localhost:3927/chartAir') // Express.js API 호출
 .then(response => response.json())
 .then(data => {
 const labels = data.map(row => row.station_name);
