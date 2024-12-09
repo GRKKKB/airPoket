@@ -402,7 +402,7 @@ button[type="submit"]:hover {
 /* 강원 */
 .gangwon {
   position: absolute;
-  top: 1%;
+  top: 0.5%;
   transform: scale(1.1); /* 사이즈 확대 */
   z-index: 1;
 
@@ -676,10 +676,10 @@ button[type="submit"]:hover {
 /* 강원권 */
 .gangwongwon {
   position: absolute;
-  top: 1%;
+  top: 0%;
   transform: scale(1.1); /* 사이즈 확대 */
   z-index: 1;
-  left: 40%;
+  left: 40.2%;
   width: 100%;
   height: auto; 
 }
@@ -703,10 +703,10 @@ button[type="submit"]:hover {
 /* 영남권 */
 .Yeongnamgwon {
   position: absolute;
-  top: 28%;
-  left: 54%;
-  width: 30%;
-  transform: scale(1.2); /* 이미지 확대 */
+  top: 29%;
+  left: 51%;
+  width: 38%;
+  transform: scale(1.0); /* 이미지 확대 */
   z-index: 25;
   height: auto;
 }
@@ -763,10 +763,10 @@ button[type="submit"]:hover {
   left: 35%;
 }
 /* 중부권 */
-/* .metal-joongbugwon {
+.metal-joongbugwon {
   top: 40px;
   left: 70%;
-} */
+}
 /* 영남권 */
 .metal-Yeongnamgwon {
   top: 125px;
@@ -790,7 +790,7 @@ button[type="submit"]:hover {
 /* 백령도 */
 .metal-baeglyeongdo {
   top: -12px;
-  left: -3%;
+  left: -80%;
 }
 
 /* 마우스 호버 효과 - 마커 */
