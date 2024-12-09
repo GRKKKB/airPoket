@@ -254,12 +254,12 @@ function displayFilteredData(data) {
                 <!-- 상세 데이터 -->
                 <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;" >
                   <h4 style="padding-bottom: 10px; padding-top:10px;" >상세 데이터</h4>
-                    <p><strong>초미세먼지(PM2.5):</strong> ${item.PM25} μg/m³</p>
-                    <p><strong>미세먼지(PM10):</strong> ${item.PM19} μg/m³</p>
-                    <p><strong>오존(SO₂):</strong> ${item.SO2} ppm</p>
-                    <p><strong>이산화질소(CO):</strong> ${item.CO} ppm</p>
-                    <p><strong>이산화황(O₃):</strong> ${item.O3} ppm</p>
-                    <p><strong>일산화탄소(NO₂):</strong> ${item.NO2} ppm</p>
+                    <p><strong style="font-weight: normal;">초미세먼지(PM2.5):</strong> ${item.PM25} μg/m³</p>
+                    <p><strong style="font-weight: normal;">미세먼지(PM10):</strong> ${item.PM19} μg/m³</p>
+                    <p><strong style="font-weight: normal;">오존(SO₂):</strong> ${item.SO2} ppm</p>
+                    <p><strong style="font-weight: normal;">이산화질소(CO):</strong> ${item.CO} ppm</p>
+                    <p><strong style="font-weight: normal;">이산화황(O₃):</strong> ${item.O3} ppm</p>
+                    <p><strong style="font-weight: normal;">일산화탄소(NO₂):</strong> ${item.NO2} ppm</p>
                 </div>
             </div>
         `;
