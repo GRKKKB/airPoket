@@ -365,245 +365,10 @@ button[type="submit"]:hover {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* 지도 스판태그 설정 지도위글자(대기오염)*/
-/*경기도 */
-.location-gyeonggi{
-  z-index:36;
-  top:115px;
-  left: 40%;
-}
-/* 서울  */
-.location-seoul{
-  top:0;
-  left:0;
-}
-/* 인천 */
-.location-incheon{
-  top:10px;
-  left:10%;
-}
-/* 강원 */
-.location-gangwon{
-  top:95px;
-  left: 45%;
-}
-/* 충북 */
-.location-chungbuk{
-  top:49px;
-  left: 15%;
-}
-/* 충남 */
-.location-chungnam{
-  top:50px;
-  left: 33%;
-}
-/* 세종 */
-.location-sejong{
-  top: 0px;
-  left: -60%;
-}
-/* 대전 */
-.location-daejeon{
-  z-index: 990;
-  top:0;
-  left: -4%;
-}
-/* 전북 */
-.location-jeonbuk{
-  top:40px;
-  left: 34%;
-}
-/* 전남 */
-.location-jeonnam{
-  top:50px;
-  left: 65%;
-}
-
-/* 광주 */
-.location-gwangju{
-  top: 0;
-  left: 10%;
-}
-
-/* 경북 */
-.location-gyeongbuk{
-  top:60px;
-  left: 40%;
-}
-/* 대구 */
-.location-daegu{
-  top:26px;
-  left: 10%;
-
-}
-.location-ulsan{
-  top:0;
-  left: 10%;
-}
-.location-gyeongnam{
-  top:70px;
-  left: 30%;
-}
-.location-busan{
-  top:10px;
-  left: 30%;
-}
-.location-jeju{ 
-   top:20px;
-  left: 28%;
-}
-
-
-/* 지도 위치 (중금속) */
-/* 경기권 */
-.gyeonggigwon {
-  position: absolute;
-  top: 8.6%;
-  left: 23%;
-  width: 27%;
-  height: auto;
-  z-index: 27;
-}
-/* 수도권 */
-.sudogwon {
-  position: absolute;
-  top: 15%;
-  left: 32%;
-  width: 7%;
-  height: auto;
-  z-index: 50;
-}
-/* 강원권 */
-.gangwongwon {
-  position: absolute;
-  top: 1%;
-  transform: scale(1.1); /* 사이즈 확대 */
-  z-index: 1;
-  left: 40%;
-  width: 100%;
-  height: auto; 
-}
-/* 충북권 */
-.chungbukgwon{
-  position: absolute;
-  top: 25.9%;
-  left: 41.5%;
-  width: 25%;
-  height: auto;
- 
-}
-/* 충청권 */
-.chungchunggwon {
-  position: absolute;
-  top: 30%;
-  left: 21.5%;
-  width:25%;
-  height: auto;
-}
-/* 영남권 */
-.Yeongnamgwon {
-  position: absolute;
-  top: 28%;
-  left: 54%;
-  width: 30%;
-  transform: scale(1.2); /* 이미지 확대 */
-  height: auto;
-}
-/* 전북권 */
-.jeonbuggwon {
-  position: absolute;
-  top: 46%;
-  left: 28%;
-  width: 26%;
-  height: auto;
-}
-/* 호남권 */
-.honamgwon {
-  position: absolute;
-  top: 60%;
-  left: 20%;
-  width: 53%;
-  height: auto;
-}
-/* 제주도 */
-.metal-jejudo{
-  position: absolute;
-  top: 87%;
-  left: 10%;
-  width: 23%;
-  height: auto;
-}
-
-
-/* 지도 스판태그 설정 지도위글자(중금속)*/
-/* 경기권 */
-.metal-gyeonggigwon {
-  top: 120px;
-  left: 40%;
-}
-/* 수도권 */
-.metal-sudogwon {
-  top: 0px;
-  left: 3%;
-}
-/* 강원권 */
-.metal-gangwongwon {
-  top: 95px;
-  left: 42%;
-}
-/* 충북권 */
-.metal-chungbukgwon {
-  top: 40px;
-  left: 19%;
-}
-/* 충청권 */
-.metal-chungchunggwon {
-  top: 52px;
-  left: 35%;
-}
-/* 중부권 */
-.metal-joongbugwon {
-  top: 40px;
-  left: 70%;
-}
-/* 영남권 */
-.metal-Yeongnamgwon {
-  top: 125px;
-  left: 40%;
-}
-/* 전북권 */
-.metal-jeonbuggwon {
-  top: 43.5px;
-  left: 40%;
-}
-/* 호남권 */
-.metal-honamgwon {
-  top: 65px;
-  left: 40%;
-}
-/* 제주 */
-.metal-jeju {
-  top: 20px;
-  left: 30%;
-}
-/* 백령도 */
-.metal-baeglyeongdo {
-  top: -12px;
-  left: -3%;
-}
-
-/* 마우스 호버 효과 - 마커 */
- .map-point:hover {
-  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-  transform: scale(1.2); /* 마커 확대 */
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
-}
-
-
-
-
+/* 대기오염 지도 */
 /* 개별 이미지 크기 설정 (작게 조정) */
 /* 지역별 이미지 크기 조정 (한국지도에 맞게 설정) */
+
 /* 경기도 */
 .gyeonggi {
   position: absolute;
@@ -627,8 +392,8 @@ button[type="submit"]:hover {
 /* 인천 */
 .incheon {
   position: absolute;
-  top: 16%;
-  left:23.5%;
+  top: 15.5%;
+  left:23%;
   width: 8%;
   height: auto;
 }
@@ -648,19 +413,19 @@ button[type="submit"]:hover {
 /* 충북 */
 .chungbuk {
   position: absolute;
-  top: 25.7%;
-  left: 42%;
-  width: 23.5%;
+  top: 26.3%;
+  left: 44%;
+  width: 20%;
   height: auto;
-  z-index: 80;
+  z-index: 100;
 }
 
 /* 충남 */
 .chungnam {
   position: absolute;
-  top: 30%;
+  top: 29.5%;
   left: 22.5%;
-  width:23.5%;
+  width: 24.5%;
   height: auto;
 }
 
@@ -668,7 +433,7 @@ button[type="submit"]:hover {
 .sejong {
   position: absolute;
   top: 35.3%;
-  left: 39%;
+  left: 39.5%;
   width: 3%;
   height: auto;
 }
@@ -676,17 +441,18 @@ button[type="submit"]:hover {
 /* 대전 */
 .daejeon {
   position: absolute;
-  top: 38%;
-  left: 42%;
+  top: 37%;
+  left: 42.5%;
   width: 4%;
   height: auto;
+  z-index: 50;
 }
 
 /* 대구 */
 .daegu {
   position: absolute;
   top: 41.5%;
-  left: 63%;
+  left: 64%;
   width: 9%;
   z-index: 22;
   height: auto;
@@ -696,7 +462,7 @@ button[type="submit"]:hover {
 .gyeongbug {
   position: absolute;
   top: 28.5%;
-  left: 53.5%;
+  left: 54%;
   width: 28%;
   height: auto;
 }
@@ -769,7 +535,7 @@ button[type="submit"]:hover {
   position: absolute;
   top: 87%;
   left: 10%;
-  width: 25%;
+  width: 15%;
   height: auto;
 }
 
@@ -778,7 +544,7 @@ button[type="submit"]:hover {
   position: absolute;
   top: 12%;
   left: 80%;
-  width: 5%;
+  width: 3%;
   height: auto;
 }
 
@@ -787,13 +553,254 @@ button[type="submit"]:hover {
   position: absolute;
   top: 12%;
   left: 90%;
-  width: 10%;
+  width: 1%;
   height: auto;
 }
 
 
-
 /* 나머지 지역들도 동일한 방식으로 좌표 설정 */
+
+/* 지도 스판태그 설정 지도위글자(대기오염)*/
+
+/*경기도 */
+.location-gyeonggi{
+  z-index:36;
+  top:115px;
+  left: 40%;
+}
+/* 서울  */
+.location-seoul{
+  top:0;
+  left:0;
+}
+/* 인천 */
+.location-incheon{
+  top:10px;
+  left:10%;
+}
+/* 강원 */
+.location-gangwon{
+  top:95px;
+  left: 45%;
+}
+/* 충북 */
+.location-chungbuk{
+  top: 25px;
+  left: 15%;
+}
+/* 충남 */
+.location-chungnam{
+  top:50px;
+  left: 33%;
+}
+/* 세종 */
+.location-sejong{
+  top: -5px;
+  left: -60%;
+}
+/* 대전 */
+.location-daejeon{
+  z-index: 990;
+  top:0;
+  left: -4%;
+}
+/* 전북 */
+.location-jeonbuk{
+  top:40px;
+  left: 34%;
+}
+/* 전남 */
+.location-jeonnam{
+  top:50px;
+  left: 65%;
+}
+
+/* 광주 */
+.location-gwangju{
+  top: 0;
+  left: 10%;
+}
+
+/* 경북 */
+.location-gyeongbuk{
+  top:60px;
+  left: 40%;
+}
+/* 대구 */
+.location-daegu{
+  top:26px;
+  left: 10%;
+}
+/* 울산 */
+.location-ulsan{
+  top:0;
+  left: 10%;
+}
+/* 경남 */
+.location-gyeongnam{
+  top:70px;
+  left: 30%;
+}
+/* 부산 */
+.location-busan{
+  top:10px;
+  left: 30%;
+}
+/* 제주 */
+.location-jeju{ 
+   top: 5px;
+  left: 28%;
+}
+
+
+/* 지도 위치 (중금속) */
+/* 경기권 */
+.gyeonggigwon {
+  position: absolute;
+  top: 8.6%;
+  left: 23%;
+  width: 27%;
+  height: auto;
+  z-index: 27;
+}
+/* 수도권 */
+.sudogwon {
+  position: absolute;
+  top: 15%;
+  left: 32%;
+  width: 7%;
+  height: auto;
+  z-index: 50;
+}
+/* 강원권 */
+.gangwongwon {
+  position: absolute;
+  top: 1%;
+  transform: scale(1.1); /* 사이즈 확대 */
+  z-index: 1;
+  left: 40%;
+  width: 100%;
+  height: auto; 
+}
+/* 충북권 */
+.chungbukgwon{
+  position: absolute;
+  top: 25.9%;
+  left: 41.5%;
+  width: 25%;
+  height: auto;
+  z-index: 30;
+}
+/* 충청권 */
+.chungchunggwon {
+  position: absolute;
+  top: 30%;
+  left: 21.5%;
+  width:25%;
+  height: auto;
+}
+/* 영남권 */
+.Yeongnamgwon {
+  position: absolute;
+  top: 28%;
+  left: 54%;
+  width: 30%;
+  transform: scale(1.2); /* 이미지 확대 */
+  z-index: 25;
+  height: auto;
+}
+/* 전북권 */
+.jeonbuggwon {
+  position: absolute;
+  top: 46%;
+  left: 28%;
+  width: 26%;
+  height: auto;
+}
+/* 호남권 */
+.honamgwon {
+  position: absolute;
+  top: 60%;
+  left: 20%;
+  width: 53%;
+  height: auto;
+}
+/* 제주도 */
+.metal-jejudo{
+  position: absolute;
+  top: 87%;
+  left: 10%;
+  width: 20%;
+  height: auto;
+}
+
+
+/* 지도 스판태그 설정 지도위글자(중금속)*/
+/* 경기권 */
+.metal-gyeonggigwon {
+  top: 120px;
+  left: 45%;
+}
+/* 수도권 */
+.metal-sudogwon {
+  top: 0px;
+  left: 3%;
+}
+/* 강원권 */
+.metal-gangwongwon {
+  top: 95px;
+  left: 42%;
+}
+/* 충북권 */
+.metal-chungbukgwon {
+  top: 40px;
+  left: 19%;
+}
+/* 충청권 */
+.metal-chungchunggwon {
+  top: 52px;
+  left: 35%;
+}
+/* 중부권 */
+/* .metal-joongbugwon {
+  top: 40px;
+  left: 70%;
+} */
+/* 영남권 */
+.metal-Yeongnamgwon {
+  top: 125px;
+  left: 40%;
+}
+/* 전북권 */
+.metal-jeonbuggwon {
+  top: 43.5px;
+  left: 40%;
+}
+/* 호남권 */
+.metal-honamgwon {
+  top: 65px;
+  left: 40%;
+}
+/* 제주 */
+.metal-jeju {
+  top: 15px;
+  left: 30%;
+}
+/* 백령도 */
+.metal-baeglyeongdo {
+  top: -12px;
+  left: -3%;
+}
+
+/* 마우스 호버 효과 - 마커 */
+ .map-point:hover {
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  transform: scale(1.2); /* 마커 확대 */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+}
+
+
+
 
 
 
