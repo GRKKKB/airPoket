@@ -25,6 +25,23 @@ window.addEventListener("load", () => {
 });
 
 
+// 애니메이션 카드 2(황사관련페이지)
+document.addEventListener("DOMContentLoaded", () => {
+  const newAnimations = document.querySelectorAll(".new-animation");
+  newAnimations.forEach((element, index) => {
+      setTimeout(() => {
+          element.classList.add("visible");
+      }, index * 100); // 각 요소마다 100ms 지연
+  });
+});
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const typingElements = document.querySelectorAll('.typing');
 
