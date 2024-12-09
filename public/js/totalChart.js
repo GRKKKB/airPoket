@@ -299,7 +299,9 @@ function updateRankData(data4) {
                 backgroundColor: [
                     '#FFA500', '#FFAF0A', '#FFB914', '#FFC31E', 
                     '#FFD732', '#FFDC37', '#FFE13C', '#FFE641',
-                    '#FFEB46', '#FFA98F', '#FFB399', '#FFBDA3'
+                    '#FFEB46', '#FFA98F', '#FFB399', '#FFBDA3',
+                    '#FFC7AD', '#FFD1B7', '#FFDBC1', '#FFE0C6',
+                    '#FFE5CB'
                 ], // 색상 배열
             }]
         },
