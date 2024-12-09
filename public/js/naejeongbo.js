@@ -243,16 +243,17 @@ function displayFilteredData(data) {
 
                 <!-- 개별 점수 상태 -->
                 <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;">
-                    <h4>개별 외부 점수</h4>
-                    <p style="color: ${mask8hOut.color};"><strong>8시간 마스크 착용:</strong> ${mask8hOut.status} (${item.mask_8h_out} 점)</p>
-                    <p style="color: ${noMask8hOut.color};"><strong>8시간 마스크 미착용:</strong> ${noMask8hOut.status} (${item.no_mask_8h_out} 점)</p>
-                    <p style="color: ${mask12hOut.color};"><strong>12시간 마스크 착용:</strong> ${mask12hOut.status} (${item.mask_12h_out} 점)</p>
-                    <p style="color: ${noMask12hOut.color};"><strong>12시간 마스크 미착용:</strong> ${noMask12hOut.status} (${item.no_mask_12h_out} 점)</p>
+                    <h4 style="padding-bottom: 10px; padding-top:10px;">개별 외부 점수</h4>
+                    <p style="color: ${mask8hOut.color};"><strong style="color:#444">8시간 마스크 착용:</strong> ${mask8hOut.status} (${item.mask_8h_out} 점)</p>
+                    <p style="color: ${noMask8hOut.color};"><strong style="color:#222">8시간 마스크 미착용:</strong> ${noMask8hOut.status} (${item.no_mask_8h_out} 점)</p>
+                    
+                    <p style="color: ${mask12hOut.color}; border-top: 1px solid #ddd; padding-top:10px;" ><strong style="color:#444">12시간 마스크 착용:</strong> ${mask12hOut.status} (${item.mask_12h_out} 점)</p>
+                    <p style="color: ${noMask12hOut.color};"><strong style="color:#222">12시간 마스크 미착용:</strong> ${noMask12hOut.status} (${item.no_mask_12h_out} 점)</p>
                 </div>
 
                 <!-- 상세 데이터 -->
                 <div style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 16px;" >
-                  <h4>상세 데이터</h4>
+                  <h4 style="padding-bottom: 10px; padding-top:10px;" >상세 데이터</h4>
                     <p><strong>초미세먼지(PM2.5):</strong> ${item.PM25} μg/m³</p>
                     <p><strong>미세먼지(PM10):</strong> ${item.PM19} μg/m³</p>
                     <p><strong>오존(SO₂):</strong> ${item.SO2} ppm</p>
