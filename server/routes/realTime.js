@@ -78,9 +78,9 @@ router.get('/air', async (req, res) => {
       // 프로시저 호출 또는 SELECT 쿼리 실행
       const sql = `
       SELECT m.city_name,
-		         AVG(m.metal_score) AS metal_score
+		       AVG(m.metal_score) AS metal_score
       FROM day_avg_metal_pollution m
-      GROUP BY m.city_name
+      GROUP BY m.city_name;
       `;
       const results = await db.query(sql);
   

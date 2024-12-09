@@ -55,17 +55,17 @@ async function fetchData() {
     });
 
     const filterMetalChartData = metalChartData.filter(item =>{
-      return(cityName === 'all' || item.cityName === cityName);
+      return(cityName === 'all' || item.city_name === cityName);
     });
 
     updateChartData(filterCahrt,filteredAirData);
 
 
-    updateMetalChartData(filterMetalChartData,metalData);
+    updateMetalChartData(filterMetalChartData,filterMetalChartData);
 
     updateTableData(filteredAirData, 'air-data');
     updateTableData(filteredMetallData, 'metal-data'); // 중금속 데이터는 필터링 필요 시 로직 추가
-
+    console.log(filteredMetallData)
 
     
   } catch (error) {
@@ -80,6 +80,8 @@ function updateChartData(data1, data2) {
     if (airChart) {
         airChart.destroy(); // 기존 차트가 있으면 삭제
     }
+    console.log("data1",data1)
+    console.log("data2",data2)
 
     if (ctx) {
         // 데이터 처리
@@ -171,7 +173,8 @@ function updateMetalChartData(metal1, metal2) {
     if (metalChart) {
         metalChart.destroy(); // 기존 차트가 있으면 삭제
     }
-
+    console.log("metal1",metal1);
+    console.log("metal2",metal2);
     if (ctx) {
         const labels = metal2.map(row => row.city_name || 'Unknown');
         const baselineValue = metal1[0]?.metal_score || 0;
