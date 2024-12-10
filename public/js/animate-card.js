@@ -92,17 +92,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 애니메이션을 적용할 지도 요소 가져오기
+  // 지도 애니메이션을 적용할 요소
   const regions = document.querySelectorAll(".region img");
+  const dokdoBox = document.getElementById("dokdoBox");
+  const baeglyeongdo = document.getElementById("baeglyeongdo");
 
-  // 페이지 로드 시 애니메이션 트리거
+  // 페이지 로드 시 지도 애니메이션
   regions.forEach((region, index) => {
-    region.style.opacity = 0; // 초기 상태: 투명
-    region.style.transform = "scale(0.9)"; // 초기 상태: 약간 축소
+    region.style.opacity = 0;
+    region.style.transform = "scale(0.9)";
     setTimeout(() => {
-      region.style.transition = "opacity 0.6s ease, transform 0.6s ease"; // 애니메이션 설정
-      region.style.opacity = 1; // 투명도 증가
-      region.style.transform = "scale(1)"; // 원래 크기로 확대
-    }, index * 200); // 각 지도마다 200ms 지연
+      region.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      region.style.opacity = 1;
+      region.style.transform = "scale(1)";
+    }, index * 200);
   });
+
+  // 모든 지도 애니메이션이 끝난 후 박스 애니메이션 실행
+  const totalDelay = regions.length * 100 + 300; // 지도 애니메이션 총 시간 계산
+  setTimeout(() => {
+    baeglyeongdo.classList.add("visible");
+    dokdoBox.classList.add("visible");
+  }, totalDelay); // 지도 애니메이션이 끝난 후 실행
 });

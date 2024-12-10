@@ -297,7 +297,9 @@ button[type="submit"]:hover {
     display: none; /* 숨김 처리 */
   }
 
-/* 지도 컨테이너 */
+
+
+/* 메인 지도 설정 지도 컨테이너 */
 .map-container {
   position: relative;
     width: 100%;
@@ -310,6 +312,8 @@ button[type="submit"]:hover {
   overflow: hidden;
 
 }
+
+
 
 /* 지역 이미지 설정 */
 .region {
@@ -366,6 +370,8 @@ button[type="submit"]:hover {
   font-weight: bold;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
+
 
 /* 대기오염 지도 */
 /* 개별 이미지 크기 설정 (작게 조정) */
@@ -545,8 +551,9 @@ button[type="submit"]:hover {
 .ulleungdo {
   position: absolute;
   top: 12%;
-  left: 80%;
+  left: 83.5%;
   width: 3%;
+  z-index:14;
   height: auto;
 }
 
@@ -556,11 +563,76 @@ button[type="submit"]:hover {
   top: 12%;
   left: 90%;
   width: 1%;
+  z-index:14;
   height: auto;
 }
 
 
-/* 나머지 지역들도 동일한 방식으로 좌표 설정 */
+/* 지도 안 네모칸 설정  */
+#dokdoBox  {
+  position: absolute;
+  left: 569px;
+  top: 70px;
+  width: 120px; /* 크기 조정 */
+  height: 100px; /* 크기 조정 */
+  text-align: center;
+  border-radius: 15px;
+ 
+  color: #004B64;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 9;
+  opacity: 0; /* 초기 상태: 투명 */
+  transform: scale(0.9); /* 초기 상태: 약간 축소 */
+  border: 2px solid transparent; /* 초기 상태: 테두리 투명 */
+}
+
+#dokdoBox.visible {
+  opacity: 1; /* 투명도 증가 */
+  transform: scale(1); /* 원래 크기로 확대 */
+  border: 2px solid #00A7C7; /* 테두리 색상 나타남 */
+  transition: opacity 0.6s ease, transform 0.6s ease, border 0.6s ease; /* 애니메이션 */
+}
+
+
+#baeglyeongdo {
+  position: absolute;
+  left: 40px;
+  top: 50px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  border-radius: 15px;
+ 
+  color: #004B64;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 9;
+  opacity: 0; /* 초기 상태: 투명 */
+  transform: scale(0.9); /* 초기 상태: 약간 축소 */
+  border: 2px solid transparent; /* 초기 상태: 테두리 투명 */
+}
+
+#baeglyeongdo.visible {
+  opacity: 1; /* 투명도 증가 */
+  transform: scale(1); /* 원래 크기로 확대 */
+  border: 2px solid #00A7C7; /* 테두리 색상 나타남 */
+  transition: opacity 0.6s ease, transform 0.6s ease, border 0.6s ease; /* 애니메이션 */
+}
+
+/* 대기오염 지도 설명  */
+#air-textBox{
+  position: absolute;
+  left: 40px;
+  top: 50px;
+  border-radius: 15px;
+ 
+  color: #004B64;
+}
 
 /* 지도 스판태그 설정 지도위글자(대기오염)*/
 
