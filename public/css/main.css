@@ -323,7 +323,7 @@ button[type="submit"]:hover {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 20 ;
+  z-index: 10 ;
   object-fit: contain; /* 이미지 비율 유지 */
   opacity: 0; /* 초기 상태: 투명 */
   transform: scale(0.9); /* 약간 축소 */
@@ -345,6 +345,7 @@ button[type="submit"]:hover {
   cursor: pointer; /* 마우스 커서를 포인터로 변경 */
   transform: scale(1.033); /* 이미지 확대 */
   filter: brightness(0.85); /* 밝기 살짝 어둡게 */
+
 }
 
 /* 지역 마커 설정 */
@@ -418,7 +419,7 @@ button[type="submit"]:hover {
   left: 44%;
   width: 20%;
   height: auto;
-  z-index: 100;
+  z-index: 10;
 }
 
 /* 충남 */
@@ -455,7 +456,7 @@ button[type="submit"]:hover {
   top: 41.5%;
   left: 64%;
   width: 9%;
-  z-index: 22;
+  z-index: 60;
   height: auto;
 }
 
