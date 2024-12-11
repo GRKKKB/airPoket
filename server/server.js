@@ -15,7 +15,7 @@ const app = express();
 
 // 서버 포트 설정
 const HTTP_PORT = 3927;
-const WS_PORT = 8080;
+const WS_PORT = 8888;
 
 // HTTP 서버 생성
 const httpServer = http.createServer(app);
@@ -72,7 +72,7 @@ app.use(
           "https://oapi.map.naver.com",
           "https://api.emailjs.com", // EmailJS API 호출 허용
           "https://naveropenapi.apigw.ntruss.com", // 네이버 OpenAPI 허용
-          "ws://localhost:8080", // WebSocket 허용
+          "ws://localhost:8888", // WebSocket 허용
         ],
       },
     },

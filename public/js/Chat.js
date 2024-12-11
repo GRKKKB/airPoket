@@ -8,7 +8,7 @@ const commentInput = document.getElementById('comment-input');
 const filterWarning = document.getElementById('filter-warning');
 
 // WebSocket 연결
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('ws://localhost:8888');
 
 let comments = []; // 댓글 배열 저장
 
