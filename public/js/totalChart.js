@@ -1,6 +1,6 @@
 const today = document.getElementById('today');
 // API BASE URL 설정
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
 // 지역 이름 매핑 객체: 영어를 한글로 변환
 const regionMapping = {
     Seoul: '서울',
