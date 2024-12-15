@@ -1,5 +1,5 @@
-// API BASE URL 설정
-const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
+// // API BASE URL 설정
+// const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
 
 document.addEventListener('DOMContentLoaded', () => {
   const regionMapping = {

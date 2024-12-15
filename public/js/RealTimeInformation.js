@@ -23,7 +23,7 @@ async function fetchData() {
 
 
   try {
-    const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
+    // const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
 
     const airResponse = await fetch(`${API_BASE_URL}/realTime/air`);
     const metalResponse = await fetch(`${API_BASE_URL}/realTime/metal`);

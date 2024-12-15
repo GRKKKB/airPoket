@@ -74,7 +74,7 @@ router.get('/procedure/serchOption', async (req, res) => {
 
 });
 
-// ` http://localhost:3000/air-pollution/dayairMap` 현재 지역 종합건강점수 평균
+// ` http://localhost:3927/air-pollution/dayairMap` 현재 지역 종합건강점수 평균
 router.get('/dayairMap', async (req, res) => {
   try {
     // 프로시저 호출 또는 SELECT 쿼리 실행

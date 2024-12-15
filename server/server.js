@@ -27,7 +27,7 @@ const WS_PORT = process.env.WS_PORT || 8888;
 const BASE_URL = process.env.BASE_URL || `http://localhost:${HTTP_PORT}`;
 const WS_BASE_URL = process.env.WS_BASE_URL || (process.env.NODE_ENV === 'production'
   ? `wss://${process.env.BASE_URL}`
-  : `ws://localhost:${WS_PORT}`);
+  : `wss://localhost:${WS_PORT}`);
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -55,6 +55,7 @@ app.use(
         scriptSrc: [
           "'self'",
           "'unsafe-inline'", // 필요 시 허용
+          
           "https://cdn.jsdelivr.net",
           "https://oapi.map.naver.com",
         ],
@@ -73,8 +74,10 @@ app.use(
           "'self'",
           "https://oapi.map.naver.com",
           "https://api.emailjs.com",
+          "wss://localhost:8888", // 로컬 WebSocket 연결 허용
           "https://airpoket-production.up.railway.app",
           "wss://airpoket-production.up.railway.app",
+          WS_BASE_URL, // WebSocket URL 추가
           WS_BASE_URL, // WebSocket 배포 URL
           BASE_URL, // API 배포 URL
           "https://naveropenapi.apigw.ntruss.com",
@@ -124,6 +127,7 @@ app.use('/comments', commentsRoutes);
 
 // HTTP 서버 실행
 httpServer.listen(HTTP_PORT, () => {
+  console.log(`  로컬 서버  http://localhost:3927`);
   console.log(`HTTP Server running on ${BASE_URL}`);
   console.log(`WebSocket Server running on ${WS_BASE_URL}`);
 });
