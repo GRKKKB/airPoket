@@ -1,126 +1,198 @@
-// 환경 변수 또는 동적 설정
+// API BASE URL 설정
 const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
-const WS_BASE_URL = window.WS_BASE_URL || 'ws://localhost:8888';
 
-// 금칙어 목록
-const forbiddenWords = ['욕설', '금칙어1', '금칙어2'];
+document.addEventListener('DOMContentLoaded', () => {
+  const regionMapping = {
+    Seoul: '서울',
+    Busan: '부산',
+    Daegu: '대구',
+    Incheon: '인천',
+    Gwangju: '광주',
+    Daejeon: '대전',
+    Ulsan: '울산',
+    Gyeonggi: '경기',
+    Gangwon: '강원',
+    Chungbuk: '충북',
+    Chungnam: '충남',
+    Jeonbuk: '전북',
+    Jeonnam: '전남',
+    Gyeongbuk: '경북',
+    Gyeongnam: '경남',
+    Jeju: '제주',
+    Sejong: '세종',
+    경기권: 'gyeonggigwon',
+    수도권: 'sudogwon',
+    강원권: 'gangwongwon',
+    충북권: 'chungbukgwon',
+    충청권: 'chungchunggwon',
+    전북권: 'jeonbuggwon',
+    호남권: 'honamgwon',
+    영남권: 'yeongnamgwon',
+    제주도: 'jejudo',
+    백령도: 'baeglyeongdo',
+    중부권: 'joongbugwon',
+  };
 
-// DOM 요소 가져오기
-const commentsContainer = document.getElementById('comments-container');
-const commentForm = document.getElementById('comment-form');
-const commentInput = document.getElementById('comment-input');
-const filterWarning = document.getElementById('filter-warning');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabs = document.querySelectorAll('.tab-content');
 
-// WebSocket 연결
-const ws = new WebSocket(WS_BASE_URL);
-
-let comments = []; // 댓글 배열 저장
-
-// 댓글 카드 생성 함수
-function createCommentCard(content) {
-  const commentCard = document.createElement('div');
-  commentCard.className = 'comment-card';
-  commentCard.textContent = content;
-  return commentCard;
-}
-
-// 랜덤 댓글 표시 함수
-function showRandomComment() {
-  if (comments.length === 0) return; // 댓글이 없으면 종료
-
-  const randomIndex = Math.floor(Math.random() * comments.length);
-  const randomComment = comments[randomIndex];
-
-  const newCard = createCommentCard(randomComment.content);
-  commentsContainer.appendChild(newCard);
-
-  setTimeout(() => {
-    newCard.classList.add('active');
-  }, 10);
-
-  setTimeout(() => {
-    newCard.classList.remove('active');
-    setTimeout(() => {
-      newCard.remove(); // 댓글 제거
-      showRandomComment(); // 새로운 댓글 표시
-    }, 1000); 
-  }, 3000);
-}
-
-// WebSocket 메시지 수신 이벤트
-ws.addEventListener('message', (event) => {
-  const message = JSON.parse(event.data);
-
-  if (message.type === 'new_comment') {
-    const comment = message.data;
-    comments.push(comment); // 새 댓글 배열에 추가
-    if (comments.length === 1) showRandomComment(); // 첫 댓글이 추가되면 표시
-  }
-
-  if (message.type === 'delete_comment') {
-    const { id } = message.data;
-    comments = comments.filter((comment) => comment.id !== id); // 댓글 삭제
-  }
-});
-
-// 서버에서 댓글 목록 가져오기
-const fetchComments = async () => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/comments`);
-    const data = await response.json();
-
-    comments = data; // 댓글 배열 갱신
-    if (comments.length > 0) {
-      showRandomComment(); // 첫 댓글 표시
-    }
-  } catch (error) {
-    console.error('댓글 가져오기 오류:', error);
-  }
-};
-
-// 알림 메시지 표시 함수
-const showAlert = (message) => {
-  filterWarning.textContent = message;
-  filterWarning.style.display = 'block';
-
-  setTimeout(() => {
-    filterWarning.style.display = 'none';
-  }, 3000);
-};
-
-// 댓글 추가 이벤트
-commentForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const comment = commentInput.value.trim();
-
-  const containsForbiddenWord = forbiddenWords.some((word) => comment.includes(word));
-  if (containsForbiddenWord) {
-    showAlert('금칙어가 포함된 메시지는 보낼 수 없습니다.');
+  if (tabButtons.length === 0 || tabs.length === 0) {
+    console.error('탭 버튼 또는 탭 콘텐츠가 존재하지 않습니다.');
     return;
   }
 
-  try {
-    const response = await fetch(`${API_BASE_URL}/comments`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ comment }), // 서버가 기대하는 키와 일치
-    });
+  // 초기화 - 첫 번째 탭만 활성화
+  tabs.forEach(tab => tab.classList.add('hidden'));
+  const firstTab = tabs[0];
+  if (firstTab) firstTab.classList.remove('hidden');
 
-    if (response.ok) {
-      commentInput.value = ''; // 입력 필드 초기화
-    } else if (response.status === 429) {
-      showAlert('메시지를 너무 자주 보냈습니다. 잠시 후 다시 시도하세요.');
-    } else {
-      showAlert('댓글 추가에 실패했습니다.');
+  // 대기오염 점수 업데이트
+  const updateAirQuality = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/air-pollution/dayairMap`);
+      if (!response.ok) {
+        throw new Error(`API 호출 실패: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      data.forEach(item => {
+        const koreanRegion = regionMapping[item.region];
+        const regionClass = `.location-${item.region.toLowerCase()}`;
+        const mapPoint = document.querySelector(regionClass);
+
+        if (mapPoint) {
+          const locationElement = mapPoint.querySelector('.location');
+          const valueElement = mapPoint.querySelector('.value');
+
+          let BackgroundColor = '';
+          let HoverColor = '';
+
+          if (locationElement) {
+            locationElement.textContent = koreanRegion || item.region;
+          }
+          if (valueElement) {
+            const score = item.score;
+
+            if (score >= 75) {
+              BackgroundColor = 'rgba(156, 39, 176, 0.5)';
+              HoverColor = 'rgba(156, 39, 176, 0.8)';
+            } else if (score >= 50) {
+              BackgroundColor = 'rgba(244, 67, 54, 0.5)';
+              HoverColor = 'rgba(244, 67, 54, 0.8)';
+            } else if (score >= 25) {
+              BackgroundColor = 'rgba(255, 193, 7, 0.5)';
+              HoverColor = 'rgba(255, 193, 7, 0.8)';
+            } else {
+              BackgroundColor = 'rgba(76, 175, 80, 0.5)';
+              HoverColor = 'rgba(76, 175, 80, 0.8)';
+            }
+
+            valueElement.textContent = score;
+            mapPoint.style.backgroundColor = BackgroundColor;
+
+            mapPoint.addEventListener('mouseenter', () => {
+              mapPoint.style.boxShadow = `0 0 10px ${HoverColor}`;
+            });
+
+            mapPoint.addEventListener('mouseleave', () => {
+              mapPoint.style.boxShadow = 'none';
+            });
+          }
+        } else {
+          console.warn(`"${item.region}"에 해당하는 HTML 요소를 찾을 수 없습니다.`);
+        }
+      });
+    } catch (error) {
+      console.error('API 호출 중 오류 발생:', error);
     }
-  } catch (error) {
-    console.error('댓글 추가 요청 오류:', error);
-    showAlert('서버와 연결할 수 없습니다. 다시 시도해주세요.');
-  }
-});
+  };
 
-// 페이지 로드 시 댓글 목록 가져오기
-fetchComments();
+  // 중금속 점수 업데이트
+  const updateMetalPollution = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/metal/dayMetal`);
+      if (!response.ok) {
+        throw new Error(`API 호출 실패: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      data.forEach((item) => {
+        const englishClass = regionMapping[item.city_name]; // 한글 이름을 영어 클래스 이름으로 변환
+        if (!englishClass) {
+          console.warn(`"${item.city_name}"에 대한 매핑을 찾을 수 없습니다.`);
+          return;
+        }
+
+        const regionClass = `.location-${englishClass}`;
+        const mapPoint = document.querySelector(regionClass);
+
+        if (mapPoint) {
+          const locationElement = mapPoint.querySelector('.location');
+          const valueElement = mapPoint.querySelector('.value');
+
+          let BackgroundColor = '';
+          let HoverColor = '';
+
+          if (locationElement) {
+            locationElement.textContent = item.city_name; // API에서 받은 한글 이름 그대로 사용
+          }
+          if (valueElement) {
+            const score = parseFloat(item.score);
+
+            if (score > 1) {
+              BackgroundColor = 'rgba(244, 67, 54, 0.5)';
+              HoverColor = 'rgba(244, 67, 54, 0.8)';
+            } else {
+              BackgroundColor = 'rgba(76, 175, 80, 0.5)';
+              HoverColor = 'rgba(76, 175, 80, 0.8)';
+            }
+
+            valueElement.textContent = score.toFixed(3); // 소수점 3자리로 표시
+            mapPoint.style.backgroundColor = BackgroundColor;
+
+            mapPoint.addEventListener('mouseenter', () => {
+              mapPoint.style.boxShadow = `0 0 10px ${HoverColor}`;
+            });
+
+            mapPoint.addEventListener('mouseleave', () => {
+              mapPoint.style.boxShadow = 'none';
+            });
+          }
+        } else {
+          console.warn(`"${item.city_name}"에 해당하는 HTML 요소를 찾을 수 없습니다.`);
+        }
+      });
+    } catch (error) {
+      console.error('API 호출 중 오류 발생:', error);
+    }
+  };
+
+  // 탭 버튼 클릭 이벤트 추가
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabs.forEach(tab => tab.classList.add('hidden'));
+
+      button.classList.add('active');
+      const target = button.dataset.target;
+      const targetTab = document.getElementById(target);
+
+      if (targetTab) {
+        targetTab.classList.remove('hidden');
+
+        if (target === 'air-tab') {
+          updateAirQuality();
+        } else if (target === 'metal-tab') {
+          updateMetalPollution();
+        }
+      } else {
+        console.error(`ID가 "${target}"인 탭 콘텐츠를 찾을 수 없습니다.`);
+      }
+    });
+  });
+
+  // 초기 로드 시 대기오염 탭 데이터 호출
+  updateAirQuality();
+});

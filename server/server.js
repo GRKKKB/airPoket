@@ -38,7 +38,7 @@ const wss = webSocket(WS_PORT);
 // CORS 설정
 const corsOptions = {
   origin: [
-    'http://localhost:3000', // 로컬 프론트엔드 URL
+    'http://localhost:3927', // 로컬 프론트엔드 URL
     process.env.FRONTEND_URL || 'https://airpoket-production.up.railway.app', // 배포된 프론트엔드 URL
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -73,6 +73,8 @@ app.use(
           "'self'",
           "https://oapi.map.naver.com",
           "https://api.emailjs.com",
+          "https://airpoket-production.up.railway.app",
+          "wss://airpoket-production.up.railway.app",
           WS_BASE_URL, // WebSocket 배포 URL
           BASE_URL, // API 배포 URL
           "https://naveropenapi.apigw.ntruss.com",

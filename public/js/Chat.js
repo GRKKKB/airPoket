@@ -1,6 +1,6 @@
 // 환경 변수 또는 동적 설정
 const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
-const WS_BASE_URL = window.WS_BASE_URL || 'ws://localhost:8888';
+const WS_BASE_URL = window.WS_BASE_URL || 'wss://localhost:8888';
 
 // 금칙어 목록
 const forbiddenWords = ['욕설', '금칙어1', '금칙어2'];
