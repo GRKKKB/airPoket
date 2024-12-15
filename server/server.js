@@ -55,7 +55,7 @@ app.use(
         scriptSrc: [
           "'self'",
           "'unsafe-inline'", // 필요 시 허용
-          
+          "http://localhost:3927",
           "https://cdn.jsdelivr.net",
           "https://oapi.map.naver.com",
         ],
@@ -74,6 +74,7 @@ app.use(
           "'self'",
           "https://oapi.map.naver.com",
           "https://api.emailjs.com",
+          "http://localhost:3927",
           "wss://localhost:8888", // 로컬 WebSocket 연결 허용
           "https://airpoket-production.up.railway.app",
           "wss://airpoket-production.up.railway.app",
