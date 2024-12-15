@@ -1,5 +1,6 @@
 const today = document.getElementById('today');
-
+// API BASE URL 설정
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
 // 지역 이름 매핑 객체: 영어를 한글로 변환
 const regionMapping = {
     Seoul: '서울',
@@ -32,10 +33,10 @@ function displayCurrentDate() {
 async function fetchData() {
     try {
         // API 호출
-        const metalNameResponse = await fetch('http://localhost:3927/totalInfo/week-metal-name');
-        const metalResponse = await fetch('http://localhost:3927/totalInfo/week-metal-avg-ratio');
-        const airResponse = await fetch('http://localhost:3927/totalInfo/week-air-avg-ratio');
-        const rankResponse = await fetch('http://localhost:3927/totalInfo/week-air-avg-rank');
+        const metalNameResponse = await fetch(`${API_BASE_URL}/totalInfo/week-metal-name`);
+        const metalResponse = await fetch(`${API_BASE_URL}/totalInfo/week-metal-avg-ratio`);
+        const airResponse = await fetch(`${API_BASE_URL}/totalInfo/week-air-avg-ratio`);
+        const rankResponse = await fetch(`${API_BASE_URL}/totalInfo/week-air-avg-rank`);
 
         // 응답 JSON 데이터로 변환
         const metalNameData = await metalNameResponse.json(); // 중금속 이름 데이터

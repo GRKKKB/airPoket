@@ -1,3 +1,6 @@
+// API BASE URL 설정
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+
 document.addEventListener('DOMContentLoaded', () => {
   const regionMapping = {
     Seoul: '서울',
@@ -17,9 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     Gyeongnam: '경남',
     Jeju: '제주',
     Sejong: '세종',
-    // 중금속 데이터에 추가된 매핑
     경기권: 'gyeonggigwon',
-    수도권: 'sudogwon', // 수도권은 서울로 매핑
+    수도권: 'sudogwon',
     강원권: 'gangwongwon',
     충북권: 'chungbukgwon',
     충청권: 'chungchunggwon',
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 대기오염 점수 업데이트
   const updateAirQuality = async () => {
     try {
-      const response = await fetch('http://localhost:3927/air-pollution/dayairMap');
+      const response = await fetch(`${API_BASE_URL}/air-pollution/dayairMap`);
       if (!response.ok) {
         throw new Error(`API 호출 실패: ${response.statusText}`);
       }
@@ -106,11 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-
   // 중금속 점수 업데이트
   const updateMetalPollution = async () => {
     try {
-      const response = await fetch('http://localhost:3927/metal/dayMetal');
+      const response = await fetch(`${API_BASE_URL}/metal/dayMetal`);
       if (!response.ok) {
         throw new Error(`API 호출 실패: ${response.statusText}`);
       }
@@ -136,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (locationElement) {
             locationElement.textContent = item.city_name; // API에서 받은 한글 이름 그대로 사용
-            console.log(locationElement);
           }
           if (valueElement) {
             const score = parseFloat(item.score);

@@ -1,3 +1,6 @@
+// API BASE URL 설정
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+
 async function updateStations(region) {
     const stationSelect = document.getElementById('station');
 
@@ -6,7 +9,7 @@ async function updateStations(region) {
 
     try {
         // API 호출
-        const response = await fetch(`http://localhost:3927/air-pollution/procedure/serchOption?region=${region}`);
+        const response = await fetch(`${API_BASE_URL}/air-pollution/procedure/serchOption?region=${region}`);
         const data = await response.json();
 
         // API 결과의 첫 번째 배열 가져오기

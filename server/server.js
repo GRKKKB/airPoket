@@ -3,6 +3,7 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
+const cors = require('cors');
 
 const webSocket = require('./webSocket'); // WebSocket 서버 모듈
 const airPollutionRoutes = require('./routes/airPollution');
@@ -24,13 +25,26 @@ const WS_PORT = process.env.WS_PORT || 8888;
 
 // 배포 환경용 URL
 const BASE_URL = process.env.BASE_URL || `http://localhost:${HTTP_PORT}`;
-const WS_BASE_URL = process.env.WS_BASE_URL || `ws://localhost:${WS_PORT}`;
+const WS_BASE_URL = process.env.WS_BASE_URL || (process.env.NODE_ENV === 'production'
+  ? `wss://${process.env.BASE_URL}`
+  : `ws://localhost:${WS_PORT}`);
 
 const app = express();
 const httpServer = http.createServer(app);
 
 // WebSocket 서버 실행
 const wss = webSocket(WS_PORT);
+
+// CORS 설정
+const corsOptions = {
+  origin: [
+    'http://localhost:3000', // 로컬 프론트엔드 URL
+    process.env.FRONTEND_URL || 'https://airpoket-production.up.railway.app', // 배포된 프론트엔드 URL
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // 쿠키 허용
+};
+app.use(cors(corsOptions));
 
 // Middleware 설정
 app.use(

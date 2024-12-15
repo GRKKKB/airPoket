@@ -65,9 +65,12 @@ updateLocationButton.addEventListener("click", () => {
     fetchRealTimeData(selectedCity, enteredCounty);
 });
 
+// API BASE URL 설정
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+
 // 실시간 데이터 API 호출 및 필터링
 function fetchRealTimeData(city, county) {
-    const apiUrl = "http://localhost:3927/realTime/air";
+    const apiUrl = `${API_BASE_URL}/realTime/air`;
 
     fetch(apiUrl)
         .then((response) => {
@@ -101,6 +104,7 @@ function fetchRealTimeData(city, county) {
             infoDiv.innerHTML += `<br>실시간 데이터를 불러오는 데 문제가 발생했습니다.`;
         });
 }
+
 
 // station_name에서 county와 가장 가까운 측정소 찾기
 function findClosestStation(filteredData, county) {

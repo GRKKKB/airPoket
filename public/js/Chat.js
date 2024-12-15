@@ -1,3 +1,7 @@
+// 환경 변수 또는 동적 설정
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+const WS_BASE_URL = process.env.WS_BASE_URL || 'ws://localhost:8888';
+
 // 금칙어 목록
 const forbiddenWords = ['욕설', '금칙어1', '금칙어2'];
 
@@ -8,7 +12,7 @@ const commentInput = document.getElementById('comment-input');
 const filterWarning = document.getElementById('filter-warning');
 
 // WebSocket 연결
-const ws = new WebSocket('ws://localhost:8888');
+const ws = new WebSocket(WS_BASE_URL);
 
 let comments = []; // 댓글 배열 저장
 
@@ -24,27 +28,23 @@ function createCommentCard(content) {
 function showRandomComment() {
   if (comments.length === 0) return; // 댓글이 없으면 종료
 
-  // 랜덤 인덱스 선택
   const randomIndex = Math.floor(Math.random() * comments.length);
   const randomComment = comments[randomIndex];
 
-  // 새 댓글 표시
   const newCard = createCommentCard(randomComment.content);
   commentsContainer.appendChild(newCard);
 
-  // 애니메이션 활성화
   setTimeout(() => {
     newCard.classList.add('active');
   }, 10);
 
-  // 일정 시간 후 댓글을 스크롤하는 효과
   setTimeout(() => {
     newCard.classList.remove('active');
     setTimeout(() => {
-      newCard.remove(); // 애니메이션 완료 후 제거
+      newCard.remove(); // 댓글 제거
       showRandomComment(); // 새로운 댓글 표시
-    }, 1000); // 애니메이션 시간과 일치
-  }, 3000); // 3초 후에 댓글 제거
+    }, 1000); 
+  }, 3000);
 }
 
 // WebSocket 메시지 수신 이벤트
@@ -59,15 +59,14 @@ ws.addEventListener('message', (event) => {
 
   if (message.type === 'delete_comment') {
     const { id } = message.data;
-    // 댓글 배열에서 삭제
-    comments = comments.filter((comment) => comment.id !== id);
+    comments = comments.filter((comment) => comment.id !== id); // 댓글 삭제
   }
 });
 
 // 서버에서 댓글 목록 가져오기
 const fetchComments = async () => {
   try {
-    const response = await fetch('http://localhost:3927/comments');
+    const response = await fetch(`${API_BASE_URL}/comments`);
     const data = await response.json();
 
     comments = data; // 댓글 배열 갱신
@@ -84,7 +83,6 @@ const showAlert = (message) => {
   filterWarning.textContent = message;
   filterWarning.style.display = 'block';
 
-  // 3초 후 경고 메시지 숨기기
   setTimeout(() => {
     filterWarning.style.display = 'none';
   }, 3000);
@@ -96,7 +94,6 @@ commentForm.addEventListener('submit', async (event) => {
 
   const comment = commentInput.value.trim();
 
-  // 금칙어 필터링
   const containsForbiddenWord = forbiddenWords.some((word) => comment.includes(word));
   if (containsForbiddenWord) {
     showAlert('금칙어가 포함된 메시지는 보낼 수 없습니다.');
@@ -104,7 +101,7 @@ commentForm.addEventListener('submit', async (event) => {
   }
 
   try {
-    const response = await fetch('http://localhost:3927/comments', {
+    const response = await fetch(`${API_BASE_URL}/comments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -23,11 +23,13 @@ async function fetchData() {
 
 
   try {
-    // API 호출
-    const airResponse = await fetch('http://localhost:3927/realTime/air');
-    const metalResponse = await fetch('http://localhost:3927/realTime/metal');
-    const airChartResponse = await fetch("http://localhost:3927/realTime/air-chart");
-    const metalChartResponse = await fetch("http://localhost:3927/realTime/metal-chart")
+    const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+
+    const airResponse = await fetch(`${API_BASE_URL}/realTime/air`);
+    const metalResponse = await fetch(`${API_BASE_URL}/realTime/metal`);
+    const airChartResponse = await fetch(`${API_BASE_URL}/realTime/air-chart`);
+    const metalChartResponse = await fetch(`${API_BASE_URL}/realTime/metal-chart`);
+    
 
     
 
