@@ -66,7 +66,7 @@ updateLocationButton.addEventListener("click", () => {
 });
 
 // API BASE URL 설정
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3927';
+const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
 
 // 실시간 데이터 API 호출 및 필터링
 function fetchRealTimeData(city, county) {
