@@ -3,8 +3,13 @@ import os
 import pandas as pd
 import xml.etree.ElementTree as ET
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
 import logging
 from logging import FileHandler
+
+# .env 파일 로드
+load_dotenv()
+
 
 # UTF-8 로그 핸들러 클래스
 class UTF8FileHandler(FileHandler):
@@ -38,9 +43,19 @@ pollution_logger.addHandler(stream_handler)
 # 로그 시작
 pollution_logger.info("대기오염 데이터 처리 스크립트 시작.")
 
-# DB 연결 설정
-engine = create_engine("mysql+pymysql://test:1234@127.0.0.1:3306/pythondb")
+# 데이터베이스 연결 정보
+DB_HOST = os.getenv("DB_HOST")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_NAME = os.getenv("DB_NAME")
+DB_PORT = os.getenv("DB_PORT", 3306)  # 기본값 3306
 
+# 외부 API 키
+API_SERVICE_KEY = os.getenv("API_SERVICE_KEY_AIR")
+
+
+# DB 연결 설정
+engine = create_engine(f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 # 안전한 float 변환 함수
 def safe_float(value):
     try:

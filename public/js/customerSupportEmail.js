@@ -1,12 +1,24 @@
-// EmailJS 초기화 및 이벤트 리스너 추가
-document.addEventListener("DOMContentLoaded", () => {
-    emailjs.init("tR-Ad8Jqe-HPdjgDV");
+document.addEventListener("DOMContentLoaded", async () => {
+    // 서버에서 EmailJS 키와 ID 가져오기
+    const emailjsConfig = await fetch('/api/emailjs-config')
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error("EmailJS Config Fetch Error:", error);
+            alert("EmailJS 설정을 로드하는 데 실패했습니다.");
+        });
 
-    // 버튼 이벤트 리스너 추가
-    document.getElementById("send-email-button").addEventListener("click", sendEmail);
+    if (emailjsConfig) {
+        // EmailJS 초기화
+        emailjs.init(emailjsConfig.userId);
+
+        // 버튼 이벤트 리스너 추가
+        document.getElementById("send-email-button").addEventListener("click", (event) => {
+            sendEmail(event, emailjsConfig.serviceId, emailjsConfig.templateId);
+        });
+    }
 });
 
-function sendEmail(event) {
+function sendEmail(event, serviceId, templateId) {
     event.preventDefault(); // 기본 폼 제출 동작 방지
 
     // 폼 데이터 가져오기
@@ -20,12 +32,13 @@ function sendEmail(event) {
         from_name: name,
         email: email,
         phone: phone,
-        message: message
+        message: message,
     };
 
     console.log(templateParams);
+
     // EmailJS로 데이터 전송
-    emailjs.send("service_a2qgy3f", "template_hivawpj", templateParams)
+    emailjs.send(serviceId, templateId, templateParams)
         .then(() => {
             alert("문의가 성공적으로 전송되었습니다!");
             document.getElementById("support-form").reset(); // 폼 초기화

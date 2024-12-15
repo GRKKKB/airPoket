@@ -2,9 +2,13 @@ import requests
 import pandas as pd
 import os
 import xml.etree.ElementTree as ET
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 import logging
 from logging import FileHandler
+
+# .env 파일 로드
+load_dotenv()
 
 # UTF-8 로그 핸들러 클래스
 class UTF8FileHandler(FileHandler):
@@ -39,8 +43,19 @@ metal_logger.addHandler(stream_handler)
 metal_logger.info("중금속 데이터 처리 스크립트 시작.")
 
 
+# 데이터베이스 연결 정보
+DB_HOST = os.getenv("DB_HOST")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_NAME = os.getenv("DB_NAME")
+DB_PORT = os.getenv("DB_PORT", 3306)  # 기본값 3306
+
+# 외부 API 키
+API_SERVICE_KEY = os.getenv("API_SERVICE_KEY_METAL")
+
+
 # DB 연결 설정
-engine = create_engine("mysql+pymysql://test:1234@127.0.0.1:3306/pythondb")
+engine = create_engine(f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 
 # 중금속 데이터 기준치 (항목 코드별 기준치 정의)
 guideline_values = {
@@ -84,7 +99,11 @@ def fetch_metal_data():
     for item_code, item_symbol in item_symbols.items():
         for station_code, station_name in station_names.items():
             try:
-                url = f'http://apis.data.go.kr/1480523/MetalMeasuringResultService/MetalService?serviceKey=DX8uG5d%2BVR7XcHY3s0gfcy6Rp0htpeKiMBhLDguoSyQPTYxY%2BIdB2vZQtw3Z2%2FKRVBD1Lfw5HuWCqk978lbA3w%3D%3D&pageNo=1&numOfRows=1&resultType=XML&date={current_date}&stationcode={station_code}&itemcode={item_code}&timecode=RH02'
+                url = (
+                    f'http://apis.data.go.kr/1480523/MetalMeasuringResultService/MetalService'
+                    f'?serviceKey={API_SERVICE_KEY}&pageNo=1&numOfRows=1&resultType=XML&'
+                    f'date={current_date}&stationcode={station_code}&itemcode={item_code}&timecode=RH02'
+                )
                 response = requests.get(url)
 
                 if response.status_code == 200:

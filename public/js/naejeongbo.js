@@ -13,6 +13,9 @@ const convertCityToEnglish = (koreanCity) => {
     return index !== -1 ? cities_english[index] : koreanCity; // 매핑되지 않으면 원래 값을 반환
 };
 
+
+
+
 // 네이버 지도 API가 로드된 후 실행
 naver.maps.onJSContentLoaded = function () {
     if (navigator.geolocation) {
