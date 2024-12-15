@@ -1,5 +1,4 @@
-// API BASE URL 설정
-const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3927';
+
 
 async function updateStations(region) {
     const stationSelect = document.getElementById('station');

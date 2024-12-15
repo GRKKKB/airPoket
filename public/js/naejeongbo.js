@@ -70,6 +70,7 @@ updateLocationButton.addEventListener("click", () => {
 
 // 실시간 데이터 API 호출 및 필터링
 function fetchRealTimeData(city, county) {
+    
     const apiUrl = `${API_BASE_URL}/realTime/air`;
 
     fetch(apiUrl)

@@ -49,7 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 대기오염 점수 업데이트
   const updateAirQuality = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/air-pollution/dayairMap`);
+
+      //const response = await fetch(`${API_BASE_URL}/air-pollution/dayairMap`);
+      const response = await fetch(`http://localhost:3927/air-pollution/dayairMap`);
       if (!response.ok) {
         throw new Error(`API 호출 실패: ${response.statusText}`);
       }
@@ -111,7 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 중금속 점수 업데이트
   const updateMetalPollution = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/metal/dayMetal`);
+
+      //const response = await fetch(`${API_BASE_URL}/metal/dayMetal`);
+      const response = await fetch(`http://localhost:3927/metal/dayMetal`);
       if (!response.ok) {
         throw new Error(`API 호출 실패: ${response.statusText}`);
       }

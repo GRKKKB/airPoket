@@ -16,9 +16,10 @@ module.exports = (wss) => {
   });
 
   router.post('/', (req, res) => {
+ 
     const { comment } = req.body;
     const userIP = req.ip;
-
+    console.log(comment);
     if (!comment || comment.trim() === '') {
       return res.status(400).json({ success: false, message: '댓글 내용이 비어 있습니다.' });
     }
@@ -37,7 +38,7 @@ module.exports = (wss) => {
     };
 
     comments.push(newComment);
-
+    console.log(comments);
     if (comments.length > MAX_COMMENTS) {
       const removedComment = comments.shift(); // 오래된 댓글 제거
       // WebSocket으로 제거된 댓글 ID 브로드캐스트
