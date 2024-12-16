@@ -52,13 +52,54 @@ main {
     font-size: 1.2rem;
     line-height: 1.8;
   }
+
+
+/* 팀원 소개 */
+.team-member-show {
+  color: #ffffff; /* 글자 색상 */
+  padding: 40px;
+  text-align: center;
+}
+
+.team-member-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  background-color: #7c6dbe; /* 팀원 카드 배경색 */
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 200px; /* 카드 너비 */
+  transition: transform 0.3s, box-shadow 0.3s; /* 호버 효과 */
+}
+
+.team-member h5 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.team-member p {
+  font-size: 1rem;
   
+}
+
+.team-member:hover {
+  transform: scale(1.05); /* 호버 시 약간 확대 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+}
+
+
   /* 헤더 스크롤 효과 */
   #header.scrolled {
     background-color: #0f2a44;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
+
+
   
 
   /* 이미지 기본 스타일 */
