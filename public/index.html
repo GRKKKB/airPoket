@@ -59,7 +59,7 @@
 
           <!-- 지도 컨테이너 -->
           <div id="air-tab" class="tab-content active">
-            <p style="text-align: center;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
+            <p style="text-align: center;">실시간 대기오염 수치를 에어포켓이 개발한 종합건강점수로 대기오염 상태를 표시합니다</p>
             
             <div id="air-textBox">
               <h4>대기오염 지수 안내</h4>
@@ -249,7 +249,7 @@
 
           <!-- 중금속 지도 -->
           <div id="metal-tab" class="tab-content hidden">
-            <p style="text-align: center;">대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
+            <p style="text-align: center;">현재 대기 중 납, 카드뮴 등 중금속 비율에 따라 위험도를 표시합니다</p>
             
 
             <!-- 중금속 지도 설명 박스 -->
@@ -400,17 +400,31 @@
         
         <!-- 사용자 입력 필드와 지역 정보 -->
         <div class="local-info" style="flex: 1; margin-right: 16px; width:100%;  ">
-          <section class="comments-section">
-            <h2>실시간 채팅</h2>
-            <div class="comments-container" id="comments-container">
-              <!-- 댓글 카드가 동적으로 추가됩니다 -->
-            </div>
-            <form id="comment-form">
-              <input type="text" style="height: 50px; width: 69%;" id="comment-input" placeholder="실시간으로 소통 해보세요." required />
-              <button type="submit">글 저장</button>
+          <section class="live-chat-section">
+            <h2 class="live-chat-title">실시간 채팅</h2>
+            
+            <!-- 최대 3개 메시지만 표시될 영역 -->
+            <div class="chat-bubble-container" id="chat-bubble-container"></div>
+          
+            <form id="live-chat-form" class="live-chat-form">
+              <input
+                type="text"
+                id="live-chat-input"
+                class="live-chat-input"
+                placeholder="실시간으로 소통 해보세요."
+                required
+              />
+              <button type="submit" class="live-chat-submit-btn">글 저장</button>
             </form>
-            <p id="filter-warning" style="color: rgb(253, 0, 0); display: none;">금칙어가 포함된 댓글은 등록할 수 없습니다.</p>
+          
+            <p id="forbidden-alert" class="forbidden-alert" style="display: none;">
+              금칙어가 포함된 메시지는 보낼 수 없습니다.
+            </p>
           </section>
+          
+          
+          
+          
 
           
           <h2 class="pt-5 pb-3 text-center">우리 동네 대기 정보</h2>
