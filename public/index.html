@@ -60,13 +60,30 @@
           <!-- 지도 컨테이너 -->
           <div id="air-tab" class="tab-content active">
             <p style="text-align: center;">초미세먼지, 미세먼지 등 대기오염 정보를 표시합니다.</p>
+            
             <div id="air-textBox">
-              <!-- 수정 예정 -->
-              빨강:설명
-              초록:설명
-              색깔:설명
-              색깔:설명
+              <h4>대기오염 지수 안내</h4>
+              <p>
+                <span class="color-box color-good"></span>
+                좋음 (25 미만)
+              </p>
+              <p>
+                <span class="color-box color-normal"></span>
+                보통 (25 이상 ~ 50 미만)
+              </p>
+              <p>
+                <span class="color-box color-bad"></span>
+                나쁨 (50 이상 ~ 75 미만)
+              </p>
+        
+              <p>
+                <span class="color-box color-verybad"></span>
+                매우 나쁨 (75 이상)
+              </p>
+        
+            
             </div>
+
             <div class="map-container">
               <!-- 경기 -->
               <div class="region gyeonggi">
@@ -222,8 +239,10 @@
               <div class="region baeglyeongdo">
                 <img src="/img/PNG/PNG/백령도.png" alt="백령도 지도">
               </div>
+
+         
             </div>
-            
+
           </div>
             
         
@@ -232,6 +251,26 @@
           <div id="metal-tab" class="tab-content hidden">
             <p style="text-align: center;">대기 중 납, 카드뮴 등 중금속 오염 정보를 표시합니다.</p>
             
+
+            <!-- 중금속 지도 설명 박스 -->
+            <div class="metal-legend">
+              <h4>중금속 위험 지수 안내</h4>
+              <ul>
+                <li>
+                  <span class="legend-box legend-safe"></span>
+                   안전 : 위험 지수 < 1
+                </li>
+                <li>
+                  <span class="legend-box legend-limit"></span>
+                  기준치 : 위험지수 = 1
+                </li>
+                <li>
+                  <span class="legend-box legend-danger"></span>
+                  심각 : 위험지수 > 1 
+                </li>
+              </ul>
+            </div>
+
             <div class="map-container">
               <!-- 경기권(서울, 경기도, 인천) -->
               <div class="region gyeonggigwon">
@@ -347,6 +386,11 @@
                   <span class="value">21</span>
                 </div>
               </div>
+
+
+            
+
+              
             </div>
             
           </div>

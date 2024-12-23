@@ -6,59 +6,77 @@ main {
 
 /* 섹션 스타일 */
 .animated-section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  
-  .animated-section.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* 각 섹션 디자인 */
-  .section-intro {
-    background-color: #123456; /* 헤더 색상과 통일 */
-    color: #fff;
-    width:100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .section-content {
-    background-color: #f8f9fa;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px;
-  }
-  
-  .section-content:nth-child(odd) {
-    background-color: #1f3b57;
-    color: #fff;
-  }
-  
-  .section-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .section-content p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-  }
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
+.animated-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 각 섹션 디자인 */
+.section-intro {
+  background: linear-gradient(135deg, #0f4c81,rgb(94, 156, 218)); /* 그라데이션 배경 (더 밝게 조정) */
+  color: #ffffff; /* 텍스트 색상: 흰색 */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-content {
+  background-color: #ffffff; /* 밝은 배경 */
+  color: #333333; /* 텍스트 색상: 어두운 회색 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 섹션 그림자 */
+}
+
+.section-content:nth-child(odd) {
+  background: linear-gradient(135deg, #f1f5f9, #d9eaf7); /* 밝은 파란색 계열 */
+  color: #0f4c81; /* 텍스트 색상: 짙은 파랑 */
+}
+
+.section-content h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #0f4c81; /* 헤더 색상: 짙은 파랑 */
+}
+
+.section-content p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #555555; /* 본문 텍스트 색상: 회색 */
+}
+
+/* 스크롤 애니메이션 */
+.animated-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animated-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* 팀원 소개 */
 .team-member-show {
-  color: #ffffff; /* 글자 색상 */
+  color: #333333; /* 텍스트 색상: 어두운 회색 */
   padding: 40px;
   text-align: center;
+  background-color: #f8f9fa; /* 배경색: 연한 회색 */
 }
 
 .team-member-container {
@@ -68,7 +86,8 @@ main {
 }
 
 .team-member {
-  background-color: #123456; /* 팀원 카드 배경색 */
+  background-color: #ffffff; /* 카드 배경색: 흰색 */
+  border: 1px solid #d9eaf7; /* 연한 파랑 테두리 */
   border-radius: 8px;
   padding: 20px;
   margin: 10px;
@@ -79,11 +98,12 @@ main {
 .team-member h5 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: #0f4c81; /* 팀원 이름 색상: 짙은 파랑 */
 }
 
 .team-member p {
   font-size: 1rem;
-  
+  color: #555555; /* 본문 텍스트 색상: 회색 */
 }
 
 .team-member:hover {
@@ -91,18 +111,14 @@ main {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
 }
 
+/* 헤더 스크롤 효과 */
+#header.scrolled {
+  background-color: #0f4c81; /* 스크롤 시 배경색: 짙은 파랑 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* 헤더 스크롤 효과 */
-  #header.scrolled {
-    background-color: #0f2a44;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-
-
-  
-
-  /* 이미지 기본 스타일 */
+/* 이미지 기본 스타일 */
 img {
   transition: filter 0.3s ease; /* 부드러운 블러 효과 전환 */
 }

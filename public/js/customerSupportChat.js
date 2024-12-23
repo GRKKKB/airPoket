@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // 이미지 추가
             const botImage = document.createElement("img");
-            botImage.src = "/img/miniLogo.png";
+            botImage.src = "/img/인물2.jpg";
             botImage.alt = "Bot";
             botImage.classList.add("chat-image");
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 botMessage.classList.add("chat-message", "bot", "fade-in");
 
                 const botImage = document.createElement("img");
-                botImage.src = "/img/miniLogo.png";
+                botImage.src = "/img/인물2.jpg";
                 botImage.alt = "Bot";
                 botImage.classList.add("chat-image");
 
